@@ -444,12 +444,12 @@ function About() {
         <div className="col-span-12 md:col-span-7 md:pl-12">
           <Reveal>
             <h2 className="font-display text-4xl leading-[0.98] tracking-tight text-chrome sm:text-5xl md:text-7xl">
-              We sculpt <span className="italic text-chrome-cyber">immersive</span> brands and interfaces at the intersection of aesthetics, strategy and modern interaction.
+              We are <span className="italic text-chrome-cyber">Nucleus</span> — a two‑person studio building high‑end websites and motion ads with a quiet, obsessive craft.
             </h2>
           </Reveal>
           <Reveal delay={150}>
             <p className="mt-8 max-w-xl text-base leading-relaxed text-muted-foreground">
-              A studio turning ambitious ideas into products that feel like objects — polished, kinetic, unmistakable. Every engagement begins with a story and ends with pixels that move like liquid metal.
+              Founded in 2026, we take on a small number of projects each season. No noise, no bloat — just polished sites and motion pieces that feel like objects cast in chrome.
             </p>
           </Reveal>
           <div className="mt-10 grid grid-cols-2 gap-3">
@@ -463,9 +463,9 @@ function About() {
             ))}
           </div>
           <div className="mt-10 flex flex-wrap gap-8 border-t border-border pt-6 font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
-            <div><div className="text-2xl font-light text-foreground">80+</div>projects shipped</div>
-            <div><div className="text-2xl font-light text-foreground">24</div>global clients</div>
-            <div><div className="text-2xl font-light text-foreground">06</div>years crafting</div>
+            <div><div className="text-2xl font-light text-foreground">02</div>person team</div>
+            <div><div className="text-2xl font-light text-foreground">2026</div>founded</div>
+            <div><div className="text-2xl font-light text-foreground">◆</div>web · motion</div>
           </div>
         </div>
       </div>
