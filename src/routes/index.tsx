@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode, type ComponentType } from "react";
+import { Instagram, MessageCircle, Mail } from "lucide-react";
 
 import aboutChrome from "@/assets/chrome-tiger-cutout.png";
 import contactChrome from "@/assets/chrome-cd-cutout.png";
@@ -662,10 +663,10 @@ function OtherWork() {
 
 
 function Contact() {
-  const links = [
-    { name: "Instagram", handle: "@nucleus.ux", href: "https://instagram.com/nucleus.ux", external: true, icon: "IG" },
-    { name: "WhatsApp", handle: "+1 (415) 000·0000", href: "https://wa.me/14150000000", external: true, icon: "WA" },
-    { name: "Email", handle: "hello@nucleus.io", href: "mailto:hello@nucleus.io", external: false, icon: "@" },
+  const links: { name: string; handle: string; href: string; external: boolean; Icon: ComponentType<{ className?: string; strokeWidth?: number }> }[] = [
+    { name: "Instagram", handle: "@nucleus.ux", href: "https://instagram.com/nucleus.ux", external: true, Icon: Instagram },
+    { name: "WhatsApp", handle: "+1 (415) 000·0000", href: "https://wa.me/14150000000", external: true, Icon: MessageCircle },
+    { name: "Email", handle: "hello@nucleus.io", href: "mailto:hello@nucleus.io", external: false, Icon: Mail },
   ];
   const [discRef, discProgress] = useScrollTransform<HTMLDivElement>();
   const discRot = discProgress * 30;
@@ -751,7 +752,7 @@ function Contact() {
                         "inset 0 1px 0 rgba(255,255,255,0.9), inset 0 -1px 0 rgba(0,0,0,0.3)",
                     }}
                   >
-                    {l.icon}
+                    <l.Icon className="h-5 w-5 text-black/80" strokeWidth={1.75} />
                   </span>
                   <div className="min-w-0">
                     <div className="font-display text-xl text-black sm:text-2xl">{l.name}</div>
