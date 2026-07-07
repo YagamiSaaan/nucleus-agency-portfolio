@@ -583,14 +583,14 @@ function Contact() {
       <img src={chromeStar} alt="" aria-hidden className="pointer-events-none absolute left-[10%] top-[20%] h-32 w-32 float-slow opacity-60" />
       <img src={chromeBlob} alt="" aria-hidden className="pointer-events-none absolute right-0 top-1/3 h-80 w-80 opacity-40 mix-blend-screen float-slower" />
 
-      <div className="relative mx-auto max-w-[1600px] px-6 py-32 md:px-10">
-        <div className="mb-12">
+      <div className="relative mx-auto max-w-[1600px] px-5 py-20 sm:px-6 md:px-10 md:py-32">
+        <div className="mb-10 md:mb-12">
           <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">[ 06 · contact ]</span>
         </div>
 
         <div className="grid grid-cols-12 gap-8">
           <div className="col-span-12 md:col-span-8">
-            <h2 className="font-display text-[16vw] leading-[0.85] tracking-[-0.04em] chrome-shimmer md:text-[10vw]">
+            <h2 className="font-display text-[14vw] leading-[0.9] tracking-[-0.04em] chrome-shimmer sm:text-[12vw] md:text-[10vw]">
               <SplitText text="Let’s " step={50} />
               <span className="italic text-chrome-cyber"><SplitText text="create" step={50} delay={250} /></span><br/>
               <SplitText text="something" step={50} delay={500} /><br/>
