@@ -655,7 +655,7 @@ function Contact() {
           ))}
         </div>
 
-        <footer className="relative mt-32 overflow-hidden rounded-3xl border border-border/60 bg-gradient-to-br from-background via-background to-muted/20 p-8 md:p-12">
+        <footer className="relative mt-24 overflow-hidden rounded-3xl border border-border/60 bg-gradient-to-br from-background via-background to-muted/20 p-6 sm:p-8 md:mt-32 md:p-12">
           <div className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-gradient-to-br from-foreground/10 via-foreground/5 to-transparent blur-3xl chrome-breathe" />
           <div className="pointer-events-none absolute -bottom-32 -left-16 h-80 w-80 rounded-full bg-gradient-to-tr from-foreground/[0.08] via-transparent to-transparent blur-3xl" />
 
