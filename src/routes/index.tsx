@@ -477,14 +477,19 @@ function Contact() {
           </div>
 
           <div className="col-span-12 md:col-span-4">
-            <div className="mx-auto w-full max-w-sm px-6 py-10 md:px-8 md:py-12">
-              <div className="relative aspect-square w-full overflow-hidden rounded-full chrome-border">
-                <img src={contactChrome} alt="Contact portrait" loading="lazy" width={1024} height={1024} className="h-full w-full object-cover" />
-                <div className="absolute inset-0 rounded-full" style={{ boxShadow: "inset 0 0 100px rgba(0,0,0,0.7)" }} />
-                <div className="absolute bottom-6 left-1/2 -translate-x-1/2 font-display text-2xl italic text-chrome">akkira</div>
-              </div>
+            <div className="relative">
+              <img
+                src={contactChrome}
+                alt="Chrome disc"
+                loading="lazy"
+                width={1600}
+                height={1600}
+                className="h-auto w-full select-none spin-slow md:w-[130%] md:max-w-none"
+                style={{ filter: "drop-shadow(0 40px 100px rgba(120,160,220,0.3)) drop-shadow(0 0 80px rgba(200,220,255,0.15))" }}
+              />
             </div>
           </div>
+
 
         </div>
 
