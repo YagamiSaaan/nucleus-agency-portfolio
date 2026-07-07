@@ -5,17 +5,49 @@ import project2 from "@/assets/project-2.jpg";
 import project3 from "@/assets/project-3.jpg";
 import project4 from "@/assets/project-4.jpg";
 
+const WORKS_URL = "https://snuggle-bright-flow.lovable.app/works";
+const WORKS_TITLE = "Selected Works — Websites & Motion Ads · Nucleus";
+const WORKS_DESCRIPTION =
+  "The Nucleus archive: ten selected web pieces and motion experiments — interfaces, landing pages and editorial work cast in polished chrome.";
+const WORKS_OG_IMAGE =
+  "https://snuggle-bright-flow.lovable.app/__l5e/assets-v1/543eff37-76c7-48cf-a21a-2cb7412c3ae4/nucleus-og.jpg";
+
 export const Route = createFileRoute("/works")({
   head: () => ({
     meta: [
-      { title: "Archive — 10 Web Works · NUCLEUS" },
-      { name: "description", content: "An extended reel of ten selected web pieces from the NUCLEUS studio archive — interfaces, landing pages and experimental work." },
-      { property: "og:title", content: "Archive — 10 Web Works · NUCLEUS" },
-      { property: "og:description", content: "Ten selected web pieces from the NUCLEUS studio archive." },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Archive — 10 Web Works · NUCLEUS" },
-      { name: "twitter:description", content: "Ten selected web pieces from the NUCLEUS studio archive." },
+      { title: WORKS_TITLE },
+      { name: "description", content: WORKS_DESCRIPTION },
+      { property: "og:title", content: WORKS_TITLE },
+      { property: "og:description", content: WORKS_DESCRIPTION },
+      { property: "og:url", content: WORKS_URL },
+      { property: "og:image", content: WORKS_OG_IMAGE },
+      { name: "twitter:title", content: WORKS_TITLE },
+      { name: "twitter:description", content: WORKS_DESCRIPTION },
+      { name: "twitter:image", content: WORKS_OG_IMAGE },
+    ],
+    links: [{ rel: "canonical", href: WORKS_URL }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "CollectionPage",
+          name: WORKS_TITLE,
+          url: WORKS_URL,
+          description: WORKS_DESCRIPTION,
+        }),
+      },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Home", item: "https://snuggle-bright-flow.lovable.app/" },
+            { "@type": "ListItem", position: 2, name: "Works", item: WORKS_URL },
+          ],
+        }),
+      },
     ],
   }),
   component: WorksPage,

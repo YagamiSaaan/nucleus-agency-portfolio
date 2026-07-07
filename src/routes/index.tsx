@@ -22,7 +22,56 @@ import {
   useScrollTransform,
 } from "@/lib/motion";
 
+const HOME_URL = "https://snuggle-bright-flow.lovable.app/";
+const HOME_OG_IMAGE =
+  "https://snuggle-bright-flow.lovable.app/__l5e/assets-v1/543eff37-76c7-48cf-a21a-2cb7412c3ae4/nucleus-og.jpg";
+const HOME_TITLE = "Nucleus — High-end websites & motion ads studio";
+const HOME_DESCRIPTION =
+  "Nucleus is a two-person studio crafting high-end websites and motion ads. Quiet process, chrome finish — work that speaks louder than we do.";
+
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: HOME_TITLE },
+      { name: "description", content: HOME_DESCRIPTION },
+      { property: "og:title", content: HOME_TITLE },
+      { property: "og:description", content: HOME_DESCRIPTION },
+      { property: "og:url", content: HOME_URL },
+      { property: "og:image", content: HOME_OG_IMAGE },
+      { name: "twitter:title", content: HOME_TITLE },
+      { name: "twitter:description", content: HOME_DESCRIPTION },
+      { name: "twitter:image", content: HOME_OG_IMAGE },
+    ],
+    links: [{ rel: "canonical", href: HOME_URL }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "ProfessionalService",
+          name: "Nucleus",
+          url: HOME_URL,
+          image: HOME_OG_IMAGE,
+          description: HOME_DESCRIPTION,
+          areaServed: "Worldwide",
+          serviceType: ["Web Design", "Web Development", "Motion Ads", "Creative Direction"],
+          foundingDate: "2026",
+          email: "nucleus.devsupport@gmail.com",
+          telephone: "+91-95673-32494",
+          sameAs: ["https://instagram.com/nucleus.xyz"],
+        }),
+      },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          name: "Nucleus",
+          url: HOME_URL,
+        }),
+      },
+    ],
+  }),
   component: Index,
 });
 
