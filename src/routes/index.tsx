@@ -1,18 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
-import heroChromeAsset from "@/assets/chrome-skull.jpg.asset.json";
-import aboutChromeAsset from "@/assets/chrome-tiger.jpg.asset.json";
-import contactChromeAsset from "@/assets/chrome-cd.jpg.asset.json";
+import heroChrome from "@/assets/chrome-skull-cutout.png";
+import aboutChrome from "@/assets/chrome-tiger-cutout.png";
+import contactChrome from "@/assets/chrome-cd-cutout.png";
 import chromeBlob from "@/assets/chrome-blob.jpg";
 import chromeStar from "@/assets/chrome-star.png";
 import project1 from "@/assets/project-1.jpg";
 import project2 from "@/assets/project-2.jpg";
 import project3 from "@/assets/project-3.jpg";
 import project4 from "@/assets/project-4.jpg";
-
-const heroChrome = heroChromeAsset.url;
-const aboutChrome = aboutChromeAsset.url;
-const contactChrome = contactChromeAsset.url;
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -153,30 +149,27 @@ function Hero() {
             </p>
           </div>
 
-          {/* Center portrait */}
+          {/* Center chrome subject — no card, bleeds into section */}
           <div className="reveal-up col-span-12 md:col-span-6" style={{ animationDelay: "0.4s" }}>
-            <div className="mx-auto w-full max-w-md px-6 py-10 md:px-10 md:py-14">
-              <div
-                className="relative aspect-[4/5] w-full overflow-hidden rounded-[24px] chrome-border"
-                style={{ transform: `translate(${x * -10}px, ${y * -10}px)` }}
-              >
-                <img
-                  src={heroChrome}
-                  alt="Chrome portrait"
-                  width={1024}
-                  height={1280}
-                  className="h-full w-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
-                <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between">
-                  <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
-                    MRK · 001<br/>chrome_series
-                  </div>
-                  <div className="font-display text-xl italic text-chrome">akkira</div>
-                </div>
+            <div
+              className="relative mx-auto w-full max-w-[720px]"
+              style={{ transform: `translate(${x * -14}px, ${y * -14}px)` }}
+            >
+              <img
+                src={heroChrome}
+                alt="Chrome skull"
+                width={1600}
+                height={1600}
+                className="h-auto w-full select-none"
+                style={{ filter: "drop-shadow(0 40px 80px rgba(120,160,220,0.25)) drop-shadow(0 0 40px rgba(200,220,255,0.15))" }}
+              />
+              <div className="mt-4 flex items-end justify-between px-2 font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
+                <span>MRK · 001 / chrome_series</span>
+                <span className="font-display text-xl italic normal-case text-chrome">akkira</span>
               </div>
             </div>
           </div>
+
 
 
           {/* Right: DESIGNER stacked */}
@@ -237,13 +230,19 @@ function About() {
       </div>
       <div className="grid grid-cols-12 gap-12 md:gap-20">
         <div className="col-span-12 md:col-span-5">
-          <div className="px-6 py-8 md:px-10 md:py-12">
-            <div className="relative aspect-square overflow-hidden rounded-full chrome-border">
-              <img src={aboutChrome} alt="About portrait" loading="lazy" width={1024} height={1024} className="h-full w-full scale-110 object-cover" />
-              <div className="absolute inset-0 rounded-full" style={{ boxShadow: "inset 0 0 80px rgba(0,0,0,0.6)" }} />
-            </div>
+          <div className="relative">
+            <img
+              src={aboutChrome}
+              alt="Chrome tiger"
+              loading="lazy"
+              width={1600}
+              height={1600}
+              className="relative z-10 h-auto w-full select-none md:-ml-16 md:w-[130%] md:max-w-none"
+              style={{ filter: "drop-shadow(0 40px 100px rgba(120,160,220,0.25)) drop-shadow(0 0 60px rgba(200,220,255,0.12))" }}
+            />
           </div>
         </div>
+
 
         <div className="col-span-12 md:col-span-7 md:pl-12">
           <h2 className="font-display text-5xl leading-[0.95] tracking-tight text-chrome md:text-7xl">
@@ -478,14 +477,19 @@ function Contact() {
           </div>
 
           <div className="col-span-12 md:col-span-4">
-            <div className="mx-auto w-full max-w-sm px-6 py-10 md:px-8 md:py-12">
-              <div className="relative aspect-square w-full overflow-hidden rounded-full chrome-border">
-                <img src={contactChrome} alt="Contact portrait" loading="lazy" width={1024} height={1024} className="h-full w-full object-cover" />
-                <div className="absolute inset-0 rounded-full" style={{ boxShadow: "inset 0 0 100px rgba(0,0,0,0.7)" }} />
-                <div className="absolute bottom-6 left-1/2 -translate-x-1/2 font-display text-2xl italic text-chrome">akkira</div>
-              </div>
+            <div className="relative">
+              <img
+                src={contactChrome}
+                alt="Chrome disc"
+                loading="lazy"
+                width={1600}
+                height={1600}
+                className="h-auto w-full select-none spin-slow md:w-[130%] md:max-w-none"
+                style={{ filter: "drop-shadow(0 40px 100px rgba(120,160,220,0.3)) drop-shadow(0 0 80px rgba(200,220,255,0.15))" }}
+              />
             </div>
           </div>
+
 
         </div>
 
