@@ -506,17 +506,9 @@ function Featured() {
                     <span key={t} className="rounded-full border border-border px-3 py-1 text-xs text-muted-foreground">{t}</span>
                   ))}
                 </div>
-                <div className="mt-8 flex gap-3">
-                  <Magnetic>
-                    <button className="group/btn relative overflow-hidden rounded-full chrome-border glass shine-sweep border-trace px-6 py-3 text-xs uppercase tracking-[0.2em] text-foreground">
-                      View Case
-                    </button>
-                  </Magnetic>
-                  <Magnetic>
-                    <button className="rounded-full border border-border px-6 py-3 text-xs uppercase tracking-[0.2em] text-muted-foreground transition-colors hover:text-foreground">
-                      Live ↗
-                    </button>
-                  </Magnetic>
+                <div className="mt-8 flex flex-wrap gap-3">
+                  <ChromeButton href="#work" variant="primary">View Case</ChromeButton>
+                  <ChromeButton href="#work" variant="ghost">Live ↗</ChromeButton>
                 </div>
               </Reveal>
             </div>
