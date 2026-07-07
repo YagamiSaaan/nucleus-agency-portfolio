@@ -639,6 +639,8 @@ function Contact() {
               <Magnetic strength={0.25}>
                 <a
                   href={l.href}
+                  target={l.external ? "_blank" : undefined}
+                  rel={l.external ? "noopener noreferrer" : undefined}
                   className="group relative block overflow-hidden rounded-2xl glass chrome-border shine-sweep border-trace p-5 transition-transform hover:-translate-y-1"
                 >
                   <div className="flex items-center justify-between">
