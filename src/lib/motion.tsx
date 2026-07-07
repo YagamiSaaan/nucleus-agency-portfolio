@@ -1,3 +1,28 @@
+/**
+ * @file src/lib/motion.tsx
+ *
+ * Shared visual + motion primitives used by every route in the app.
+ *
+ * Nothing here talks to the network or the router — each export is a
+ * self-contained, presentational component or hook. They fall into
+ * three groups:
+ *
+ * 1. **Scroll-triggered reveals**: `Reveal`, `SplitText` — mount and
+ *    animate in when the element enters the viewport.
+ * 2. **Pointer-reactive**: `Magnetic`, `Tilt3D`, `CursorSpotlight` —
+ *    respond to `mousemove`. All are effectively no-ops on touch
+ *    devices (no `mousemove` fires) and either hide themselves on
+ *    small screens or degrade gracefully.
+ * 3. **Scroll-linked**: `ScrollProgress`, `useScrollTransform` — read
+ *    `window.scrollY` on `passive: true` scroll listeners inside a
+ *    `requestAnimationFrame` throttle.
+ *
+ * Plus `PageLoader` (chrome intro overlay) and `MeltDivider` (SVG
+ * decorative wave between sections).
+ *
+ * All effect hooks clean up their listeners / RAF loops on unmount to
+ * avoid leaking work into unmounted trees.
+ */
 import {
   useEffect,
   useLayoutEffect,
@@ -8,9 +33,19 @@ import {
   type ReactNode,
 } from "react";
 
-/* -------------------------------------------------- */
-/* Scroll reveal — IntersectionObserver               */
-/* -------------------------------------------------- */
+/**
+ * Fade-and-lift-in wrapper triggered by an `IntersectionObserver`.
+ *
+ * Animates from `opacity: 0; translateY(y); blur(blur)` to their zero
+ * values once the element crosses the observer threshold.
+ *
+ * @param as - Which HTML element tag to render. Defaults to `"div"`.
+ * @param delay - Milliseconds to wait before starting the transition.
+ * @param y - Pixel offset for the initial `translateY`. Default `24`.
+ * @param blur - Initial CSS blur amount in px. Default `8`.
+ * @param once - When `true` (default), disconnects the observer after
+ *   the first intersection so exiting the viewport doesn't hide it.
+ */
 export function Reveal({
   children,
   as: Tag = "div",
