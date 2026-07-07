@@ -110,7 +110,7 @@ function Nav() {
   return (
     <header className="fixed left-0 right-0 top-0 z-50">
       <div
-        className={`mx-auto flex max-w-[1600px] items-center justify-between px-6 md:px-10 transition-all duration-500 ${scrolled ? "py-3" : "py-5"}`}
+        className={`mx-auto flex max-w-[1600px] items-center justify-between px-4 sm:px-6 md:px-10 transition-all duration-500 ${scrolled ? "py-3" : "py-5"}`}
       >
         <a href="#top" className="font-display text-2xl tracking-tight text-chrome shrink-0">
           nucleus<span className="text-accent">◆</span>
