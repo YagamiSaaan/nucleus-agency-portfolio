@@ -685,13 +685,13 @@ function Contact() {
             </h2>
             <Reveal delay={200}>
               <p className="mt-8 max-w-lg text-base leading-relaxed text-muted-foreground">
-                Whether it&apos;s an original interface, a rebrand, or a wild experimental idea — I&apos;m open for select collaborations. Reach out and let&apos;s shape it together.
+                Working on a website or a motion ad you actually care about? Drop us a line — we take on a small handful of projects each season.
               </p>
             </Reveal>
             <Reveal delay={300}>
               <Magnetic strength={0.4}>
                 <a
-                  href="mailto:hello@nucleus.io"
+                  href="mailto:nucleus.devsupport@gmail.com"
                   className="mt-10 inline-flex items-center gap-4 rounded-full chrome-border glass-strong shine-sweep border-trace px-8 py-4 text-sm uppercase tracking-[0.2em] text-foreground"
                 >
                   Start a project
