@@ -374,12 +374,12 @@ function Hero() {
         <div className="relative mt-6 grid grid-cols-12 items-start gap-6 md:gap-10">
           <Reveal delay={200} className="col-span-12 space-y-2 md:col-span-6 md:pt-8">
             <div className="pt-4 font-sans-tight text-3xl font-light leading-[0.95] sm:text-4xl md:text-5xl">
-              <div className="text-chrome">Brand</div>
-              <div className="text-chrome-cyber">Digital</div>
-              <div className="text-chrome">Motion</div>
+              <div className="text-chrome">Websites</div>
+              <div className="text-chrome-cyber">&amp;</div>
+              <div className="text-chrome">Motion Ads</div>
             </div>
             <p className="max-w-md pt-6 text-sm leading-relaxed text-muted-foreground md:text-base">
-              A design agency sculpting brands and interfaces at the frontier of luxury and futurism.
+              A two‑person studio building high‑end websites and motion ads. We craft in silence, ship in chrome.
             </p>
           </Reveal>
 
@@ -390,8 +390,8 @@ function Hero() {
               <div className="italic"><SplitText text="o" step={80} delay={720} /></div>
             </div>
             <div className="mt-4 flex flex-wrap gap-3 font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground sm:gap-4 sm:tracking-[0.3em] md:justify-end">
-              <span>ig · nucleus</span>
-              <span>tg · nucleus</span>
+              <span>ig · nucleus.xyz</span>
+              <span>est · 2026</span>
             </div>
           </Reveal>
         </div>
@@ -416,7 +416,7 @@ function Hero() {
 
 
 function About() {
-  const specialties = ["UI Design", "UX Design", "Web Design", "Branding", "Product Design", "Creative Direction"];
+  const specialties = ["Web Design", "Web Development", "Motion Ads", "Creative Direction"];
   const [tigerRef, tigerProgress] = useScrollTransform<HTMLDivElement>();
   const tigerY = (tigerProgress - 0.5) * -60;
   const tigerRot = (tigerProgress - 0.5) * 8;
@@ -444,12 +444,12 @@ function About() {
         <div className="col-span-12 md:col-span-7 md:pl-12">
           <Reveal>
             <h2 className="font-display text-4xl leading-[0.98] tracking-tight text-chrome sm:text-5xl md:text-7xl">
-              We sculpt <span className="italic text-chrome-cyber">immersive</span> brands and interfaces at the intersection of aesthetics, strategy and modern interaction.
+              We are <span className="italic text-chrome-cyber">Nucleus</span> — a two‑person studio building high‑end websites and motion ads with a quiet, obsessive craft.
             </h2>
           </Reveal>
           <Reveal delay={150}>
             <p className="mt-8 max-w-xl text-base leading-relaxed text-muted-foreground">
-              A studio turning ambitious ideas into products that feel like objects — polished, kinetic, unmistakable. Every engagement begins with a story and ends with pixels that move like liquid metal.
+              Founded in 2026, we take on a small number of projects each season. No noise, no bloat — just polished sites and motion pieces that feel like objects cast in chrome.
             </p>
           </Reveal>
           <div className="mt-10 grid grid-cols-2 gap-3">
@@ -463,9 +463,9 @@ function About() {
             ))}
           </div>
           <div className="mt-10 flex flex-wrap gap-8 border-t border-border pt-6 font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
-            <div><div className="text-2xl font-light text-foreground">80+</div>projects shipped</div>
-            <div><div className="text-2xl font-light text-foreground">24</div>global clients</div>
-            <div><div className="text-2xl font-light text-foreground">06</div>years crafting</div>
+            <div><div className="text-2xl font-light text-foreground">02</div>person team</div>
+            <div><div className="text-2xl font-light text-foreground">2026</div>founded</div>
+            <div><div className="text-2xl font-light text-foreground">◆</div>web · motion</div>
           </div>
         </div>
       </div>
@@ -518,7 +518,6 @@ const featured = {
   year: "2025",
   img: project2,
   tags: ["Editorial", "Streaming", "Dark UI"],
-  caseUrl: "mailto:hello@nucleus.io?subject=Case%20study%20—%20Rebranding%20Cinema",
   liveUrl: "https://mubi.com",
 };
 
@@ -586,7 +585,9 @@ function Featured() {
                   </div>
                   <div className="mt-8 flex flex-wrap gap-3">
                     <a
-                      href={p.caseUrl}
+                      href={p.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="rounded-full chrome-border px-6 py-3 text-xs uppercase tracking-[0.2em] text-black shine-sweep"
                       style={{
                         background:
@@ -595,15 +596,7 @@ function Featured() {
                           "inset 0 1px 0 rgba(255,255,255,0.9), inset 0 -1px 0 rgba(0,0,0,0.25)",
                       }}
                     >
-                      View Case
-                    </a>
-                    <a
-                      href={p.liveUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="rounded-full border border-black/40 px-6 py-3 text-xs uppercase tracking-[0.2em] text-black/80 transition-colors hover:text-black"
-                    >
-                      Live ↗
+                      View Website ↗
                     </a>
                   </div>
                 </div>
@@ -664,9 +657,9 @@ function OtherWork() {
 
 function Contact() {
   const links: { name: string; handle: string; href: string; external: boolean; Icon: ComponentType<{ className?: string; strokeWidth?: number }> }[] = [
-    { name: "Instagram", handle: "@nucleus.ux", href: "https://instagram.com/nucleus.ux", external: true, Icon: Instagram },
-    { name: "WhatsApp", handle: "+1 (415) 000·0000", href: "https://wa.me/14150000000", external: true, Icon: MessageCircle },
-    { name: "Email", handle: "hello@nucleus.io", href: "mailto:hello@nucleus.io", external: false, Icon: Mail },
+    { name: "Instagram", handle: "@nucleus.xyz", href: "https://instagram.com/nucleus.xyz", external: true, Icon: Instagram },
+    { name: "WhatsApp", handle: "+91 95673 32494", href: "https://wa.me/919567332494", external: true, Icon: MessageCircle },
+    { name: "Email", handle: "nucleus.devsupport@gmail.com", href: "mailto:nucleus.devsupport@gmail.com", external: false, Icon: Mail },
   ];
   const [discRef, discProgress] = useScrollTransform<HTMLDivElement>();
   const discRot = discProgress * 30;
@@ -692,13 +685,13 @@ function Contact() {
             </h2>
             <Reveal delay={200}>
               <p className="mt-8 max-w-lg text-base leading-relaxed text-muted-foreground">
-                Whether it&apos;s an original interface, a rebrand, or a wild experimental idea — I&apos;m open for select collaborations. Reach out and let&apos;s shape it together.
+                Working on a website or a motion ad you actually care about? Drop us a line — we take on a small handful of projects each season.
               </p>
             </Reveal>
             <Reveal delay={300}>
               <Magnetic strength={0.4}>
                 <a
-                  href="mailto:hello@nucleus.io"
+                  href="mailto:nucleus.devsupport@gmail.com"
                   className="mt-10 inline-flex items-center gap-4 rounded-full chrome-border glass-strong shine-sweep border-trace px-8 py-4 text-sm uppercase tracking-[0.2em] text-foreground"
                 >
                   Start a project
@@ -801,28 +794,27 @@ function Contact() {
               {
                 label: "channels",
                 items: [
-                  { t: "telegram", href: "https://t.me/nucleus", external: true },
-                  { t: "instagram", href: "https://instagram.com/nucleus.ux", external: true },
-                  { t: "read.cv", href: "https://read.cv/nucleus", external: true },
-                  { t: "are.na", href: "https://are.na/nucleus", external: true },
+                  { t: "instagram", href: "https://instagram.com/nucleus.xyz", external: true },
+                  { t: "whatsapp", href: "https://wa.me/919567332494", external: true },
+                  { t: "email", href: "mailto:nucleus.devsupport@gmail.com" },
                 ],
               },
               {
                 label: "signals",
                 items: [
-                  { t: "studio log", href: "mailto:hello@nucleus.io?subject=Studio%20log" },
-                  { t: "field notes", href: "mailto:hello@nucleus.io?subject=Field%20notes" },
-                  { t: "press kit", href: "mailto:press@nucleus.io" },
+                  { t: "studio log", href: "mailto:nucleus.devsupport@gmail.com?subject=Studio%20log" },
+                  { t: "field notes", href: "mailto:nucleus.devsupport@gmail.com?subject=Field%20notes" },
+                  { t: "press kit", href: "mailto:nucleus.devsupport@gmail.com?subject=Press%20kit" },
                   { t: "colophon", href: "#about" },
                 ],
               },
               {
                 label: "contact",
                 items: [
-                  { t: "hello@nucleus.io", href: "mailto:hello@nucleus.io" },
-                  { t: "+1 (415) 000·0000", href: "tel:+14150000000" },
-                  { t: "san francisco", href: "https://maps.google.com/?q=San+Francisco", external: true },
-                  { t: "by appointment", href: "mailto:hello@nucleus.io?subject=Appointment" },
+                  { t: "nucleus.devsupport@gmail.com", href: "mailto:nucleus.devsupport@gmail.com" },
+                  { t: "+91 95673 32494", href: "https://wa.me/919567332494", external: true },
+                  { t: "@nucleus.xyz", href: "https://instagram.com/nucleus.xyz", external: true },
+                  { t: "by appointment", href: "mailto:nucleus.devsupport@gmail.com?subject=Appointment" },
                 ],
               },
             ].map((col, i) => (
