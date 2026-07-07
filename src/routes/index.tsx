@@ -583,13 +583,6 @@ function Featured() {
 }
 
 function OtherWork() {
-  const items = [
-    { t: "Branding", i: "◆" },
-    { t: "Apps", i: "▲" },
-    { t: "Posters", i: "■" },
-    { t: "3D", i: "●" },
-    { t: "Motion", i: "◐" },
-  ];
   return (
     <section className="relative border-t border-border">
       <div className="mx-auto max-w-[1600px] px-5 py-20 sm:px-6 md:px-10 md:py-32">
@@ -597,27 +590,42 @@ function OtherWork() {
           <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">[ 05 · other ]</span>
           <h2 className="font-display text-3xl italic text-chrome sm:text-4xl md:text-6xl">other works</h2>
         </div>
-        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
-          {items.map((it, idx) => (
-            <Reveal key={it.t} delay={idx * 80}>
-              <Tilt3D>
-                <div className="group relative aspect-square overflow-hidden rounded-2xl glass chrome-border shine-sweep border-trace p-6 transition-transform hover:-translate-y-1">
-                  <div className="relative flex h-full flex-col justify-between">
-                    <div className="text-chrome text-4xl">{it.i}</div>
-                    <div>
-                      <div className="font-display text-2xl text-chrome">{it.t}</div>
-                      <div className="mt-1 font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">08 pieces</div>
-                    </div>
-                  </div>
+        <Reveal>
+          <Tilt3D max={4}>
+            <Link
+              to="/works"
+              className="group relative block overflow-hidden rounded-3xl chrome-border shine-sweep border-trace p-8 transition-transform hover:-translate-y-1 sm:p-12 md:p-16"
+              style={{
+                background:
+                  "linear-gradient(135deg, #f5f5f5 0%, #cfd6e2 30%, #8a92a8 60%, #cfcfcf 100%)",
+                boxShadow:
+                  "inset 0 1px 0 rgba(255,255,255,0.75), inset 0 -1px 0 rgba(0,0,0,0.35), 0 20px 60px -20px rgba(180,200,255,0.35)",
+              }}
+            >
+              <div className="pointer-events-none absolute -right-10 -top-10 h-64 w-64 rounded-full bg-white/40 blur-3xl transition-opacity duration-500 group-hover:opacity-80" />
+              <div className="relative flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
+                <div>
+                  <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-black/60">◆ archive</div>
+                  <h3 className="mt-4 font-display text-4xl leading-[0.95] text-black sm:text-5xl md:text-7xl">
+                    10 more <span className="italic">web pieces</span>
+                  </h3>
+                  <p className="mt-4 max-w-md text-sm leading-relaxed text-black/70 md:text-base">
+                    Explore an extended reel of interfaces, landing pages and experimental web work from the studio archive.
+                  </p>
                 </div>
-              </Tilt3D>
-            </Reveal>
-          ))}
-        </div>
+                <div className="flex items-center gap-3 font-mono text-xs uppercase tracking-[0.25em] text-black">
+                  <span>Enter the archive</span>
+                  <span className="text-2xl transition-transform duration-500 group-hover:translate-x-2">→</span>
+                </div>
+              </div>
+            </Link>
+          </Tilt3D>
+        </Reveal>
       </div>
     </section>
   );
 }
+
 
 function Contact() {
   const links = [
