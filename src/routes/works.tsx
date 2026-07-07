@@ -36,6 +36,59 @@ const works = [
   { n: "10", t: "Obsidian Agency", cat: "Agency Site", year: "2023", tags: ["Marketing", "Case"] },
 ];
 
+function SilverFluid() {
+  return (
+    <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
+      <div
+        className="absolute inset-0 opacity-70"
+        style={{
+          background:
+            "radial-gradient(ellipse at 20% 30%, rgba(210,220,235,0.35), transparent 55%), radial-gradient(ellipse at 80% 60%, rgba(180,200,230,0.30), transparent 55%), radial-gradient(ellipse at 50% 90%, rgba(150,170,200,0.25), transparent 60%)",
+        }}
+      />
+      <div
+        className="absolute -left-[20%] top-[10%] h-[70vh] w-[70vh] rounded-full mix-blend-screen blur-3xl"
+        style={{
+          background:
+            "radial-gradient(circle at 40% 40%, #f3f5f8 0%, #cfd6e2 30%, #8a92a8 60%, transparent 75%)",
+          animation: "wfluid-a 18s ease-in-out infinite",
+        }}
+      />
+      <div
+        className="absolute right-[-15%] top-[35%] h-[80vh] w-[80vh] rounded-full mix-blend-screen blur-3xl opacity-90"
+        style={{
+          background:
+            "radial-gradient(circle at 60% 50%, #ffffff 0%, #d9dee7 25%, #98a2b8 55%, transparent 75%)",
+          animation: "wfluid-b 22s ease-in-out infinite",
+        }}
+      />
+      <div
+        className="absolute left-[30%] bottom-[-10%] h-[65vh] w-[65vh] rounded-full mix-blend-screen blur-3xl opacity-80"
+        style={{
+          background:
+            "radial-gradient(circle at 50% 50%, #e8ecf3 0%, #b6bccb 40%, #6f7689 70%, transparent 80%)",
+          animation: "wfluid-c 26s ease-in-out infinite",
+        }}
+      />
+      <div
+        className="absolute inset-0 opacity-30 mix-blend-overlay"
+        style={{
+          background:
+            "conic-gradient(from 210deg at 50% 50%, rgba(255,255,255,0.0), rgba(200,220,255,0.35), rgba(180,160,220,0.25), rgba(255,255,255,0.0), rgba(200,220,255,0.35), rgba(255,255,255,0.0))",
+          animation: "wfluid-spin 40s linear infinite",
+          filter: "blur(40px)",
+        }}
+      />
+      <style>{`
+        @keyframes wfluid-a { 0%,100%{transform:translate(0,0) scale(1);} 50%{transform:translate(12vw,8vh) scale(1.15);} }
+        @keyframes wfluid-b { 0%,100%{transform:translate(0,0) scale(1);} 50%{transform:translate(-14vw,-6vh) scale(1.1);} }
+        @keyframes wfluid-c { 0%,100%{transform:translate(0,0) scale(1);} 50%{transform:translate(-8vw,-12vh) scale(1.2);} }
+        @keyframes wfluid-spin { to { transform: rotate(360deg); } }
+      `}</style>
+    </div>
+  );
+}
+
 function WorksPage() {
   return (
     <div className="relative min-h-screen bg-background text-foreground">
@@ -62,7 +115,8 @@ function WorksPage() {
         </div>
       </header>
 
-      <section className="relative overflow-hidden pt-32 md:pt-40">
+      <section className="relative min-h-[70vh] overflow-hidden pt-32 md:pt-40">
+        <SilverFluid />
         <div className="pointer-events-none absolute inset-0 radial-glow" />
         <div className="relative mx-auto max-w-[1600px] px-5 sm:px-6 md:px-10">
           <div className="mb-6 flex flex-wrap items-end justify-between gap-3">
@@ -86,33 +140,51 @@ function WorksPage() {
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {works.map((w, i) => (
             <Reveal key={w.n} delay={i * 60}>
-              <Tilt3D max={6}>
-                <div className="group relative flex h-full flex-col overflow-hidden rounded-3xl glass chrome-border shine-sweep border-trace transition-transform duration-500 hover:-translate-y-1">
-                  <div className="relative aspect-[4/3] overflow-hidden">
+              <Tilt3D max={5}>
+                <div
+                  className="group relative flex h-full flex-col overflow-hidden rounded-3xl chrome-border shine-sweep border-trace p-4 transition-transform duration-500 hover:-translate-y-1 sm:p-5"
+                  style={{
+                    background:
+                      "linear-gradient(135deg, #f5f5f5 0%, #cfd6e2 30%, #8a92a8 60%, #cfcfcf 100%)",
+                    boxShadow:
+                      "inset 0 1px 0 rgba(255,255,255,0.75), inset 0 -1px 0 rgba(0,0,0,0.35), 0 20px 60px -20px rgba(180,200,255,0.35)",
+                  }}
+                >
+                  <div className="pointer-events-none absolute -right-8 -top-8 h-40 w-40 rounded-full bg-white/40 blur-3xl" />
+                  <div className="pointer-events-none absolute -bottom-10 -left-10 h-40 w-40 rounded-full bg-black/10 blur-3xl" />
+
+                  <div
+                    className="relative aspect-[4/3] overflow-hidden rounded-2xl"
+                    style={{
+                      boxShadow:
+                        "inset 0 0 0 1px rgba(255,255,255,0.6), 0 20px 50px -20px rgba(0,0,0,0.55)",
+                    }}
+                  >
                     <img
                       src={covers[i % covers.length]}
                       alt={w.t}
                       loading="lazy"
                       className="absolute inset-0 h-full w-full object-cover transition-transform duration-1000 group-hover:scale-105"
                     />
-                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/70 via-transparent to-transparent" />
-                    <span className="absolute left-4 top-4 font-mono text-[10px] uppercase tracking-[0.3em] text-foreground/80">
+                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent" />
+                    <span className="absolute left-4 top-4 font-mono text-[10px] uppercase tracking-[0.3em] text-white/90">
                       {w.n}
                     </span>
                   </div>
-                  <div className="flex flex-1 flex-col gap-3 p-6">
+
+                  <div className="relative flex flex-1 flex-col gap-3 p-4 pt-5">
                     <div className="flex items-baseline justify-between gap-3">
-                      <h3 className="font-display text-2xl text-chrome sm:text-3xl">{w.t}</h3>
-                      <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
+                      <h3 className="font-display text-2xl text-black sm:text-3xl">{w.t}</h3>
+                      <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-black/60">
                         {w.year}
                       </span>
                     </div>
-                    <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-accent">{w.cat}</p>
+                    <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-black/70">{w.cat}</p>
                     <div className="mt-auto flex flex-wrap gap-2 pt-2">
                       {w.tags.map((t) => (
                         <span
                           key={t}
-                          className="rounded-full border border-border px-3 py-1 text-xs text-muted-foreground"
+                          className="rounded-full border border-black/25 bg-white/25 px-3 py-1 text-xs text-black/80 backdrop-blur"
                         >
                           {t}
                         </span>
