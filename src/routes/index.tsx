@@ -458,7 +458,7 @@ function Process() {
                   <div className="absolute -right-8 -top-8 h-32 w-32 rounded-full opacity-20 blur-2xl transition-opacity group-hover:opacity-50"
                        style={{ background: "radial-gradient(circle, rgba(200,220,255,0.8), transparent)" }} />
                   <div className="font-mono text-xs uppercase tracking-[0.3em] text-muted-foreground">{s.n}</div>
-                  <h3 className="mt-24 font-display text-4xl text-chrome">{s.t}</h3>
+                  <h3 className="mt-16 font-display text-3xl text-chrome sm:text-4xl md:mt-24">{s.t}</h3>
                   <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{s.d}</p>
                   <div className="mt-6 h-px w-full bg-gradient-to-r from-transparent via-foreground/30 to-transparent" />
                 </div>
