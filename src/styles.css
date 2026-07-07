@@ -287,6 +287,14 @@
   }
   .chrome-breathe { animation: chrome-breathe 8s ease-in-out infinite; }
 
+  /* +10% inset on mobile and tablet — applies to every max-w-[1600px] wrapper */
+  @media (max-width: 1023px) {
+    .max-w-\[1600px\] {
+      padding-left: calc(10vw + 1.25rem) !important;
+      padding-right: calc(10vw + 1.25rem) !important;
+    }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
       animation-duration: 0.01ms !important;
