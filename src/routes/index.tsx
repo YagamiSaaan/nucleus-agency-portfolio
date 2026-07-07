@@ -374,12 +374,12 @@ function Hero() {
         <div className="relative mt-6 grid grid-cols-12 items-start gap-6 md:gap-10">
           <Reveal delay={200} className="col-span-12 space-y-2 md:col-span-6 md:pt-8">
             <div className="pt-4 font-sans-tight text-3xl font-light leading-[0.95] sm:text-4xl md:text-5xl">
-              <div className="text-chrome">Brand</div>
-              <div className="text-chrome-cyber">Digital</div>
-              <div className="text-chrome">Motion</div>
+              <div className="text-chrome">Websites</div>
+              <div className="text-chrome-cyber">&amp;</div>
+              <div className="text-chrome">Motion Ads</div>
             </div>
             <p className="max-w-md pt-6 text-sm leading-relaxed text-muted-foreground md:text-base">
-              A design agency sculpting brands and interfaces at the frontier of luxury and futurism.
+              A two‑person studio building high‑end websites and motion ads. We craft in silence, ship in chrome.
             </p>
           </Reveal>
 
@@ -390,8 +390,8 @@ function Hero() {
               <div className="italic"><SplitText text="o" step={80} delay={720} /></div>
             </div>
             <div className="mt-4 flex flex-wrap gap-3 font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground sm:gap-4 sm:tracking-[0.3em] md:justify-end">
-              <span>ig · nucleus</span>
-              <span>tg · nucleus</span>
+              <span>ig · nucleus.xyz</span>
+              <span>est · 2026</span>
             </div>
           </Reveal>
         </div>
