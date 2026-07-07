@@ -697,7 +697,7 @@ function Contact() {
 
         <div className="grid grid-cols-12 gap-8">
           <div className="col-span-12 md:col-span-8">
-            <h2 className="font-display text-[14vw] leading-[0.9] tracking-[-0.04em] chrome-shimmer sm:text-[12vw] md:text-[10vw]">
+            <h2 className="font-display text-[11vw] leading-[0.9] tracking-[-0.04em] chrome-shimmer sm:text-[12vw] md:text-[10vw]">
               <SplitText text="Let’s " step={50} />
               <span className="italic text-chrome-cyber"><SplitText text="create" step={50} delay={250} /></span><br/>
               <SplitText text="something" step={50} delay={500} /><br/>
