@@ -255,7 +255,7 @@ function Hero() {
   const yOffset = skullProgress * -40;
 
   return (
-    <section id="top" className="relative min-h-screen w-full overflow-hidden pt-28">
+    <section id="top" className="relative min-h-screen w-full overflow-hidden pt-24 md:pt-28">
       <div className="pointer-events-none absolute inset-0 radial-glow" />
       <div className="pointer-events-none absolute left-1/2 top-1/3 h-[70vh] w-[70vh] -translate-x-1/2 rounded-full opacity-40 blur-3xl"
            style={{ background: "radial-gradient(circle, rgba(150,180,255,0.35), transparent 65%)" }} />
@@ -289,16 +289,16 @@ function Hero() {
         style={{ transform: `translate(${x * 40}px, ${y * 20}px) rotate(30deg)` }}
       />
 
-      <div className="relative mx-auto max-w-[1600px] px-6 md:px-10">
+      <div className="relative mx-auto max-w-[1600px] px-5 sm:px-6 md:px-10">
         <div className="relative">
-          <h1 className="font-display text-[24vw] leading-[0.82] tracking-[-0.045em] chrome-shimmer md:text-[16vw]">
+          <h1 className="font-display text-[22vw] leading-[0.85] tracking-[-0.045em] chrome-shimmer md:text-[16vw]">
             <SplitText text="Nucleus" step={70} />
           </h1>
         </div>
 
-        <div className="relative -mt-[6vw] grid grid-cols-12 items-start gap-6 md:gap-8">
-          <Reveal delay={200} className="col-span-6 space-y-2 pt-8 md:col-span-3">
-            <div className="pt-4 font-sans-tight text-3xl font-light leading-[0.95] md:text-4xl">
+        <div className="relative mt-6 grid grid-cols-12 items-start gap-6 md:-mt-[6vw] md:gap-8">
+          <Reveal delay={200} className="order-2 col-span-12 space-y-2 md:order-1 md:col-span-3 md:pt-8">
+            <div className="pt-4 font-sans-tight text-3xl font-light leading-[0.95] sm:text-4xl">
               <div className="text-chrome">Brand</div>
               <div className="text-chrome-cyber">Digital</div>
               <div className="text-chrome">Motion</div>
@@ -308,10 +308,10 @@ function Hero() {
             </p>
           </Reveal>
 
-          <Reveal delay={400} className="col-span-12 md:col-span-6">
+          <Reveal delay={400} className="order-1 col-span-12 md:order-2 md:col-span-6">
             <div
               ref={skullRef}
-              className="relative mx-auto w-full max-w-[980px] md:-my-16 md:w-[125%] md:max-w-none chrome-breathe"
+              className="relative mx-auto w-full max-w-[560px] md:-my-16 md:w-[125%] md:max-w-none chrome-breathe"
               style={{ transform: `translate(${x * -14}px, ${y * -14 + yOffset}px) scale(${scale}) rotate(${rotate}deg)` }}
             >
               <img
@@ -322,31 +322,31 @@ function Hero() {
                 className="h-auto w-full select-none"
                 style={{ filter: "drop-shadow(0 40px 80px rgba(120,160,220,0.25)) drop-shadow(0 0 40px rgba(200,220,255,0.15))" }}
               />
-              <div className="mt-4 flex items-end justify-between px-2 font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
-                <span>MRK · 001 / chrome_series</span>
+              <div className="mt-4 flex items-end justify-between gap-3 px-2 font-mono text-[9px] uppercase tracking-[0.25em] text-muted-foreground sm:text-[10px] sm:tracking-[0.3em]">
+                <span className="truncate">MRK · 001 / chrome_series</span>
                 <span className="font-display text-xl italic normal-case text-chrome">nucleus</span>
               </div>
             </div>
           </Reveal>
 
-          <Reveal delay={600} className="col-span-6 pt-4 text-right md:col-span-3">
-            <div className="font-display text-[14vw] leading-[0.85] tracking-[-0.04em] text-chrome-cyber md:text-[6vw]">
+          <Reveal delay={600} className="order-3 col-span-12 text-right md:col-span-3 md:pt-4">
+            <div className="font-display text-[18vw] leading-[0.85] tracking-[-0.04em] text-chrome-cyber sm:text-[14vw] md:text-[6vw]">
               <SplitText text="Stu" step={80} delay={400} />
               <div><SplitText text="di" step={80} delay={560} /></div>
               <div className="italic"><SplitText text="o" step={80} delay={720} /></div>
             </div>
-            <div className="mt-4 flex justify-end gap-4 text-xs uppercase tracking-[0.3em] text-muted-foreground">
+            <div className="mt-4 flex flex-wrap justify-end gap-3 font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground sm:gap-4 sm:tracking-[0.3em]">
               <span>ig · nucleus</span>
               <span>tg · nucleus</span>
             </div>
           </Reveal>
         </div>
 
-        <div className="mt-24 flex items-center justify-between border-t border-border pt-6">
+        <div className="mt-16 flex flex-wrap items-center justify-between gap-4 border-t border-border pt-6 md:mt-24">
           <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
             [ scroll · v.2026 ]
           </div>
-          <div className="hidden gap-8 font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground md:flex">
+          <div className="hidden gap-8 font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground lg:flex">
             <span>◆ Awwwards Nominee</span>
             <span>◆ Selected Works</span>
             <span>◆ Available Q1</span>
@@ -381,12 +381,12 @@ function About() {
   const tigerY = (tigerProgress - 0.5) * -60;
   const tigerRot = (tigerProgress - 0.5) * 8;
   return (
-    <section id="about" className="relative mx-auto max-w-[1600px] px-6 py-32 md:px-10">
-      <div className="mb-16 flex items-end justify-between">
+    <section id="about" className="relative mx-auto max-w-[1600px] px-5 py-20 sm:px-6 md:px-10 md:py-32">
+      <div className="mb-10 flex flex-wrap items-end justify-between gap-3 md:mb-16">
         <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">[ 01 · about ]</span>
         <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">who / behind / the chrome</span>
       </div>
-      <div className="grid grid-cols-12 gap-12 md:gap-20">
+      <div className="grid grid-cols-12 gap-10 md:gap-20">
         <Reveal className="col-span-12 md:col-span-5">
           <div ref={tigerRef} className="relative" style={{ transform: `translateY(${tigerY}px) rotate(${tigerRot}deg)` }}>
             <img
@@ -403,7 +403,7 @@ function About() {
 
         <div className="col-span-12 md:col-span-7 md:pl-12">
           <Reveal>
-            <h2 className="font-display text-5xl leading-[0.95] tracking-tight text-chrome md:text-7xl">
+            <h2 className="font-display text-4xl leading-[0.98] tracking-tight text-chrome sm:text-5xl md:text-7xl">
               We sculpt <span className="italic text-chrome-cyber">immersive</span> brands and interfaces at the intersection of aesthetics, strategy and modern interaction.
             </h2>
           </Reveal>
@@ -442,15 +442,15 @@ function Process() {
   ];
   return (
     <section id="process" className="relative border-t border-border">
-      <div className="mx-auto max-w-[1600px] px-6 py-32 md:px-10">
+      <div className="mx-auto max-w-[1600px] px-5 py-20 sm:px-6 md:px-10 md:py-32">
         {/* Sticky pinned heading */}
-        <div className="mb-16 md:sticky md:top-24 md:z-10 md:mb-8 md:bg-background/60 md:backdrop-blur-xl">
-          <div className="flex items-end justify-between py-4">
+        <div className="mb-10 md:sticky md:top-24 md:z-10 md:mb-8 md:bg-background/60 md:backdrop-blur-xl">
+          <div className="flex flex-wrap items-end justify-between gap-3 py-4">
             <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">[ 02 · process ]</span>
-            <h2 className="font-display text-4xl italic text-chrome md:text-6xl">stages of the craft</h2>
+            <h2 className="font-display text-3xl italic text-chrome sm:text-4xl md:text-6xl">stages of the craft</h2>
           </div>
         </div>
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-4">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {steps.map((s, i) => (
             <Reveal key={s.n} delay={i * 100}>
               <Tilt3D>
@@ -458,7 +458,7 @@ function Process() {
                   <div className="absolute -right-8 -top-8 h-32 w-32 rounded-full opacity-20 blur-2xl transition-opacity group-hover:opacity-50"
                        style={{ background: "radial-gradient(circle, rgba(200,220,255,0.8), transparent)" }} />
                   <div className="font-mono text-xs uppercase tracking-[0.3em] text-muted-foreground">{s.n}</div>
-                  <h3 className="mt-24 font-display text-4xl text-chrome">{s.t}</h3>
+                  <h3 className="mt-16 font-display text-3xl text-chrome sm:text-4xl md:mt-24">{s.t}</h3>
                   <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{s.d}</p>
                   <div className="mt-6 h-px w-full bg-gradient-to-r from-transparent via-foreground/30 to-transparent" />
                 </div>
@@ -479,11 +479,11 @@ const featured = [
 function Featured() {
   return (
     <section id="work" className="relative border-t border-border">
-      <div className="mx-auto max-w-[1600px] px-6 py-32 md:px-10">
-        <div className="mb-16 flex items-end justify-between">
+      <div className="mx-auto max-w-[1600px] px-5 py-20 sm:px-6 md:px-10 md:py-32">
+        <div className="mb-10 flex flex-wrap items-end justify-between gap-4 md:mb-16">
           <div>
             <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">[ 03 · featured ]</span>
-            <h2 className="mt-3 font-display text-5xl text-chrome md:text-7xl">
+            <h2 className="mt-3 font-display text-4xl text-chrome sm:text-5xl md:text-7xl">
               <SplitText text="Selected " step={50} />
               <span className="italic text-chrome-cyber"><SplitText text="Works" step={50} delay={250} /></span>
             </h2>
@@ -491,11 +491,11 @@ function Featured() {
           <span className="hidden font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground md:block">two selected pieces</span>
         </div>
 
-        <div className="space-y-24 md:space-y-32">
+        <div className="space-y-20 md:space-y-32">
           {featured.map((p, i) => (
-            <div key={p.n} className={`group grid grid-cols-12 items-center gap-8 md:gap-16 ${i % 2 ? "md:flex-row-reverse" : ""}`}>
+            <div key={p.n} className="group grid grid-cols-12 items-center gap-6 md:gap-16">
               <Reveal className={`col-span-12 md:col-span-7 ${i % 2 ? "md:order-2" : ""}`}>
-                <div className="px-4 py-6 md:px-8 md:py-10">
+                <div className="px-0 py-4 md:px-8 md:py-10">
                   <Tilt3D max={6}>
                     <div className="relative overflow-hidden rounded-2xl chrome-border">
                       <img src={p.img} alt={p.title} loading="lazy" width={1200} height={800} className="h-full w-full object-cover transition-transform duration-1000 group-hover:scale-105" />
@@ -505,11 +505,11 @@ function Featured() {
                 </div>
               </Reveal>
               <Reveal delay={150} className={`col-span-12 md:col-span-5 md:px-6 ${i % 2 ? "md:order-1" : ""}`}>
-                <div className="flex items-baseline justify-between">
-                  <span className="font-display text-[8rem] leading-none text-chrome/40">{p.n}</span>
+                <div className="flex items-baseline justify-between gap-3">
+                  <span className="font-display text-[5rem] leading-none text-chrome/40 sm:text-[7rem] md:text-[8rem]">{p.n}</span>
                   <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">{p.year}</span>
                 </div>
-                <h3 className="mt-4 font-display text-4xl text-chrome md:text-5xl">{p.title}</h3>
+                <h3 className="mt-4 font-display text-3xl text-chrome sm:text-4xl md:text-5xl">{p.title}</h3>
                 <p className="mt-2 font-mono text-[11px] uppercase tracking-[0.3em] text-accent">{p.cat}</p>
                 <div className="mt-6 flex flex-wrap gap-2">
                   {p.tags.map((t) => (
@@ -539,12 +539,12 @@ function OtherWork() {
   ];
   return (
     <section className="relative border-t border-border">
-      <div className="mx-auto max-w-[1600px] px-6 py-32 md:px-10">
-        <div className="mb-12 flex items-end justify-between">
+      <div className="mx-auto max-w-[1600px] px-5 py-20 sm:px-6 md:px-10 md:py-32">
+        <div className="mb-10 flex flex-wrap items-end justify-between gap-3 md:mb-12">
           <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">[ 05 · other ]</span>
-          <h2 className="font-display text-4xl italic text-chrome md:text-6xl">other works</h2>
+          <h2 className="font-display text-3xl italic text-chrome sm:text-4xl md:text-6xl">other works</h2>
         </div>
-        <div className="grid grid-cols-2 gap-4 md:grid-cols-5">
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
           {items.map((it, idx) => (
             <Reveal key={it.t} delay={idx * 80}>
               <Tilt3D>
@@ -583,14 +583,14 @@ function Contact() {
       <img src={chromeStar} alt="" aria-hidden className="pointer-events-none absolute left-[10%] top-[20%] h-32 w-32 float-slow opacity-60" />
       <img src={chromeBlob} alt="" aria-hidden className="pointer-events-none absolute right-0 top-1/3 h-80 w-80 opacity-40 mix-blend-screen float-slower" />
 
-      <div className="relative mx-auto max-w-[1600px] px-6 py-32 md:px-10">
-        <div className="mb-12">
+      <div className="relative mx-auto max-w-[1600px] px-5 py-20 sm:px-6 md:px-10 md:py-32">
+        <div className="mb-10 md:mb-12">
           <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">[ 06 · contact ]</span>
         </div>
 
         <div className="grid grid-cols-12 gap-8">
           <div className="col-span-12 md:col-span-8">
-            <h2 className="font-display text-[16vw] leading-[0.85] tracking-[-0.04em] chrome-shimmer md:text-[10vw]">
+            <h2 className="font-display text-[14vw] leading-[0.9] tracking-[-0.04em] chrome-shimmer sm:text-[12vw] md:text-[10vw]">
               <SplitText text="Let’s " step={50} />
               <span className="italic text-chrome-cyber"><SplitText text="create" step={50} delay={250} /></span><br/>
               <SplitText text="something" step={50} delay={500} /><br/>
@@ -633,7 +633,7 @@ function Contact() {
           </div>
         </div>
 
-        <div className="mt-24 grid grid-cols-2 gap-3 md:grid-cols-5">
+        <div className="mt-20 grid grid-cols-2 gap-3 sm:grid-cols-3 md:mt-24 lg:grid-cols-5">
           {links.map((l, i) => (
             <Reveal key={l.name} delay={i * 80}>
               <Magnetic strength={0.25}>
@@ -655,7 +655,7 @@ function Contact() {
           ))}
         </div>
 
-        <footer className="relative mt-32 overflow-hidden rounded-3xl border border-border/60 bg-gradient-to-br from-background via-background to-muted/20 p-8 md:p-12">
+        <footer className="relative mt-24 overflow-hidden rounded-3xl border border-border/60 bg-gradient-to-br from-background via-background to-muted/20 p-6 sm:p-8 md:mt-32 md:p-12">
           <div className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-gradient-to-br from-foreground/10 via-foreground/5 to-transparent blur-3xl chrome-breathe" />
           <div className="pointer-events-none absolute -bottom-32 -left-16 h-80 w-80 rounded-full bg-gradient-to-tr from-foreground/[0.08] via-transparent to-transparent blur-3xl" />
 
