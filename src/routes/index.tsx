@@ -1,3 +1,27 @@
+/**
+ * @file src/routes/index.tsx
+ *
+ * Home page of the Nucleus studio site — the `/` route.
+ *
+ * This file is intentionally structured as a single route module that
+ * composes many local section components (`Hero`, `About`, `Process`,
+ * `Featured`, `OtherWork`, `Contact`, `Nav`, `Footer` inside `Index`)
+ * plus a few visual primitives (`ChromeCursor`, `SilverFluid`,
+ * `ChromeButton`). Sections aren't reused across other routes, so
+ * keeping them local avoids over-splitting into files.
+ *
+ * ## Route configuration
+ * `Route.head()` emits the home-specific SEO metadata:
+ * canonical / og:url / og:image / title / description and two
+ * JSON-LD blobs (ProfessionalService + WebSite). Sitewide defaults
+ * (viewport, Organization schema, font stylesheet) live on
+ * `__root.tsx` and are inherited automatically.
+ *
+ * ## Animations
+ * Motion primitives (Reveal, SplitText, Tilt3D, etc.) come from
+ * `@/lib/motion`. Local decorative pieces (`SilverFluid`, `ChromeCursor`)
+ * are inline because they're single-use.
+ */
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState, type ReactNode, type ComponentType } from "react";
 import { Instagram, MessageCircle, Mail } from "lucide-react";
@@ -75,6 +99,16 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
+/**
+ * Track normalized mouse position across the viewport.
+ *
+ * @returns `{ x, y }` where each value is in the range `[-1, 1]`,
+ *   `0` being the viewport center. Consumers multiply by a pixel
+ *   amount to build parallax transforms.
+ *
+ * Listener runs unconditionally; on touch devices it stays at
+ * `{0,0}` because `mousemove` never fires.
+ */
 function useMouseParallax() {
   const [pos, setPos] = useState({ x: 0, y: 0 });
   useEffect(() => {
@@ -89,6 +123,13 @@ function useMouseParallax() {
   return pos;
 }
 
+/**
+ * Custom cursor that trails the mouse with light easing on desktop.
+ *
+ * Uses `mix-blend-mode: difference` so it stays visible over any
+ * background. Hidden on touch / narrow screens via the `hidden md:block`
+ * classes — a chasing dot is jarring on mobile.
+ */
 function ChromeCursor() {
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
@@ -121,6 +162,15 @@ function ChromeCursor() {
   );
 }
 
+/**
+ * Sticky top navigation. Hash-links jump to in-page sections
+ * (`#work`, `#about`, etc.) — these are pure scroll anchors, not
+ * separate routes.
+ *
+ * The mobile menu is a full-screen chrome sheet toggled by an
+ * internal `open` state; closing it happens on any nav link click
+ * or on the "close" button.
+ */
 function Nav() {
   const items = [
     { label: "Work", id: "work" },
@@ -267,6 +317,15 @@ function Nav() {
 }
 
 /* Shared button primitives — consistent chrome feel across the site */
+/**
+ * Reusable chrome-styled button.
+ *
+ * Renders as `<a>` when `href` is provided (with `target="_blank"` +
+ * safe rel when `external`), otherwise as `<button>`. Two variants
+ * (`primary` / `ghost`) and two sizes (`md` / `lg`) — all other
+ * chrome buttons in the file go through this component so the shine
+ * gradients stay consistent.
+ */
 function ChromeButton({
   href,
   onClick,
@@ -323,6 +382,14 @@ function ChromeButton({
   );
 }
 
+/**
+ * Fullbleed animated silver-fluid backdrop used behind the hero.
+ *
+ * Pure decorative CSS — a stack of radial gradients + `mix-blend-mode`
+ * layers moving on independent keyframe animations. Purely visual;
+ * `aria-hidden` and `pointer-events-none` so it never affects layout
+ * or accessibility.
+ */
 function SilverFluid() {
   return (
     <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
@@ -390,6 +457,13 @@ function SilverFluid() {
   );
 }
 
+/**
+ * Above-the-fold hero section.
+ *
+ * Combines the `SilverFluid` backdrop with mouse-parallax chrome
+ * stars, the animated `SplitText` wordmark, and the primary CTA
+ * pair. The `#top` id anchors the "back to top" nav interactions.
+ */
 function Hero() {
   const { x, y } = useMouseParallax();
 
@@ -464,6 +538,14 @@ function Hero() {
 }
 
 
+/**
+ * "About" section — chrome tiger visual + studio blurb + specialty tags.
+ *
+ * The tiger image has a scroll-linked parallax + subtle rotation
+ * driven by `useScrollTransform`. `overflow-x-clip` on the outer
+ * section prevents the intentional `-ml-10` overflow on desktop
+ * from pushing content wider than the viewport on mobile.
+ */
 function About() {
   const specialties = ["Web Design", "Web Development", "Motion Ads", "Creative Direction"];
   const [tigerRef, tigerProgress] = useScrollTransform<HTMLDivElement>();
@@ -522,6 +604,13 @@ function About() {
   );
 }
 
+/**
+ * "Process" section — numbered 4-step reveal of how the studio works.
+ *
+ * Steps are declared as a local array so ordering and copy can be
+ * tweaked in one place. Each step animates in via `Reveal` with a
+ * staggered delay.
+ */
 function Process() {
   const steps = [
     { n: "01", t: "Discover", d: "Research, mapping and material references. Understanding the object before shaping it." },
@@ -570,6 +659,14 @@ const featured = {
   liveUrl: "https://mubi.com",
 };
 
+/**
+ * "Featured" section — large hero-sized project card.
+ *
+ * Content is driven by the module-level `featured` object. Layout
+ * flips from horizontal on desktop to vertical on mobile so the
+ * cover image doesn't overflow narrow viewports (fixed in an
+ * earlier iteration — see change history).
+ */
 function Featured() {
   const p = featured;
   return (
@@ -659,6 +756,13 @@ function Featured() {
 }
 
 
+/**
+ * "Other work" section — 4-up grid of secondary case studies.
+ *
+ * Uses `Tilt3D` on each card for the hover-perspective effect. The
+ * "View all works" CTA at the bottom links to `/works` for the full
+ * archive.
+ */
 function OtherWork() {
   return (
     <section className="relative border-t border-border">
@@ -704,6 +808,13 @@ function OtherWork() {
 }
 
 
+/**
+ * "Contact" section — three horizontal chrome bars (Instagram,
+ * WhatsApp, Email) each rendered from the `links` array.
+ *
+ * External bars carry `rel="noopener noreferrer"` via the underlying
+ * anchor; the email row is a plain `mailto:` link (no external target).
+ */
 function Contact() {
   const links: { name: string; handle: string; href: string; external: boolean; Icon: ComponentType<{ className?: string; strokeWidth?: number }> }[] = [
     { name: "Instagram", handle: "@nucleus.xyz", href: "https://instagram.com/nucleus.xyz", external: true, Icon: Instagram },
@@ -908,6 +1019,17 @@ function Contact() {
   );
 }
 
+/**
+ * Root component for the `/` route. Assembles the full page in
+ * top-to-bottom rendering order:
+ *
+ * `PageLoader` → `ScrollProgress` → `CursorSpotlight` →
+ * `ChromeCursor` → `Nav` → `Hero` → `MeltDivider` → `About` →
+ * `Process` → `Featured` → `OtherWork` → `Contact` → footer.
+ *
+ * The wrapping div sets the sitewide `noise` background and enforces
+ * a full-viewport minimum height.
+ */
 function Index() {
   return (
     <div className="relative min-h-screen bg-background text-foreground noise">
