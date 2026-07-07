@@ -151,10 +151,6 @@ function Hero() {
 
         <div className="relative -mt-[8vw] grid grid-cols-12 items-start gap-6">
           <Reveal delay={200} className="col-span-6 space-y-2 pt-8 md:col-span-3">
-            <div className="flex items-center gap-3 text-xs uppercase tracking-[0.3em] text-muted-foreground">
-              <span className="h-px w-6 bg-gradient-to-r from-transparent via-foreground/60 to-transparent" />
-              since 2019
-            </div>
             <div className="pt-4 font-sans-tight text-3xl font-light leading-none md:text-4xl">
               <div className="text-chrome">UX</div>
               <div className="text-chrome-cyber">UI</div>
