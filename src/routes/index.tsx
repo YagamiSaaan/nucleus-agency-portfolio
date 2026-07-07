@@ -1,18 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
-import heroChromeAsset from "@/assets/chrome-skull.jpg.asset.json";
-import aboutChromeAsset from "@/assets/chrome-tiger.jpg.asset.json";
-import contactChromeAsset from "@/assets/chrome-cd.jpg.asset.json";
+import heroChrome from "@/assets/chrome-skull-cutout.png";
+import aboutChrome from "@/assets/chrome-tiger-cutout.png";
+import contactChrome from "@/assets/chrome-cd-cutout.png";
 import chromeBlob from "@/assets/chrome-blob.jpg";
 import chromeStar from "@/assets/chrome-star.png";
 import project1 from "@/assets/project-1.jpg";
 import project2 from "@/assets/project-2.jpg";
 import project3 from "@/assets/project-3.jpg";
 import project4 from "@/assets/project-4.jpg";
-
-const heroChrome = heroChromeAsset.url;
-const aboutChrome = aboutChromeAsset.url;
-const contactChrome = contactChromeAsset.url;
 
 export const Route = createFileRoute("/")({
   component: Index,
