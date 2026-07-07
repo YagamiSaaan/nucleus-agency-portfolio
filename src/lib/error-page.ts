@@ -1,3 +1,26 @@
+/**
+ * @file src/lib/error-page.ts
+ *
+ * A self-contained HTML error page for catastrophic SSR failures.
+ *
+ * ## Design constraints
+ * This module is the *last-resort* fallback: it is served when the app
+ * cannot render its own React tree (root route throw, module-init
+ * failure, h3-swallowed 500). It therefore MUST NOT import anything
+ * from the app — if it did, the same failure that triggered this
+ * fallback could break the fallback itself.
+ *
+ * The HTML uses system fonts and inline CSS so it has zero external
+ * dependencies and renders instantly, even without JS or network.
+ */
+
+/**
+ * Return a complete `<!doctype html>` document describing a friendly
+ * "something went wrong" page with two actions: refresh, and go home.
+ *
+ * The returned string is intended to be passed to `new Response()` with
+ * `Content-Type: text/html; charset=utf-8`.
+ */
 export function renderErrorPage(): string {
   return `<!doctype html>
 <html lang="en">
