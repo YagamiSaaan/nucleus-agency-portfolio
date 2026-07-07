@@ -394,18 +394,18 @@ function About() {
         <div className="col-span-12 md:col-span-7 md:pl-12">
           <Reveal>
             <h2 className="font-display text-5xl leading-[0.95] tracking-tight text-chrome md:text-7xl">
-              I sculpt <span className="italic text-chrome-cyber">immersive</span> digital experiences at the intersection of aesthetics, strategy and modern interaction.
+              We sculpt <span className="italic text-chrome-cyber">immersive</span> brands and interfaces at the intersection of aesthetics, strategy and modern interaction.
             </h2>
           </Reveal>
           <Reveal delay={150}>
             <p className="mt-8 max-w-xl text-base leading-relaxed text-muted-foreground">
-              Six years turning ambitious ideas into interfaces that feel like objects — polished, kinetic, unmistakable. Everything begins with a story and ends with pixels that move like liquid metal.
+              A studio turning ambitious ideas into products that feel like objects — polished, kinetic, unmistakable. Every engagement begins with a story and ends with pixels that move like liquid metal.
             </p>
           </Reveal>
           <div className="mt-10 grid grid-cols-2 gap-3">
             {specialties.map((s, i) => (
               <Reveal key={s} delay={i * 60}>
-                <div className="glass chrome-border shine-sweep border-trace rounded-2xl px-5 py-4">
+                <div className="glass chrome-border shine-sweep border-trace rounded-2xl px-5 py-4 transition-transform duration-500 hover:-translate-y-0.5">
                   <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">◆</span>
                   <div className="mt-1 font-sans-tight text-sm text-foreground">{s}</div>
                 </div>
