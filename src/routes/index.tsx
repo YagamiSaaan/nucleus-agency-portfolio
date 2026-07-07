@@ -585,7 +585,9 @@ function Featured() {
                   </div>
                   <div className="mt-8 flex flex-wrap gap-3">
                     <a
-                      href={p.caseUrl}
+                      href={p.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="rounded-full chrome-border px-6 py-3 text-xs uppercase tracking-[0.2em] text-black shine-sweep"
                       style={{
                         background:
@@ -594,15 +596,7 @@ function Featured() {
                           "inset 0 1px 0 rgba(255,255,255,0.9), inset 0 -1px 0 rgba(0,0,0,0.25)",
                       }}
                     >
-                      View Case
-                    </a>
-                    <a
-                      href={p.liveUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="rounded-full border border-black/40 px-6 py-3 text-xs uppercase tracking-[0.2em] text-black/80 transition-colors hover:text-black"
-                    >
-                      Live ↗
+                      View Website ↗
                     </a>
                   </div>
                 </div>
