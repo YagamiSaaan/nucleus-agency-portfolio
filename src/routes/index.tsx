@@ -281,20 +281,20 @@ function Hero() {
 
       <div className="relative mx-auto max-w-[1600px] px-6 md:px-10">
         <div className="relative">
-          <h1 className="font-display text-[22vw] leading-[0.85] tracking-[-0.04em] chrome-shimmer md:text-[15vw]">
-            <SplitText text="Portfolio" step={70} />
+          <h1 className="font-display text-[24vw] leading-[0.82] tracking-[-0.045em] chrome-shimmer md:text-[16vw]">
+            <SplitText text="Nucleus" step={70} />
           </h1>
         </div>
 
-        <div className="relative -mt-[8vw] grid grid-cols-12 items-start gap-6">
+        <div className="relative -mt-[6vw] grid grid-cols-12 items-start gap-6 md:gap-8">
           <Reveal delay={200} className="col-span-6 space-y-2 pt-8 md:col-span-3">
-            <div className="pt-4 font-sans-tight text-3xl font-light leading-none md:text-4xl">
-              <div className="text-chrome">UX</div>
-              <div className="text-chrome-cyber">UI</div>
-              <div className="text-chrome">Web</div>
+            <div className="pt-4 font-sans-tight text-3xl font-light leading-[0.95] md:text-4xl">
+              <div className="text-chrome">Brand</div>
+              <div className="text-chrome-cyber">Digital</div>
+              <div className="text-chrome">Motion</div>
             </div>
-            <p className="max-w-xs pt-6 text-sm text-muted-foreground">
-              Creative designer sculpting digital experiences at the frontier of luxury and futurism.
+            <p className="max-w-xs pt-6 text-sm leading-relaxed text-muted-foreground">
+              A design agency sculpting brands and interfaces at the frontier of luxury and futurism.
             </p>
           </Reveal>
 
@@ -321,9 +321,9 @@ function Hero() {
 
           <Reveal delay={600} className="col-span-6 pt-4 text-right md:col-span-3">
             <div className="font-display text-[14vw] leading-[0.85] tracking-[-0.04em] text-chrome-cyber md:text-[6vw]">
-              <SplitText text="De" step={80} delay={400} />
-              <div><SplitText text="si" step={80} delay={560} /></div>
-              <div className="italic"><SplitText text="gner" step={80} delay={720} /></div>
+              <SplitText text="Stu" step={80} delay={400} />
+              <div><SplitText text="di" step={80} delay={560} /></div>
+              <div className="italic"><SplitText text="o" step={80} delay={720} /></div>
             </div>
             <div className="mt-4 flex justify-end gap-4 text-xs uppercase tracking-[0.3em] text-muted-foreground">
               <span>ig · nucleus</span>
