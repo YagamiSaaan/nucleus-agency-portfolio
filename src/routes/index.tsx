@@ -674,10 +674,42 @@ function Contact() {
 
           <div className="relative mt-12 grid grid-cols-2 gap-8 md:grid-cols-4">
             {[
-              { label: "navigate", items: ["index", "work", "process", "contact"] },
-              { label: "channels", items: ["telegram", "instagram", "read.cv", "are.na"] },
-              { label: "signals", items: ["studio log", "field notes", "press kit", "colophon"] },
-              { label: "contact", items: ["hello@nucleus.st", "+1 (415) 000·0000", "san francisco", "by appointment"] },
+              {
+                label: "navigate",
+                items: [
+                  { t: "index", href: "#top" },
+                  { t: "work", href: "#work" },
+                  { t: "process", href: "#process" },
+                  { t: "contact", href: "#contact" },
+                ],
+              },
+              {
+                label: "channels",
+                items: [
+                  { t: "telegram", href: "https://t.me/nucleus", external: true },
+                  { t: "instagram", href: "https://instagram.com/nucleus.ux", external: true },
+                  { t: "read.cv", href: "https://read.cv/nucleus", external: true },
+                  { t: "are.na", href: "https://are.na/nucleus", external: true },
+                ],
+              },
+              {
+                label: "signals",
+                items: [
+                  { t: "studio log", href: "mailto:hello@nucleus.io?subject=Studio%20log" },
+                  { t: "field notes", href: "mailto:hello@nucleus.io?subject=Field%20notes" },
+                  { t: "press kit", href: "mailto:press@nucleus.io" },
+                  { t: "colophon", href: "#about" },
+                ],
+              },
+              {
+                label: "contact",
+                items: [
+                  { t: "hello@nucleus.io", href: "mailto:hello@nucleus.io" },
+                  { t: "+1 (415) 000·0000", href: "tel:+14150000000" },
+                  { t: "san francisco", href: "https://maps.google.com/?q=San+Francisco", external: true },
+                  { t: "by appointment", href: "mailto:hello@nucleus.io?subject=Appointment" },
+                ],
+              },
             ].map((col, i) => (
               <Reveal key={col.label} delay={i * 80}>
                 <div className="flex flex-col gap-3">
@@ -686,12 +718,14 @@ function Contact() {
                   </div>
                   <ul className="flex flex-col gap-2">
                     {col.items.map((item) => (
-                      <li key={item}>
+                      <li key={item.t}>
                         <a
-                          href="#"
+                          href={item.href}
+                          target={"external" in item && item.external ? "_blank" : undefined}
+                          rel={"external" in item && item.external ? "noopener noreferrer" : undefined}
                           className="chromatic-hover font-mono text-xs uppercase tracking-[0.2em] text-foreground/80 transition-colors hover:text-foreground"
                         >
-                          {item}
+                          {item.t}
                         </a>
                       </li>
                     ))}
