@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
-import heroChrome from "@/assets/chrome-skull-cutout.png";
+import heroChrome from "@/assets/chrome-skull-full.png";
 import aboutChrome from "@/assets/chrome-tiger-cutout.png";
 import contactChrome from "@/assets/chrome-cd-cutout.png";
 import chromeBlob from "@/assets/chrome-blob.jpg";
@@ -152,7 +152,7 @@ function Hero() {
           {/* Center chrome subject — no card, bleeds into section */}
           <div className="reveal-up col-span-12 md:col-span-6" style={{ animationDelay: "0.4s" }}>
             <div
-              className="relative mx-auto w-full max-w-[720px]"
+              className="relative mx-auto w-full max-w-[980px] md:-my-16 md:w-[125%] md:max-w-none"
               style={{ transform: `translate(${x * -14}px, ${y * -14}px)` }}
             >
               <img
@@ -484,7 +484,7 @@ function Contact() {
                 loading="lazy"
                 width={1600}
                 height={1600}
-                className="h-auto w-full select-none spin-slow md:w-[130%] md:max-w-none"
+                className="h-auto w-full select-none md:w-[130%] md:max-w-none"
                 style={{ filter: "drop-shadow(0 40px 100px rgba(120,160,220,0.3)) drop-shadow(0 0 80px rgba(200,220,255,0.15))" }}
               />
             </div>
