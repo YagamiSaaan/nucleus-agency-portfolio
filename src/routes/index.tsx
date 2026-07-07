@@ -740,27 +740,48 @@ function Contact() {
           </div>
         </div>
 
-        <div className="mt-20 grid grid-cols-2 gap-3 sm:grid-cols-3 md:mt-24 lg:grid-cols-5">
+        <div className="mt-16 flex flex-col gap-3 md:mt-24 md:gap-4">
           {links.map((l, i) => (
             <Reveal key={l.name} delay={i * 80}>
-              <Magnetic strength={0.25}>
-                <a
-                  href={l.href}
-                  target={l.external ? "_blank" : undefined}
-                  rel={l.external ? "noopener noreferrer" : undefined}
-                  className="group relative block overflow-hidden rounded-2xl glass chrome-border shine-sweep border-trace p-5 transition-transform hover:-translate-y-1"
-                >
-                  <div className="flex items-center justify-between">
-                    <span className="text-chrome text-2xl">◆</span>
-                    <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground opacity-0 transition-opacity group-hover:opacity-100">→</span>
+              <a
+                href={l.href}
+                target={l.external ? "_blank" : undefined}
+                rel={l.external ? "noopener noreferrer" : undefined}
+                className="group relative flex items-center justify-between gap-4 overflow-hidden rounded-full chrome-border shine-sweep border-trace px-5 py-4 transition-transform hover:-translate-y-0.5 sm:px-7 sm:py-5"
+                style={{
+                  background:
+                    "linear-gradient(180deg, #f5f5f5 0%, #d9d9d9 40%, #8a8a8a 75%, #cfcfcf 100%)",
+                  boxShadow:
+                    "inset 0 1px 0 rgba(255,255,255,0.8), inset 0 -1px 0 rgba(0,0,0,0.35), 0 10px 30px -12px rgba(200,220,255,0.35)",
+                }}
+              >
+                <div className="flex min-w-0 items-center gap-4">
+                  <span
+                    className="grid h-10 w-10 shrink-0 place-items-center rounded-full font-mono text-[10px] uppercase tracking-widest text-black/80 sm:h-11 sm:w-11"
+                    style={{
+                      background:
+                        "linear-gradient(180deg, #ffffff 0%, #e6e6e6 55%, #b8b8b8 100%)",
+                      boxShadow:
+                        "inset 0 1px 0 rgba(255,255,255,0.9), inset 0 -1px 0 rgba(0,0,0,0.3)",
+                    }}
+                  >
+                    {l.icon}
+                  </span>
+                  <div className="min-w-0">
+                    <div className="font-display text-xl text-black sm:text-2xl">{l.name}</div>
+                    <div className="truncate font-mono text-[10px] uppercase tracking-[0.25em] text-black/60 sm:text-[11px]">
+                      {l.handle}
+                    </div>
                   </div>
-                  <div className="mt-8 font-display text-2xl text-chrome">{l.name}</div>
-                  <div className="mt-1 font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">{l.handle}</div>
-                </a>
-              </Magnetic>
+                </div>
+                <span className="shrink-0 font-mono text-lg text-black transition-transform duration-500 group-hover:translate-x-1 sm:text-xl">
+                  →
+                </span>
+              </a>
             </Reveal>
           ))}
         </div>
+
 
         <footer className="relative mt-24 overflow-hidden rounded-3xl border border-border/60 bg-gradient-to-br from-background via-background to-muted/20 p-6 sm:p-8 md:mt-32 md:p-12">
           <div className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-gradient-to-br from-foreground/10 via-foreground/5 to-transparent blur-3xl chrome-breathe" />
