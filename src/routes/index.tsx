@@ -403,7 +403,7 @@ function About() {
 
         <div className="col-span-12 md:col-span-7 md:pl-12">
           <Reveal>
-            <h2 className="font-display text-5xl leading-[0.95] tracking-tight text-chrome md:text-7xl">
+            <h2 className="font-display text-4xl leading-[0.98] tracking-tight text-chrome sm:text-5xl md:text-7xl">
               We sculpt <span className="italic text-chrome-cyber">immersive</span> brands and interfaces at the intersection of aesthetics, strategy and modern interaction.
             </h2>
           </Reveal>
