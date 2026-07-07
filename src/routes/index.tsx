@@ -531,7 +531,7 @@ function Index() {
         <About />
         <Process />
         <Featured />
-        <Grid />
+        
         <OtherWork />
         <Contact />
       </main>
