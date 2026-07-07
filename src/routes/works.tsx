@@ -142,6 +142,16 @@ function SilverFluid() {
   );
 }
 
+/**
+ * `/works` page component.
+ *
+ * Layout:
+ * - Fixed top nav with a "Back" link to the home page.
+ * - Full-width hero ("The Archive") over the `SilverFluid` backdrop.
+ * - A responsive grid of ten cards (1 col on mobile, 2 on `sm`, 3 on
+ *   `lg`, 4 on `xl`) with per-card `Reveal` + `Tilt3D` motion.
+ * - A "Back to home" CTA at the bottom.
+ */
 function WorksPage() {
   return (
     <div className="relative min-h-screen bg-background text-foreground">
