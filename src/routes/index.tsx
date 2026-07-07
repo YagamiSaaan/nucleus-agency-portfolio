@@ -524,12 +524,19 @@ function Process() {
   );
 }
 
-const featured = [
-  { n: "01", title: "Rebranding · Cinema", cat: "Web · Motion", year: "2025", img: project2, tags: ["Editorial", "Streaming", "Dark UI"], caseUrl: "mailto:hello@nucleus.io?subject=Case%20study%20—%20Rebranding%20Cinema", liveUrl: "https://mubi.com" },
-  { n: "02", title: "The Last Rooms", cat: "Product · UX", year: "2025", img: project1, tags: ["Dashboard", "Data", "System"], caseUrl: "mailto:hello@nucleus.io?subject=Case%20study%20—%20The%20Last%20Rooms", liveUrl: "https://linear.app" },
-];
+const featured = {
+  n: "01",
+  title: "Rebranding · Cinema",
+  cat: "Web · Motion",
+  year: "2025",
+  img: project2,
+  tags: ["Editorial", "Streaming", "Dark UI"],
+  caseUrl: "mailto:hello@nucleus.io?subject=Case%20study%20—%20Rebranding%20Cinema",
+  liveUrl: "https://mubi.com",
+};
 
 function Featured() {
+  const p = featured;
   return (
     <section id="work" className="relative border-t border-border">
       <div className="mx-auto max-w-[1600px] px-5 py-20 sm:px-6 md:px-10 md:py-32">
@@ -538,49 +545,90 @@ function Featured() {
             <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">[ 03 · featured ]</span>
             <h2 className="mt-3 font-display text-4xl text-chrome sm:text-5xl md:text-7xl">
               <SplitText text="Selected " step={50} />
-              <span className="italic text-chrome-cyber"><SplitText text="Works" step={50} delay={250} /></span>
+              <span className="italic text-chrome-cyber"><SplitText text="Work" step={50} delay={250} /></span>
             </h2>
           </div>
-          <span className="hidden font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground md:block">two selected pieces</span>
+          <span className="hidden font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground md:block">one selected piece</span>
         </div>
 
-        <div className="space-y-20 md:space-y-32">
-          {featured.map((p, i) => (
-            <div key={p.n} className="group grid grid-cols-12 items-center gap-6 md:gap-16">
-              <Reveal className={`col-span-12 md:col-span-7 ${i % 2 ? "md:order-2" : ""}`}>
-                <div className="px-0 py-4 md:px-8 md:py-10">
-                  <Tilt3D max={6}>
-                    <div className="relative aspect-[4/3] overflow-hidden rounded-2xl chrome-border sm:aspect-[3/2]">
-                      <img src={p.img} alt={p.title} loading="lazy" width={1200} height={800} className="absolute inset-0 h-full w-full object-cover transition-transform duration-1000 group-hover:scale-105" />
-                      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent" />
-                    </div>
-                  </Tilt3D>
+        <Reveal>
+          <Tilt3D max={5}>
+            <div
+              className="group relative overflow-hidden rounded-3xl chrome-border shine-sweep border-trace p-6 sm:p-8 md:p-12"
+              style={{
+                background:
+                  "linear-gradient(135deg, #f5f5f5 0%, #cfd6e2 30%, #8a92a8 60%, #cfcfcf 100%)",
+                boxShadow:
+                  "inset 0 1px 0 rgba(255,255,255,0.75), inset 0 -1px 0 rgba(0,0,0,0.35), 0 20px 60px -20px rgba(180,200,255,0.35)",
+              }}
+            >
+              <div className="pointer-events-none absolute -right-10 -top-10 h-72 w-72 rounded-full bg-white/40 blur-3xl" />
+              <div className="pointer-events-none absolute -bottom-16 -left-16 h-72 w-72 rounded-full bg-black/10 blur-3xl" />
+
+              <div className="relative grid grid-cols-12 items-center gap-8 md:gap-12">
+                <div className="col-span-12 md:col-span-7">
+                  <div className="relative aspect-[4/3] overflow-hidden rounded-2xl sm:aspect-[3/2]"
+                    style={{
+                      boxShadow:
+                        "inset 0 0 0 1px rgba(255,255,255,0.6), 0 20px 50px -20px rgba(0,0,0,0.55)",
+                    }}
+                  >
+                    <img
+                      src={p.img}
+                      alt={p.title}
+                      loading="lazy"
+                      width={1200}
+                      height={800}
+                      className="absolute inset-0 h-full w-full object-cover transition-transform duration-1000 group-hover:scale-105"
+                    />
+                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+                  </div>
                 </div>
-              </Reveal>
-              <Reveal delay={150} className={`col-span-12 md:col-span-5 md:px-6 ${i % 2 ? "md:order-1" : ""}`}>
-                <div className="flex items-baseline justify-between gap-3">
-                  <span className="font-display text-[5rem] leading-none text-chrome/40 sm:text-[7rem] md:text-[8rem]">{p.n}</span>
-                  <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">{p.year}</span>
+
+                <div className="col-span-12 md:col-span-5">
+                  <div className="flex items-baseline justify-between gap-3">
+                    <span className="font-display text-[5rem] leading-none text-black/40 sm:text-[7rem] md:text-[8rem]">{p.n}</span>
+                    <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-black/60">{p.year}</span>
+                  </div>
+                  <h3 className="mt-4 font-display text-3xl text-black sm:text-4xl md:text-5xl">{p.title}</h3>
+                  <p className="mt-2 font-mono text-[11px] uppercase tracking-[0.3em] text-black/70">{p.cat}</p>
+                  <div className="mt-6 flex flex-wrap gap-2">
+                    {p.tags.map((t) => (
+                      <span key={t} className="rounded-full border border-black/25 bg-white/25 px-3 py-1 text-xs text-black/80 backdrop-blur">{t}</span>
+                    ))}
+                  </div>
+                  <div className="mt-8 flex flex-wrap gap-3">
+                    <a
+                      href={p.caseUrl}
+                      className="rounded-full chrome-border px-6 py-3 text-xs uppercase tracking-[0.2em] text-black shine-sweep"
+                      style={{
+                        background:
+                          "linear-gradient(180deg, #ffffff 0%, #e6e6e6 45%, #b8b8b8 100%)",
+                        boxShadow:
+                          "inset 0 1px 0 rgba(255,255,255,0.9), inset 0 -1px 0 rgba(0,0,0,0.25)",
+                      }}
+                    >
+                      View Case
+                    </a>
+                    <a
+                      href={p.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="rounded-full border border-black/40 px-6 py-3 text-xs uppercase tracking-[0.2em] text-black/80 transition-colors hover:text-black"
+                    >
+                      Live ↗
+                    </a>
+                  </div>
                 </div>
-                <h3 className="mt-4 font-display text-3xl text-chrome sm:text-4xl md:text-5xl">{p.title}</h3>
-                <p className="mt-2 font-mono text-[11px] uppercase tracking-[0.3em] text-accent">{p.cat}</p>
-                <div className="mt-6 flex flex-wrap gap-2">
-                  {p.tags.map((t) => (
-                    <span key={t} className="rounded-full border border-border px-3 py-1 text-xs text-muted-foreground">{t}</span>
-                  ))}
-                </div>
-                <div className="mt-8 flex flex-wrap gap-3">
-                  <ChromeButton href={p.caseUrl} variant="primary">View Case</ChromeButton>
-                  <ChromeButton href={p.liveUrl} variant="ghost">Live ↗</ChromeButton>
-                </div>
-              </Reveal>
+              </div>
             </div>
-          ))}
-        </div>
+          </Tilt3D>
+        </Reveal>
       </div>
     </section>
   );
 }
+
 
 function OtherWork() {
   return (
