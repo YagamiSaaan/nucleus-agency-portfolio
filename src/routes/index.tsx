@@ -230,13 +230,19 @@ function About() {
       </div>
       <div className="grid grid-cols-12 gap-12 md:gap-20">
         <div className="col-span-12 md:col-span-5">
-          <div className="px-6 py-8 md:px-10 md:py-12">
-            <div className="relative aspect-square overflow-hidden rounded-full chrome-border">
-              <img src={aboutChrome} alt="About portrait" loading="lazy" width={1024} height={1024} className="h-full w-full scale-110 object-cover" />
-              <div className="absolute inset-0 rounded-full" style={{ boxShadow: "inset 0 0 80px rgba(0,0,0,0.6)" }} />
-            </div>
+          <div className="relative">
+            <img
+              src={aboutChrome}
+              alt="Chrome tiger"
+              loading="lazy"
+              width={1600}
+              height={1600}
+              className="relative z-10 h-auto w-full select-none md:-ml-16 md:w-[130%] md:max-w-none"
+              style={{ filter: "drop-shadow(0 40px 100px rgba(120,160,220,0.25)) drop-shadow(0 0 60px rgba(200,220,255,0.12))" }}
+            />
           </div>
         </div>
+
 
         <div className="col-span-12 md:col-span-7 md:pl-12">
           <h2 className="font-display text-5xl leading-[0.95] tracking-tight text-chrome md:text-7xl">
