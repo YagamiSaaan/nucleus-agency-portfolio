@@ -9,6 +9,17 @@ import project1 from "@/assets/project-1.jpg";
 import project2 from "@/assets/project-2.jpg";
 import project3 from "@/assets/project-3.jpg";
 import project4 from "@/assets/project-4.jpg";
+import {
+  Reveal,
+  SplitText,
+  Magnetic,
+  Tilt3D,
+  CursorSpotlight,
+  ScrollProgress,
+  PageLoader,
+  MeltDivider,
+  useScrollTransform,
+} from "@/lib/motion";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -61,24 +72,28 @@ function ChromeCursor() {
 }
 
 function Nav() {
+  const items = ["Work", "About", "Process", "Contact"];
   return (
     <header className="fixed left-0 right-0 top-0 z-50">
       <div className="mx-auto flex max-w-[1600px] items-center justify-between px-6 py-5 md:px-10">
         <a href="#top" className="font-display text-2xl tracking-tight text-chrome">nucleus<span className="text-accent">◆</span></a>
         <nav className="hidden items-center gap-1 rounded-full glass px-2 py-2 md:flex">
-          {["Work", "About", "Process", "Contact"].map((item) => (
+          {items.map((item) => (
             <a
               key={item}
               href={`#${item.toLowerCase()}`}
-              className="rounded-full px-4 py-1.5 text-xs uppercase tracking-[0.2em] text-muted-foreground transition-colors hover:text-foreground"
+              data-text={item}
+              className="chromatic-hover rounded-full px-4 py-1.5 text-xs uppercase tracking-[0.2em] text-muted-foreground transition-colors hover:text-foreground"
             >
               {item}
             </a>
           ))}
         </nav>
-        <a href="#contact" className="group relative overflow-hidden rounded-full chrome-border glass shine-sweep px-5 py-2.5 text-xs uppercase tracking-[0.2em] text-foreground">
-          Let&apos;s Talk
-        </a>
+        <Magnetic strength={0.3}>
+          <a href="#contact" className="group relative overflow-hidden rounded-full chrome-border glass shine-sweep border-trace px-5 py-2.5 text-xs uppercase tracking-[0.2em] text-foreground">
+            Let&apos;s Talk
+          </a>
+        </Magnetic>
       </div>
     </header>
   );
@@ -86,14 +101,18 @@ function Nav() {
 
 function Hero() {
   const { x, y } = useMouseParallax();
+  const [skullRef, skullProgress] = useScrollTransform<HTMLDivElement>();
+  // Scroll-linked scale/rotate on the skull
+  const scale = 1 + skullProgress * 0.15;
+  const rotate = skullProgress * -6;
+  const yOffset = skullProgress * -40;
+
   return (
     <section id="top" className="relative min-h-screen w-full overflow-hidden pt-28">
-      {/* Radial glow */}
       <div className="pointer-events-none absolute inset-0 radial-glow" />
       <div className="pointer-events-none absolute left-1/2 top-1/3 h-[70vh] w-[70vh] -translate-x-1/2 rounded-full opacity-40 blur-3xl"
            style={{ background: "radial-gradient(circle, rgba(150,180,255,0.35), transparent 65%)" }} />
 
-      {/* Floating chrome elements */}
       <img
         src={chromeStar}
         alt=""
@@ -124,17 +143,14 @@ function Hero() {
       />
 
       <div className="relative mx-auto max-w-[1600px] px-6 md:px-10">
-        {/* Massive PORTFOLIO title */}
         <div className="relative">
-          <h1 className="reveal-up font-display text-[22vw] leading-[0.85] tracking-[-0.04em] text-chrome md:text-[15vw]">
-            Portfolio
+          <h1 className="font-display text-[22vw] leading-[0.85] tracking-[-0.04em] chrome-shimmer md:text-[15vw]">
+            <SplitText text="Portfolio" step={70} />
           </h1>
         </div>
 
-        {/* Center portrait + DESIGNER */}
         <div className="relative -mt-[8vw] grid grid-cols-12 items-start gap-6">
-          {/* Left: UX / UI / WEB */}
-          <div className="reveal-up col-span-6 space-y-2 pt-8 md:col-span-3" style={{ animationDelay: "0.2s" }}>
+          <Reveal delay={200} className="col-span-6 space-y-2 pt-8 md:col-span-3">
             <div className="flex items-center gap-3 text-xs uppercase tracking-[0.3em] text-muted-foreground">
               <span className="h-px w-6 bg-gradient-to-r from-transparent via-foreground/60 to-transparent" />
               since 2019
@@ -147,13 +163,13 @@ function Hero() {
             <p className="max-w-xs pt-6 text-sm text-muted-foreground">
               Creative designer sculpting digital experiences at the frontier of luxury and futurism.
             </p>
-          </div>
+          </Reveal>
 
-          {/* Center chrome subject — no card, bleeds into section */}
-          <div className="reveal-up col-span-12 md:col-span-6" style={{ animationDelay: "0.4s" }}>
+          <Reveal delay={400} className="col-span-12 md:col-span-6">
             <div
-              className="relative mx-auto w-full max-w-[980px] md:-my-16 md:w-[125%] md:max-w-none"
-              style={{ transform: `translate(${x * -14}px, ${y * -14}px)` }}
+              ref={skullRef}
+              className="relative mx-auto w-full max-w-[980px] md:-my-16 md:w-[125%] md:max-w-none chrome-breathe"
+              style={{ transform: `translate(${x * -14}px, ${y * -14 + yOffset}px) scale(${scale}) rotate(${rotate}deg)` }}
             >
               <img
                 src={heroChrome}
@@ -168,25 +184,21 @@ function Hero() {
                 <span className="font-display text-xl italic normal-case text-chrome">nucleus</span>
               </div>
             </div>
-          </div>
+          </Reveal>
 
-
-
-          {/* Right: DESIGNER stacked */}
-          <div className="reveal-up col-span-6 pt-4 text-right md:col-span-3" style={{ animationDelay: "0.6s" }}>
+          <Reveal delay={600} className="col-span-6 pt-4 text-right md:col-span-3">
             <div className="font-display text-[14vw] leading-[0.85] tracking-[-0.04em] text-chrome-cyber md:text-[6vw]">
-              <div>De</div>
-              <div>si</div>
-              <div className="italic">gner</div>
+              <SplitText text="De" step={80} delay={400} />
+              <div><SplitText text="si" step={80} delay={560} /></div>
+              <div className="italic"><SplitText text="gner" step={80} delay={720} /></div>
             </div>
             <div className="mt-4 flex justify-end gap-4 text-xs uppercase tracking-[0.3em] text-muted-foreground">
               <span>ig · nucleus</span>
               <span>tg · nucleus</span>
             </div>
-          </div>
+          </Reveal>
         </div>
 
-        {/* Scroll cue */}
         <div className="mt-24 flex items-center justify-between border-t border-border pt-6">
           <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
             [ scroll · v.2026 ]
@@ -222,6 +234,9 @@ function Marquee() {
 
 function About() {
   const specialties = ["UI Design", "UX Design", "Web Design", "Branding", "Product Design", "Creative Direction"];
+  const [tigerRef, tigerProgress] = useScrollTransform<HTMLDivElement>();
+  const tigerY = (tigerProgress - 0.5) * -60;
+  const tigerRot = (tigerProgress - 0.5) * 8;
   return (
     <section id="about" className="relative mx-auto max-w-[1600px] px-6 py-32 md:px-10">
       <div className="mb-16 flex items-end justify-between">
@@ -229,8 +244,8 @@ function About() {
         <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">who / behind / the chrome</span>
       </div>
       <div className="grid grid-cols-12 gap-12 md:gap-20">
-        <div className="col-span-12 md:col-span-5">
-          <div className="relative">
+        <Reveal className="col-span-12 md:col-span-5">
+          <div ref={tigerRef} className="relative" style={{ transform: `translateY(${tigerY}px) rotate(${tigerRot}deg)` }}>
             <img
               src={aboutChrome}
               alt="Chrome tiger"
@@ -241,22 +256,27 @@ function About() {
               style={{ filter: "drop-shadow(0 40px 100px rgba(120,160,220,0.25)) drop-shadow(0 0 60px rgba(200,220,255,0.12))" }}
             />
           </div>
-        </div>
-
+        </Reveal>
 
         <div className="col-span-12 md:col-span-7 md:pl-12">
-          <h2 className="font-display text-5xl leading-[0.95] tracking-tight text-chrome md:text-7xl">
-            I sculpt <span className="italic text-chrome-cyber">immersive</span> digital experiences at the intersection of aesthetics, strategy and modern interaction.
-          </h2>
-          <p className="mt-8 max-w-xl text-base leading-relaxed text-muted-foreground">
-            Six years turning ambitious ideas into interfaces that feel like objects — polished, kinetic, unmistakable. Everything begins with a story and ends with pixels that move like liquid metal.
-          </p>
+          <Reveal>
+            <h2 className="font-display text-5xl leading-[0.95] tracking-tight text-chrome md:text-7xl">
+              I sculpt <span className="italic text-chrome-cyber">immersive</span> digital experiences at the intersection of aesthetics, strategy and modern interaction.
+            </h2>
+          </Reveal>
+          <Reveal delay={150}>
+            <p className="mt-8 max-w-xl text-base leading-relaxed text-muted-foreground">
+              Six years turning ambitious ideas into interfaces that feel like objects — polished, kinetic, unmistakable. Everything begins with a story and ends with pixels that move like liquid metal.
+            </p>
+          </Reveal>
           <div className="mt-10 grid grid-cols-2 gap-3">
-            {specialties.map((s) => (
-              <div key={s} className="glass chrome-border shine-sweep rounded-2xl px-5 py-4">
-                <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">◆</span>
-                <div className="mt-1 font-sans-tight text-sm text-foreground">{s}</div>
-              </div>
+            {specialties.map((s, i) => (
+              <Reveal key={s} delay={i * 60}>
+                <div className="glass chrome-border shine-sweep border-trace rounded-2xl px-5 py-4">
+                  <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">◆</span>
+                  <div className="mt-1 font-sans-tight text-sm text-foreground">{s}</div>
+                </div>
+              </Reveal>
             ))}
           </div>
           <div className="mt-10 flex flex-wrap gap-8 border-t border-border pt-6 font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
@@ -280,24 +300,27 @@ function Process() {
   return (
     <section id="process" className="relative border-t border-border">
       <div className="mx-auto max-w-[1600px] px-6 py-32 md:px-10">
-        <div className="mb-16 flex items-end justify-between">
-          <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">[ 02 · process ]</span>
-          <h2 className="font-display text-4xl italic text-chrome md:text-6xl">stages of the craft</h2>
+        {/* Sticky pinned heading */}
+        <div className="mb-16 md:sticky md:top-24 md:z-10 md:mb-8 md:bg-background/60 md:backdrop-blur-xl">
+          <div className="flex items-end justify-between py-4">
+            <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">[ 02 · process ]</span>
+            <h2 className="font-display text-4xl italic text-chrome md:text-6xl">stages of the craft</h2>
+          </div>
         </div>
         <div className="grid grid-cols-1 gap-4 md:grid-cols-4">
           {steps.map((s, i) => (
-            <div
-              key={s.n}
-              className="group relative overflow-hidden rounded-3xl glass-strong chrome-border shine-sweep p-8 transition-transform duration-500 hover:-translate-y-2"
-              style={{ animationDelay: `${i * 0.1}s` }}
-            >
-              <div className="absolute -right-8 -top-8 h-32 w-32 rounded-full opacity-20 blur-2xl transition-opacity group-hover:opacity-50"
-                   style={{ background: "radial-gradient(circle, rgba(200,220,255,0.8), transparent)" }} />
-              <div className="font-mono text-xs uppercase tracking-[0.3em] text-muted-foreground">{s.n}</div>
-              <h3 className="mt-24 font-display text-4xl text-chrome">{s.t}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{s.d}</p>
-              <div className="mt-6 h-px w-full bg-gradient-to-r from-transparent via-foreground/30 to-transparent" />
-            </div>
+            <Reveal key={s.n} delay={i * 100}>
+              <Tilt3D>
+                <div className="group relative h-full overflow-hidden rounded-3xl glass-strong chrome-border shine-sweep border-trace p-8 transition-transform duration-500 hover:-translate-y-2">
+                  <div className="absolute -right-8 -top-8 h-32 w-32 rounded-full opacity-20 blur-2xl transition-opacity group-hover:opacity-50"
+                       style={{ background: "radial-gradient(circle, rgba(200,220,255,0.8), transparent)" }} />
+                  <div className="font-mono text-xs uppercase tracking-[0.3em] text-muted-foreground">{s.n}</div>
+                  <h3 className="mt-24 font-display text-4xl text-chrome">{s.t}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{s.d}</p>
+                  <div className="mt-6 h-px w-full bg-gradient-to-r from-transparent via-foreground/30 to-transparent" />
+                </div>
+              </Tilt3D>
+            </Reveal>
           ))}
         </div>
       </div>
@@ -317,7 +340,10 @@ function Featured() {
         <div className="mb-16 flex items-end justify-between">
           <div>
             <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">[ 03 · featured ]</span>
-            <h2 className="mt-3 font-display text-5xl text-chrome md:text-7xl">Selected <span className="italic text-chrome-cyber">Works</span></h2>
+            <h2 className="mt-3 font-display text-5xl text-chrome md:text-7xl">
+              <SplitText text="Selected " step={50} />
+              <span className="italic text-chrome-cyber"><SplitText text="Works" step={50} delay={250} /></span>
+            </h2>
           </div>
           <span className="hidden font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground md:block">two selected pieces</span>
         </div>
@@ -325,15 +351,17 @@ function Featured() {
         <div className="space-y-24 md:space-y-32">
           {featured.map((p, i) => (
             <div key={p.n} className={`group grid grid-cols-12 items-center gap-8 md:gap-16 ${i % 2 ? "md:flex-row-reverse" : ""}`}>
-              <div className={`col-span-12 md:col-span-7 ${i % 2 ? "md:order-2" : ""}`}>
+              <Reveal className={`col-span-12 md:col-span-7 ${i % 2 ? "md:order-2" : ""}`}>
                 <div className="px-4 py-6 md:px-8 md:py-10">
-                  <div className="relative overflow-hidden rounded-2xl chrome-border">
-                    <img src={p.img} alt={p.title} loading="lazy" width={1200} height={800} className="h-full w-full object-cover transition-transform duration-1000 group-hover:scale-105" />
-                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent" />
-                  </div>
+                  <Tilt3D max={6}>
+                    <div className="relative overflow-hidden rounded-2xl chrome-border">
+                      <img src={p.img} alt={p.title} loading="lazy" width={1200} height={800} className="h-full w-full object-cover transition-transform duration-1000 group-hover:scale-105" />
+                      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent" />
+                    </div>
+                  </Tilt3D>
                 </div>
-              </div>
-              <div className={`col-span-12 md:col-span-5 md:px-6 ${i % 2 ? "md:order-1" : ""}`}>
+              </Reveal>
+              <Reveal delay={150} className={`col-span-12 md:col-span-5 md:px-6 ${i % 2 ? "md:order-1" : ""}`}>
                 <div className="flex items-baseline justify-between">
                   <span className="font-display text-[8rem] leading-none text-chrome/40">{p.n}</span>
                   <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">{p.year}</span>
@@ -346,57 +374,19 @@ function Featured() {
                   ))}
                 </div>
                 <div className="mt-8 flex gap-3">
-                  <button className="group/btn relative overflow-hidden rounded-full chrome-border glass shine-sweep px-6 py-3 text-xs uppercase tracking-[0.2em] text-foreground">
-                    View Case
-                  </button>
-                  <button className="rounded-full border border-border px-6 py-3 text-xs uppercase tracking-[0.2em] text-muted-foreground transition-colors hover:text-foreground">
-                    Live ↗
-                  </button>
+                  <Magnetic>
+                    <button className="group/btn relative overflow-hidden rounded-full chrome-border glass shine-sweep border-trace px-6 py-3 text-xs uppercase tracking-[0.2em] text-foreground">
+                      View Case
+                    </button>
+                  </Magnetic>
+                  <Magnetic>
+                    <button className="rounded-full border border-border px-6 py-3 text-xs uppercase tracking-[0.2em] text-muted-foreground transition-colors hover:text-foreground">
+                      Live ↗
+                    </button>
+                  </Magnetic>
                 </div>
-              </div>
+              </Reveal>
             </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-const grid = [
-  { title: "Skyline OS", cat: "Product Design", year: "2025", img: project1 },
-  { title: "Aureate Studio", cat: "Branding", year: "2025", img: project3 },
-  { title: "Halo Commerce", cat: "Web Design", year: "2024", img: project2 },
-  { title: "Nova Mobile", cat: "App Design", year: "2024", img: project4 },
-];
-
-function Grid() {
-  return (
-    <section id="grid" className="relative border-t border-border">
-      <div className="mx-auto max-w-[1600px] px-6 py-32 md:px-10">
-        <div className="mb-16">
-          <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">[ 04 · archive ]</span>
-          <h2 className="mt-3 font-display text-5xl text-chrome md:text-7xl">Recent <span className="italic text-chrome-cyber">Projects</span></h2>
-        </div>
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-          {grid.map((p) => (
-            <a key={p.title} href="#" className="group relative block overflow-hidden rounded-3xl chrome-border glass">
-              <div className="relative aspect-[16/11] overflow-hidden">
-                <img src={p.img} alt={p.title} loading="lazy" width={1200} height={800} className="h-full w-full object-cover transition-transform duration-1000 group-hover:scale-110" />
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
-                <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-                     style={{ background: "linear-gradient(115deg, transparent 40%, rgba(200,220,255,0.15) 50%, transparent 60%)" }} />
-              </div>
-              <div className="flex items-end justify-between p-6">
-                <div>
-                  <h3 className="font-display text-3xl text-chrome">{p.title}</h3>
-                  <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">{p.cat}</p>
-                </div>
-                <div className="text-right">
-                  <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">{p.year}</div>
-                  <div className="mt-2 font-display text-2xl italic text-chrome-cyber">↗</div>
-                </div>
-              </div>
-            </a>
           ))}
         </div>
       </div>
@@ -420,19 +410,22 @@ function OtherWork() {
           <h2 className="font-display text-4xl italic text-chrome md:text-6xl">other works</h2>
         </div>
         <div className="grid grid-cols-2 gap-4 md:grid-cols-5">
-          {items.map((it) => (
-            <div key={it.t} className="group relative aspect-square overflow-hidden rounded-2xl glass chrome-border shine-sweep p-6 transition-transform hover:-translate-y-1">
-              <div className="relative flex h-full flex-col justify-between">
-                <div className="text-chrome text-4xl">{it.i}</div>
-                <div>
-                  <div className="font-display text-2xl text-chrome">{it.t}</div>
-                  <div className="mt-1 font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">08 pieces</div>
+          {items.map((it, idx) => (
+            <Reveal key={it.t} delay={idx * 80}>
+              <Tilt3D>
+                <div className="group relative aspect-square overflow-hidden rounded-2xl glass chrome-border shine-sweep border-trace p-6 transition-transform hover:-translate-y-1">
+                  <div className="relative flex h-full flex-col justify-between">
+                    <div className="text-chrome text-4xl">{it.i}</div>
+                    <div>
+                      <div className="font-display text-2xl text-chrome">{it.t}</div>
+                      <div className="mt-1 font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">08 pieces</div>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
+              </Tilt3D>
+            </Reveal>
           ))}
         </div>
-
       </div>
     </section>
   );
@@ -446,6 +439,9 @@ function Contact() {
     { name: "LinkedIn", handle: "/in/nucleus", href: "#" },
     { name: "Email", handle: "hello@nucleus.io", href: "mailto:hello@nucleus.io" },
   ];
+  const [discRef, discProgress] = useScrollTransform<HTMLDivElement>();
+  const discRot = discProgress * 30;
+  const discY = (discProgress - 0.5) * -40;
   return (
     <section id="contact" className="relative overflow-hidden border-t border-border">
       <div className="pointer-events-none absolute inset-0 radial-glow" />
@@ -459,25 +455,36 @@ function Contact() {
 
         <div className="grid grid-cols-12 gap-8">
           <div className="col-span-12 md:col-span-8">
-            <h2 className="font-display text-[16vw] leading-[0.85] tracking-[-0.04em] text-chrome md:text-[10vw]">
-              Let&apos;s <span className="italic text-chrome-cyber">create</span><br/>
-              something<br/>
-              <span className="italic">exceptional.</span>
+            <h2 className="font-display text-[16vw] leading-[0.85] tracking-[-0.04em] chrome-shimmer md:text-[10vw]">
+              <SplitText text="Let’s " step={50} />
+              <span className="italic text-chrome-cyber"><SplitText text="create" step={50} delay={250} /></span><br/>
+              <SplitText text="something" step={50} delay={500} /><br/>
+              <span className="italic"><SplitText text="exceptional." step={50} delay={750} /></span>
             </h2>
-            <p className="mt-8 max-w-lg text-base leading-relaxed text-muted-foreground">
-              Whether it&apos;s an original interface, a rebrand, or a wild experimental idea — I&apos;m open for select collaborations. Reach out and let&apos;s shape it together.
-            </p>
-            <a
-              href="mailto:hello@nucleus.io"
-              className="mt-10 inline-flex items-center gap-4 rounded-full chrome-border glass-strong shine-sweep px-8 py-4 text-sm uppercase tracking-[0.2em] text-foreground"
-            >
-              Start a project
-              <span className="text-chrome-cyber">→</span>
-            </a>
+            <Reveal delay={200}>
+              <p className="mt-8 max-w-lg text-base leading-relaxed text-muted-foreground">
+                Whether it&apos;s an original interface, a rebrand, or a wild experimental idea — I&apos;m open for select collaborations. Reach out and let&apos;s shape it together.
+              </p>
+            </Reveal>
+            <Reveal delay={300}>
+              <Magnetic strength={0.4}>
+                <a
+                  href="mailto:hello@nucleus.io"
+                  className="mt-10 inline-flex items-center gap-4 rounded-full chrome-border glass-strong shine-sweep border-trace px-8 py-4 text-sm uppercase tracking-[0.2em] text-foreground"
+                >
+                  Start a project
+                  <span className="text-chrome-cyber">→</span>
+                </a>
+              </Magnetic>
+            </Reveal>
           </div>
 
           <div className="col-span-12 md:col-span-4">
-            <div className="relative">
+            <div
+              ref={discRef}
+              className="relative chrome-breathe"
+              style={{ transform: `translateY(${discY}px) rotate(${discRot}deg)` }}
+            >
               <img
                 src={contactChrome}
                 alt="Chrome disc"
@@ -489,25 +496,25 @@ function Contact() {
               />
             </div>
           </div>
-
-
         </div>
 
-        {/* Contact cards */}
         <div className="mt-24 grid grid-cols-2 gap-3 md:grid-cols-5">
-          {links.map((l) => (
-            <a
-              key={l.name}
-              href={l.href}
-              className="group relative overflow-hidden rounded-2xl glass chrome-border shine-sweep p-5 transition-transform hover:-translate-y-1"
-            >
-              <div className="flex items-center justify-between">
-                <span className="text-chrome text-2xl">◆</span>
-                <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground opacity-0 transition-opacity group-hover:opacity-100">→</span>
-              </div>
-              <div className="mt-8 font-display text-2xl text-chrome">{l.name}</div>
-              <div className="mt-1 font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">{l.handle}</div>
-            </a>
+          {links.map((l, i) => (
+            <Reveal key={l.name} delay={i * 80}>
+              <Magnetic strength={0.25}>
+                <a
+                  href={l.href}
+                  className="group relative block overflow-hidden rounded-2xl glass chrome-border shine-sweep border-trace p-5 transition-transform hover:-translate-y-1"
+                >
+                  <div className="flex items-center justify-between">
+                    <span className="text-chrome text-2xl">◆</span>
+                    <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground opacity-0 transition-opacity group-hover:opacity-100">→</span>
+                  </div>
+                  <div className="mt-8 font-display text-2xl text-chrome">{l.name}</div>
+                  <div className="mt-1 font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">{l.handle}</div>
+                </a>
+              </Magnetic>
+            </Reveal>
           ))}
         </div>
 
@@ -527,15 +534,19 @@ function Contact() {
 function Index() {
   return (
     <div className="relative min-h-screen bg-background text-foreground noise">
+      <PageLoader />
+      <ScrollProgress />
+      <CursorSpotlight />
       <ChromeCursor />
       <Nav />
       <main>
         <Hero />
+        <MeltDivider />
         <Marquee />
+        <MeltDivider flip />
         <About />
         <Process />
         <Featured />
-        
         <OtherWork />
         <Contact />
       </main>
