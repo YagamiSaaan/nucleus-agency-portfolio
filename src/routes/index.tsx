@@ -872,8 +872,6 @@ function Index() {
       <main>
         <Hero />
         <MeltDivider />
-        <Marquee />
-        <MeltDivider flip />
         <About />
         <Process />
         <Featured />
