@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState, type ReactNode } from "react";
-import heroChrome from "@/assets/chrome-skull-full.png";
+
 import aboutChrome from "@/assets/chrome-tiger-cutout.png";
 import contactChrome from "@/assets/chrome-cd-cutout.png";
 import chromeBlob from "@/assets/chrome-blob.jpg";
