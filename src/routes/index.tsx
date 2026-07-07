@@ -518,12 +518,62 @@ function Contact() {
           ))}
         </div>
 
-        <footer className="mt-24 flex flex-col items-start justify-between gap-4 border-t border-border pt-8 font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground md:flex-row md:items-center">
-          <div>© 2026 · nucleus · chrome series</div>
-          <div className="flex gap-6">
-            <span>site v.2.4</span>
-            <span>◆ made with liquid metal</span>
-            <span>tg · @nucleus</span>
+        <footer className="relative mt-32 overflow-hidden rounded-3xl border border-border/60 bg-gradient-to-br from-background via-background to-muted/20 p-8 md:p-12">
+          <div className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-gradient-to-br from-foreground/10 via-foreground/5 to-transparent blur-3xl chrome-breathe" />
+          <div className="pointer-events-none absolute -bottom-32 -left-16 h-80 w-80 rounded-full bg-gradient-to-tr from-foreground/[0.08] via-transparent to-transparent blur-3xl" />
+
+          <Reveal>
+            <div className="relative">
+              <h2 className="chrome-shimmer font-display text-[18vw] leading-[0.85] tracking-tighter md:text-[14vw]">
+                NUCLEUS
+              </h2>
+              <div className="mt-2 flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.4em] text-muted-foreground">
+                <span className="h-px flex-1 bg-gradient-to-r from-border to-transparent" />
+                <span>chrome · series · mmxxvi</span>
+                <span className="h-px flex-1 bg-gradient-to-l from-border to-transparent" />
+              </div>
+            </div>
+          </Reveal>
+
+          <div className="relative mt-12 grid grid-cols-2 gap-8 md:grid-cols-4">
+            {[
+              { label: "navigate", items: ["index", "work", "process", "contact"] },
+              { label: "channels", items: ["telegram", "instagram", "read.cv", "are.na"] },
+              { label: "signals", items: ["studio log", "field notes", "press kit", "colophon"] },
+              { label: "contact", items: ["hello@nucleus.st", "+1 (415) 000·0000", "san francisco", "by appointment"] },
+            ].map((col, i) => (
+              <Reveal key={col.label} delay={i * 80}>
+                <div className="flex flex-col gap-3">
+                  <div className="font-mono text-[10px] uppercase tracking-[0.35em] text-muted-foreground">
+                    ◆ {col.label}
+                  </div>
+                  <ul className="flex flex-col gap-2">
+                    {col.items.map((item) => (
+                      <li key={item}>
+                        <a
+                          href="#"
+                          className="chromatic-hover font-mono text-xs uppercase tracking-[0.2em] text-foreground/80 transition-colors hover:text-foreground"
+                        >
+                          {item}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+
+          <div className="relative mt-16 flex flex-col items-start justify-between gap-4 border-t border-border/60 pt-6 font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground md:flex-row md:items-center">
+            <div className="flex items-center gap-3">
+              <span className="inline-block h-2 w-2 animate-pulse rounded-full bg-foreground/70" />
+              <span>available · q3 mmxxvi</span>
+            </div>
+            <div className="flex flex-wrap gap-x-6 gap-y-2">
+              <span>© mmxxvi · nucleus</span>
+              <span>site v.2.4</span>
+              <span>◆ forged in liquid metal</span>
+            </div>
           </div>
         </footer>
       </div>
