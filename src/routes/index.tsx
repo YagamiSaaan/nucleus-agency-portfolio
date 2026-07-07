@@ -2,10 +2,10 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState, type ReactNode, type ComponentType } from "react";
 import { Instagram, MessageCircle, Mail } from "lucide-react";
 
-import aboutChrome from "@/assets/chrome-tiger-cutout.png";
-import contactChrome from "@/assets/chrome-cd-cutout.png";
+import aboutChrome from "@/assets/chrome-tiger-cutout.webp";
+import contactChrome from "@/assets/chrome-cd-cutout.webp";
 import chromeBlob from "@/assets/chrome-blob.jpg";
-import chromeStar from "@/assets/chrome-star.png";
+import chromeStar from "@/assets/chrome-star.webp";
 import project1 from "@/assets/project-1.jpg";
 import project2 from "@/assets/project-2.jpg";
 import project3 from "@/assets/project-3.jpg";
