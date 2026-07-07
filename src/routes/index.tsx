@@ -365,7 +365,7 @@ function Hero() {
 
       <div className="relative mx-auto max-w-[1600px] px-5 sm:px-6 md:px-10">
         <div className="relative">
-          <h1 className="font-display text-[22vw] leading-[0.85] tracking-[-0.045em] chrome-shimmer md:text-[16vw]">
+          <h1 className="font-display text-[19vw] leading-[0.85] tracking-[-0.045em] chrome-shimmer md:text-[16vw]">
             <SplitText text="Nucleus" step={70} />
           </h1>
         </div>
