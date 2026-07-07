@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import heroChrome from "@/assets/chrome-skull-full.png";
 import aboutChrome from "@/assets/chrome-tiger-cutout.png";
 import contactChrome from "@/assets/chrome-cd-cutout.png";
@@ -72,30 +72,167 @@ function ChromeCursor() {
 }
 
 function Nav() {
-  const items = ["Work", "About", "Process", "Contact"];
+  const items = [
+    { label: "Work", id: "work" },
+    { label: "About", id: "about" },
+    { label: "Process", id: "process" },
+    { label: "Contact", id: "contact" },
+  ];
+  const [active, setActive] = useState<string>("top");
+  const [scrolled, setScrolled] = useState(false);
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    const ids = ["top", ...items.map((i) => i.id)];
+    const els = ids
+      .map((id) => document.getElementById(id))
+      .filter((el): el is HTMLElement => !!el);
+    if (!els.length) return;
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) setActive(e.target.id);
+        });
+      },
+      { rootMargin: "-40% 0px -55% 0px", threshold: 0 },
+    );
+    els.forEach((el) => io.observe(el));
+    return () => io.disconnect();
+  }, []);
+
   return (
     <header className="fixed left-0 right-0 top-0 z-50">
-      <div className="mx-auto flex max-w-[1600px] items-center justify-between px-6 py-5 md:px-10">
-        <a href="#top" className="font-display text-2xl tracking-tight text-chrome">nucleus<span className="text-accent">◆</span></a>
-        <nav className="hidden items-center gap-1 rounded-full glass px-2 py-2 md:flex">
+      <div
+        className={`mx-auto flex max-w-[1600px] items-center justify-between px-6 md:px-10 transition-all duration-500 ${scrolled ? "py-3" : "py-5"}`}
+      >
+        <a href="#top" className="font-display text-2xl tracking-tight text-chrome shrink-0">
+          nucleus<span className="text-accent">◆</span>
+        </a>
+        <nav className="relative hidden items-center gap-1 rounded-full glass px-2 py-2 md:flex">
+          {items.map((item) => {
+            const isActive = active === item.id;
+            return (
+              <a
+                key={item.id}
+                href={`#${item.id}`}
+                data-text={item.label}
+                className={`chromatic-hover relative rounded-full px-4 py-1.5 text-xs uppercase tracking-[0.2em] transition-colors ${isActive ? "text-foreground" : "text-muted-foreground hover:text-foreground"}`}
+              >
+                {isActive && (
+                  <span
+                    aria-hidden
+                    className="absolute inset-0 rounded-full"
+                    style={{
+                      background:
+                        "linear-gradient(145deg, rgba(255,255,255,0.10), rgba(255,255,255,0.02))",
+                      boxShadow: "inset 0 1px 0 rgba(255,255,255,0.12)",
+                    }}
+                  />
+                )}
+                <span className="relative">{item.label}</span>
+              </a>
+            );
+          })}
+        </nav>
+        <div className="flex items-center gap-2">
+          <Magnetic strength={0.3}>
+            <a
+              href="#contact"
+              className="group relative hidden overflow-hidden rounded-full chrome-border glass shine-sweep border-trace px-5 py-2.5 text-xs uppercase tracking-[0.2em] text-foreground md:inline-block"
+            >
+              Let&apos;s Talk
+            </a>
+          </Magnetic>
+          <button
+            aria-label="Toggle menu"
+            onClick={() => setOpen((v) => !v)}
+            className="grid h-10 w-10 place-items-center rounded-full glass chrome-border md:hidden"
+          >
+            <div className="flex flex-col gap-1.5">
+              <span className={`h-px w-4 bg-foreground transition-transform ${open ? "translate-y-[3px] rotate-45" : ""}`} />
+              <span className={`h-px w-4 bg-foreground transition-transform ${open ? "-translate-y-[3px] -rotate-45" : ""}`} />
+            </div>
+          </button>
+        </div>
+      </div>
+      <div
+        className={`mx-6 origin-top overflow-hidden rounded-3xl glass-strong chrome-border transition-all duration-500 md:hidden ${open ? "max-h-[400px] opacity-100" : "max-h-0 opacity-0"}`}
+      >
+        <nav className="flex flex-col p-6">
           {items.map((item) => (
             <a
-              key={item}
-              href={`#${item.toLowerCase()}`}
-              data-text={item}
-              className="chromatic-hover rounded-full px-4 py-1.5 text-xs uppercase tracking-[0.2em] text-muted-foreground transition-colors hover:text-foreground"
+              key={item.id}
+              href={`#${item.id}`}
+              onClick={() => setOpen(false)}
+              className="border-b border-border/40 py-3 font-display text-2xl text-chrome last:border-b-0"
             >
-              {item}
+              {item.label}
             </a>
           ))}
-        </nav>
-        <Magnetic strength={0.3}>
-          <a href="#contact" className="group relative overflow-hidden rounded-full chrome-border glass shine-sweep border-trace px-5 py-2.5 text-xs uppercase tracking-[0.2em] text-foreground">
+          <a
+            href="#contact"
+            onClick={() => setOpen(false)}
+            className="mt-4 rounded-full chrome-border glass px-5 py-3 text-center text-xs uppercase tracking-[0.2em] text-foreground"
+          >
             Let&apos;s Talk
           </a>
-        </Magnetic>
+        </nav>
       </div>
     </header>
+  );
+}
+
+/* Shared button primitives — consistent chrome feel across the site */
+function ChromeButton({
+  href,
+  onClick,
+  children,
+  variant = "primary",
+  size = "md",
+  className = "",
+}: {
+  href?: string;
+  onClick?: () => void;
+  children: ReactNode;
+  variant?: "primary" | "ghost";
+  size?: "sm" | "md" | "lg";
+  className?: string;
+}) {
+  const sizes = {
+    sm: "px-4 py-2 text-[10px]",
+    md: "px-6 py-3 text-xs",
+    lg: "px-8 py-4 text-sm",
+  } as const;
+  const base = `group relative inline-flex items-center gap-2 overflow-hidden rounded-full uppercase tracking-[0.2em] transition-all duration-500 hover:-translate-y-0.5 ${sizes[size]} ${className}`;
+  const variants = {
+    primary:
+      "chrome-border glass shine-sweep border-trace text-foreground hover:shadow-[0_10px_40px_-10px_rgba(200,220,255,0.35)]",
+    ghost:
+      "border border-border text-muted-foreground hover:text-foreground hover:border-foreground/40",
+  } as const;
+  const cls = `${base} ${variants[variant]}`;
+  if (href) {
+    return (
+      <Magnetic strength={0.28}>
+        <a href={href} className={cls}>
+          <span className="relative">{children}</span>
+        </a>
+      </Magnetic>
+    );
+  }
+  return (
+    <Magnetic strength={0.28}>
+      <button onClick={onClick} className={cls}>
+        <span className="relative">{children}</span>
+      </button>
+    </Magnetic>
   );
 }
 
@@ -144,20 +281,20 @@ function Hero() {
 
       <div className="relative mx-auto max-w-[1600px] px-6 md:px-10">
         <div className="relative">
-          <h1 className="font-display text-[22vw] leading-[0.85] tracking-[-0.04em] chrome-shimmer md:text-[15vw]">
-            <SplitText text="Portfolio" step={70} />
+          <h1 className="font-display text-[24vw] leading-[0.82] tracking-[-0.045em] chrome-shimmer md:text-[16vw]">
+            <SplitText text="Nucleus" step={70} />
           </h1>
         </div>
 
-        <div className="relative -mt-[8vw] grid grid-cols-12 items-start gap-6">
+        <div className="relative -mt-[6vw] grid grid-cols-12 items-start gap-6 md:gap-8">
           <Reveal delay={200} className="col-span-6 space-y-2 pt-8 md:col-span-3">
-            <div className="pt-4 font-sans-tight text-3xl font-light leading-none md:text-4xl">
-              <div className="text-chrome">UX</div>
-              <div className="text-chrome-cyber">UI</div>
-              <div className="text-chrome">Web</div>
+            <div className="pt-4 font-sans-tight text-3xl font-light leading-[0.95] md:text-4xl">
+              <div className="text-chrome">Brand</div>
+              <div className="text-chrome-cyber">Digital</div>
+              <div className="text-chrome">Motion</div>
             </div>
-            <p className="max-w-xs pt-6 text-sm text-muted-foreground">
-              Creative designer sculpting digital experiences at the frontier of luxury and futurism.
+            <p className="max-w-xs pt-6 text-sm leading-relaxed text-muted-foreground">
+              A design agency sculpting brands and interfaces at the frontier of luxury and futurism.
             </p>
           </Reveal>
 
@@ -184,9 +321,9 @@ function Hero() {
 
           <Reveal delay={600} className="col-span-6 pt-4 text-right md:col-span-3">
             <div className="font-display text-[14vw] leading-[0.85] tracking-[-0.04em] text-chrome-cyber md:text-[6vw]">
-              <SplitText text="De" step={80} delay={400} />
-              <div><SplitText text="si" step={80} delay={560} /></div>
-              <div className="italic"><SplitText text="gner" step={80} delay={720} /></div>
+              <SplitText text="Stu" step={80} delay={400} />
+              <div><SplitText text="di" step={80} delay={560} /></div>
+              <div className="italic"><SplitText text="o" step={80} delay={720} /></div>
             </div>
             <div className="mt-4 flex justify-end gap-4 text-xs uppercase tracking-[0.3em] text-muted-foreground">
               <span>ig · nucleus</span>
@@ -257,18 +394,18 @@ function About() {
         <div className="col-span-12 md:col-span-7 md:pl-12">
           <Reveal>
             <h2 className="font-display text-5xl leading-[0.95] tracking-tight text-chrome md:text-7xl">
-              I sculpt <span className="italic text-chrome-cyber">immersive</span> digital experiences at the intersection of aesthetics, strategy and modern interaction.
+              We sculpt <span className="italic text-chrome-cyber">immersive</span> brands and interfaces at the intersection of aesthetics, strategy and modern interaction.
             </h2>
           </Reveal>
           <Reveal delay={150}>
             <p className="mt-8 max-w-xl text-base leading-relaxed text-muted-foreground">
-              Six years turning ambitious ideas into interfaces that feel like objects — polished, kinetic, unmistakable. Everything begins with a story and ends with pixels that move like liquid metal.
+              A studio turning ambitious ideas into products that feel like objects — polished, kinetic, unmistakable. Every engagement begins with a story and ends with pixels that move like liquid metal.
             </p>
           </Reveal>
           <div className="mt-10 grid grid-cols-2 gap-3">
             {specialties.map((s, i) => (
               <Reveal key={s} delay={i * 60}>
-                <div className="glass chrome-border shine-sweep border-trace rounded-2xl px-5 py-4">
+                <div className="glass chrome-border shine-sweep border-trace rounded-2xl px-5 py-4 transition-transform duration-500 hover:-translate-y-0.5">
                   <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">◆</span>
                   <div className="mt-1 font-sans-tight text-sm text-foreground">{s}</div>
                 </div>
@@ -369,17 +506,9 @@ function Featured() {
                     <span key={t} className="rounded-full border border-border px-3 py-1 text-xs text-muted-foreground">{t}</span>
                   ))}
                 </div>
-                <div className="mt-8 flex gap-3">
-                  <Magnetic>
-                    <button className="group/btn relative overflow-hidden rounded-full chrome-border glass shine-sweep border-trace px-6 py-3 text-xs uppercase tracking-[0.2em] text-foreground">
-                      View Case
-                    </button>
-                  </Magnetic>
-                  <Magnetic>
-                    <button className="rounded-full border border-border px-6 py-3 text-xs uppercase tracking-[0.2em] text-muted-foreground transition-colors hover:text-foreground">
-                      Live ↗
-                    </button>
-                  </Magnetic>
+                <div className="mt-8 flex flex-wrap gap-3">
+                  <ChromeButton href="#work" variant="primary">View Case</ChromeButton>
+                  <ChromeButton href="#work" variant="ghost">Live ↗</ChromeButton>
                 </div>
               </Reveal>
             </div>
