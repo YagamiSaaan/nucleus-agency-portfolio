@@ -102,9 +102,16 @@ export function Reveal({
   );
 }
 
-/* -------------------------------------------------- */
-/* Split text — letter stagger reveal                 */
-/* -------------------------------------------------- */
+/**
+ * Reveal `text` letter-by-letter with a staggered blur/lift.
+ *
+ * The `aria-label={text}` on the wrapper preserves the phrase for
+ * assistive tech; each per-letter span is `aria-hidden` so screen
+ * readers don't spell it out.
+ *
+ * @param delay - Base delay in ms before the first letter animates.
+ * @param step - Additional delay applied per letter index (default 40).
+ */
 export function SplitText({
   text,
   className = "",
@@ -156,9 +163,17 @@ export function SplitText({
   );
 }
 
-/* -------------------------------------------------- */
-/* Magnetic — element pulls toward cursor             */
-/* -------------------------------------------------- */
+/**
+ * "Magnetic" wrapper — the child element eases toward the cursor
+ * whenever the pointer is over it, then springs back on leave.
+ *
+ * Uses an internal `requestAnimationFrame` loop with a fixed damping
+ * factor (`0.15`) for smooth pull/release. Great for CTAs and small
+ * icons; avoid nesting inside `Tilt3D` (their transforms compete).
+ *
+ * @param strength - Multiplier on the raw cursor offset. Values above
+ *   `~0.6` feel unnatural. Default `0.35`.
+ */
 export function Magnetic({
   children,
   strength = 0.35,
@@ -201,9 +216,15 @@ export function Magnetic({
   );
 }
 
-/* -------------------------------------------------- */
-/* Tilt3D — perspective hover                         */
-/* -------------------------------------------------- */
+/**
+ * Perspective-tilt wrapper — the child rotates on X/Y axes to follow
+ * the cursor across its own bounding box.
+ *
+ * `transform-style: preserve-3d` on the wrapper lets nested elements
+ * pop out on top of the tilt. Resets to the neutral pose on mouse leave.
+ *
+ * @param max - Maximum rotation in degrees on each axis. Default `8`.
+ */
 export function Tilt3D({
   children,
   className = "",
@@ -240,9 +261,14 @@ export function Tilt3D({
   );
 }
 
-/* -------------------------------------------------- */
-/* Cursor spotlight — follows mouse                   */
-/* -------------------------------------------------- */
+/**
+ * Fixed, viewport-covering "spotlight" that follows the cursor with
+ * heavy easing. Rendered as a soft radial gradient painted into a
+ * `<div>`'s `background` on every animation frame.
+ *
+ * Hidden on `< md` breakpoints — pointless (and blocking) on touch.
+ * `z-[1]` keeps it above the page background but below content.
+ */
 export function CursorSpotlight() {
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
@@ -276,9 +302,14 @@ export function CursorSpotlight() {
   );
 }
 
-/* -------------------------------------------------- */
-/* Scroll progress bar (top of viewport)              */
-/* -------------------------------------------------- */
+/**
+ * Thin gradient progress bar pinned to the top of the viewport that
+ * scales horizontally with document scroll position.
+ *
+ * Reads `document.documentElement.scrollHeight - window.innerHeight`
+ * inside a RAF-throttled scroll handler and writes `scaleX(0..1)` on
+ * a single DOM node — no re-renders.
+ */
 export function ScrollProgress() {
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
@@ -315,9 +346,19 @@ export function ScrollProgress() {
   );
 }
 
-/* -------------------------------------------------- */
-/* Page loader — chrome intro                         */
-/* -------------------------------------------------- */
+/**
+ * Full-screen chrome-intro overlay shown on first paint.
+ *
+ * Animates a 0–100% progress counter using an ease-out-cubic curve
+ * over ~2.2 s, then clips itself away with a `clip-path` reveal so
+ * the app underneath is exposed cleanly.
+ *
+ * All labels ("loading assets", "casting chrome", "polishing surface",
+ * "ready") are derived from the current progress percentage.
+ *
+ * `aria-hidden` — the overlay is decorative; the underlying page is
+ * fully rendered underneath from the start.
+ */
 export function PageLoader() {
   const [progress, setProgress] = useState(0);
   const [done, setDone] = useState(false);
@@ -510,9 +551,24 @@ export function PageLoader() {
   );
 }
 
-/* -------------------------------------------------- */
-/* useScrollTransform — scroll-linked value            */
-/* -------------------------------------------------- */
+/**
+ * Bind a ref to a DOM element and return a scroll-linked `progress`
+ * value in `[0, 1]` representing how far past the top of the viewport
+ * the element's bottom edge has traveled.
+ *
+ * Callers typically feed the returned progress into a `translateY` or
+ * `rotate` transform to drive parallax:
+ *
+ * ```tsx
+ * const [ref, p] = useScrollTransform<HTMLDivElement>();
+ * const y = (p - 0.5) * -60;
+ * ```
+ *
+ * Uses `useLayoutEffect` so the initial value is measured before the
+ * browser paints, avoiding a one-frame flash.
+ *
+ * @returns Tuple of `[ref, progress]`.
+ */
 export function useScrollTransform<T extends HTMLElement>() {
   const ref = useRef<T>(null);
   const [progress, setProgress] = useState(0);
@@ -541,9 +597,13 @@ export function useScrollTransform<T extends HTMLElement>() {
   return [ref, progress] as const;
 }
 
-/* -------------------------------------------------- */
-/* Section melt divider                                */
-/* -------------------------------------------------- */
+/**
+ * Decorative SVG "melt" divider — a soft chrome-tinted wave used
+ * between full-bleed sections. Purely visual (`aria-hidden`).
+ *
+ * @param flip - When `true`, mirrors the wave vertically so it can
+ *   sit at the bottom of a section instead of the top.
+ */
 export function MeltDivider({ flip = false }: { flip?: boolean }): ReactNode {
   return (
     <div
