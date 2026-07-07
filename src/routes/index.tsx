@@ -517,8 +517,8 @@ function Featured() {
                   ))}
                 </div>
                 <div className="mt-8 flex flex-wrap gap-3">
-                  <ChromeButton href="#work" variant="primary">View Case</ChromeButton>
-                  <ChromeButton href="#work" variant="ghost">Live ↗</ChromeButton>
+                  <ChromeButton href={p.caseUrl} variant="primary">View Case</ChromeButton>
+                  <ChromeButton href={p.liveUrl} variant="ghost">Live ↗</ChromeButton>
                 </div>
               </Reveal>
             </div>
