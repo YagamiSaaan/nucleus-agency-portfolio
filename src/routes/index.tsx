@@ -633,7 +633,7 @@ function Contact() {
           </div>
         </div>
 
-        <div className="mt-24 grid grid-cols-2 gap-3 md:grid-cols-5">
+        <div className="mt-20 grid grid-cols-2 gap-3 sm:grid-cols-3 md:mt-24 lg:grid-cols-5">
           {links.map((l, i) => (
             <Reveal key={l.name} delay={i * 80}>
               <Magnetic strength={0.25}>
