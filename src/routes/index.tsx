@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState, type ReactNode } from "react";
-import heroChrome from "@/assets/chrome-skull-full.png";
+
 import aboutChrome from "@/assets/chrome-tiger-cutout.png";
 import contactChrome from "@/assets/chrome-cd-cutout.png";
 import chromeBlob from "@/assets/chrome-blob.jpg";
@@ -261,19 +261,80 @@ function ChromeButton({
   );
 }
 
+function SilverFluid() {
+  return (
+    <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
+      {/* Base metallic wash */}
+      <div
+        className="absolute inset-0 opacity-70"
+        style={{
+          background:
+            "radial-gradient(ellipse at 20% 30%, rgba(210,220,235,0.35), transparent 55%), radial-gradient(ellipse at 80% 60%, rgba(180,200,230,0.30), transparent 55%), radial-gradient(ellipse at 50% 90%, rgba(150,170,200,0.25), transparent 60%)",
+        }}
+      />
+      {/* Flowing silver blobs */}
+      <div
+        className="absolute -left-[20%] top-[10%] h-[70vh] w-[70vh] rounded-full mix-blend-screen blur-3xl"
+        style={{
+          background:
+            "radial-gradient(circle at 40% 40%, #f3f5f8 0%, #cfd6e2 30%, #8a92a8 60%, transparent 75%)",
+          animation: "fluid-a 18s ease-in-out infinite",
+        }}
+      />
+      <div
+        className="absolute right-[-15%] top-[35%] h-[80vh] w-[80vh] rounded-full mix-blend-screen blur-3xl opacity-90"
+        style={{
+          background:
+            "radial-gradient(circle at 60% 50%, #ffffff 0%, #d9dee7 25%, #98a2b8 55%, transparent 75%)",
+          animation: "fluid-b 22s ease-in-out infinite",
+        }}
+      />
+      <div
+        className="absolute left-[30%] bottom-[-10%] h-[65vh] w-[65vh] rounded-full mix-blend-screen blur-3xl opacity-80"
+        style={{
+          background:
+            "radial-gradient(circle at 50% 50%, #e8ecf3 0%, #b6bccb 40%, #6f7689 70%, transparent 80%)",
+          animation: "fluid-c 26s ease-in-out infinite",
+        }}
+      />
+      {/* Chromatic shimmer sheen */}
+      <div
+        className="absolute inset-0 opacity-30 mix-blend-overlay"
+        style={{
+          background:
+            "conic-gradient(from 210deg at 50% 50%, rgba(255,255,255,0.0), rgba(200,220,255,0.35), rgba(180,160,220,0.25), rgba(255,255,255,0.0), rgba(200,220,255,0.35), rgba(255,255,255,0.0))",
+          animation: "fluid-spin 40s linear infinite",
+          filter: "blur(40px)",
+        }}
+      />
+      <style>{`
+        @keyframes fluid-a {
+          0%, 100% { transform: translate(0,0) scale(1); }
+          50% { transform: translate(12vw, 8vh) scale(1.15); }
+        }
+        @keyframes fluid-b {
+          0%, 100% { transform: translate(0,0) scale(1); }
+          50% { transform: translate(-14vw, -6vh) scale(1.1); }
+        }
+        @keyframes fluid-c {
+          0%, 100% { transform: translate(0,0) scale(1); }
+          50% { transform: translate(-8vw, -12vh) scale(1.2); }
+        }
+        @keyframes fluid-spin {
+          to { transform: rotate(360deg); }
+        }
+      `}</style>
+    </div>
+  );
+}
+
 function Hero() {
   const { x, y } = useMouseParallax();
-  const [skullRef, skullProgress] = useScrollTransform<HTMLDivElement>();
-  // Scroll-linked scale/rotate on the skull
-  const scale = 1 + skullProgress * 0.15;
-  const rotate = skullProgress * -6;
-  const yOffset = skullProgress * -40;
 
   return (
     <section id="top" className="relative min-h-screen w-full overflow-hidden pt-24 md:pt-28">
+      <SilverFluid />
       <div className="pointer-events-none absolute inset-0 radial-glow" />
-      <div className="pointer-events-none absolute left-1/2 top-1/3 h-[70vh] w-[70vh] -translate-x-1/2 rounded-full opacity-40 blur-3xl"
-           style={{ background: "radial-gradient(circle, rgba(150,180,255,0.35), transparent 65%)" }} />
 
       <img
         src={chromeStar}
@@ -289,20 +350,6 @@ function Hero() {
         className="pointer-events-none absolute right-[8%] top-[65%] hidden h-24 w-24 float-slower md:block"
         style={{ transform: `translate(${x * -20}px, ${y * -20}px)`, filter: "drop-shadow(0 0 20px rgba(180,200,255,0.5))" }}
       />
-      <img
-        src={chromeBlob}
-        alt=""
-        aria-hidden
-        className="pointer-events-none absolute -right-24 top-[15%] hidden h-72 w-72 float-slower opacity-70 mix-blend-screen md:block"
-        style={{ transform: `translate(${x * -40}px, ${y * -20}px) rotate(-15deg)` }}
-      />
-      <img
-        src={chromeBlob}
-        alt=""
-        aria-hidden
-        className="pointer-events-none absolute -left-16 bottom-[8%] hidden h-56 w-56 float-slow opacity-60 mix-blend-screen md:block"
-        style={{ transform: `translate(${x * 40}px, ${y * 20}px) rotate(30deg)` }}
-      />
 
       <div className="relative mx-auto max-w-[1600px] px-5 sm:px-6 md:px-10">
         <div className="relative">
@@ -311,46 +358,25 @@ function Hero() {
           </h1>
         </div>
 
-        <div className="relative mt-6 grid grid-cols-12 items-start gap-6 md:-mt-[6vw] md:gap-8">
-          <Reveal delay={200} className="order-2 col-span-12 space-y-2 md:order-1 md:col-span-3 md:pt-8">
-            <div className="pt-4 font-sans-tight text-3xl font-light leading-[0.95] sm:text-4xl">
+        <div className="relative mt-6 grid grid-cols-12 items-start gap-6 md:gap-10">
+          <Reveal delay={200} className="col-span-12 space-y-2 md:col-span-6 md:pt-8">
+            <div className="pt-4 font-sans-tight text-3xl font-light leading-[0.95] sm:text-4xl md:text-5xl">
               <div className="text-chrome">Brand</div>
               <div className="text-chrome-cyber">Digital</div>
               <div className="text-chrome">Motion</div>
             </div>
-            <p className="max-w-xs pt-6 text-sm leading-relaxed text-muted-foreground">
+            <p className="max-w-md pt-6 text-sm leading-relaxed text-muted-foreground md:text-base">
               A design agency sculpting brands and interfaces at the frontier of luxury and futurism.
             </p>
           </Reveal>
 
-          <Reveal delay={400} className="order-1 col-span-12 md:order-2 md:col-span-6">
-            <div
-              ref={skullRef}
-              className="relative mx-auto w-full max-w-[560px] md:-my-16 md:w-[125%] md:max-w-none chrome-breathe"
-              style={{ transform: `translate(${x * -14}px, ${y * -14 + yOffset}px) scale(${scale}) rotate(${rotate}deg)` }}
-            >
-              <img
-                src={heroChrome}
-                alt="Chrome skull"
-                width={1600}
-                height={1600}
-                className="h-auto w-full select-none"
-                style={{ filter: "drop-shadow(0 40px 80px rgba(120,160,220,0.25)) drop-shadow(0 0 40px rgba(200,220,255,0.15))" }}
-              />
-              <div className="mt-4 flex items-end justify-between gap-3 px-2 font-mono text-[9px] uppercase tracking-[0.25em] text-muted-foreground sm:text-[10px] sm:tracking-[0.3em]">
-                <span className="truncate">MRK · 001 / chrome_series</span>
-                <span className="font-display text-xl italic normal-case text-chrome">nucleus</span>
-              </div>
-            </div>
-          </Reveal>
-
-          <Reveal delay={600} className="order-3 col-span-12 text-right md:col-span-3 md:pt-4">
-            <div className="font-display text-[18vw] leading-[0.85] tracking-[-0.04em] text-chrome-cyber sm:text-[14vw] md:text-[6vw]">
+          <Reveal delay={600} className="col-span-12 text-left md:col-span-6 md:pt-4 md:text-right">
+            <div className="font-display text-[22vw] leading-[0.85] tracking-[-0.04em] text-chrome-cyber md:text-[9vw]">
               <SplitText text="Stu" step={80} delay={400} />
               <div><SplitText text="di" step={80} delay={560} /></div>
               <div className="italic"><SplitText text="o" step={80} delay={720} /></div>
             </div>
-            <div className="mt-4 flex flex-wrap justify-end gap-3 font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground sm:gap-4 sm:tracking-[0.3em]">
+            <div className="mt-4 flex flex-wrap gap-3 font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground sm:gap-4 sm:tracking-[0.3em] md:justify-end">
               <span>ig · nucleus</span>
               <span>tg · nucleus</span>
             </div>
@@ -410,7 +436,7 @@ function About() {
               loading="lazy"
               width={1600}
               height={1600}
-              className="relative z-10 h-auto w-full select-none md:-ml-16 md:w-[130%] md:max-w-none"
+              className="relative z-10 h-auto w-[calc(100%+1.25rem)] -ml-5 select-none sm:-ml-6 sm:w-[calc(100%+1.5rem)] md:-ml-10 md:w-[calc(130%+2.5rem)] md:max-w-none"
               style={{ filter: "drop-shadow(0 40px 100px rgba(120,160,220,0.25)) drop-shadow(0 0 60px rgba(200,220,255,0.12))" }}
             />
           </div>
@@ -512,8 +538,8 @@ function Featured() {
               <Reveal className={`col-span-12 md:col-span-7 ${i % 2 ? "md:order-2" : ""}`}>
                 <div className="px-0 py-4 md:px-8 md:py-10">
                   <Tilt3D max={6}>
-                    <div className="relative overflow-hidden rounded-2xl chrome-border">
-                      <img src={p.img} alt={p.title} loading="lazy" width={1200} height={800} className="h-full w-full object-cover transition-transform duration-1000 group-hover:scale-105" />
+                    <div className="relative aspect-[4/3] overflow-hidden rounded-2xl chrome-border sm:aspect-[3/2]">
+                      <img src={p.img} alt={p.title} loading="lazy" width={1200} height={800} className="absolute inset-0 h-full w-full object-cover transition-transform duration-1000 group-hover:scale-105" />
                       <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent" />
                     </div>
                   </Tilt3D>
