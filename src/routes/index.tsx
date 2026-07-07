@@ -381,12 +381,12 @@ function About() {
   const tigerY = (tigerProgress - 0.5) * -60;
   const tigerRot = (tigerProgress - 0.5) * 8;
   return (
-    <section id="about" className="relative mx-auto max-w-[1600px] px-6 py-32 md:px-10">
-      <div className="mb-16 flex items-end justify-between">
+    <section id="about" className="relative mx-auto max-w-[1600px] px-5 py-20 sm:px-6 md:px-10 md:py-32">
+      <div className="mb-10 flex flex-wrap items-end justify-between gap-3 md:mb-16">
         <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">[ 01 · about ]</span>
         <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">who / behind / the chrome</span>
       </div>
-      <div className="grid grid-cols-12 gap-12 md:gap-20">
+      <div className="grid grid-cols-12 gap-10 md:gap-20">
         <Reveal className="col-span-12 md:col-span-5">
           <div ref={tigerRef} className="relative" style={{ transform: `translateY(${tigerY}px) rotate(${tigerRot}deg)` }}>
             <img
