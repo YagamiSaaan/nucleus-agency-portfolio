@@ -416,7 +416,7 @@ function Hero() {
 
 
 function About() {
-  const specialties = ["UI Design", "UX Design", "Web Design", "Branding", "Product Design", "Creative Direction"];
+  const specialties = ["Web Design", "Web Development", "Motion Ads", "Creative Direction"];
   const [tigerRef, tigerProgress] = useScrollTransform<HTMLDivElement>();
   const tigerY = (tigerProgress - 0.5) * -60;
   const tigerRot = (tigerProgress - 0.5) * 8;
