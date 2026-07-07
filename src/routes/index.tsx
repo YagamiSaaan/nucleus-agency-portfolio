@@ -491,9 +491,9 @@ function Featured() {
           <span className="hidden font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground md:block">two selected pieces</span>
         </div>
 
-        <div className="space-y-24 md:space-y-32">
+        <div className="space-y-20 md:space-y-32">
           {featured.map((p, i) => (
-            <div key={p.n} className={`group grid grid-cols-12 items-center gap-8 md:gap-16 ${i % 2 ? "md:flex-row-reverse" : ""}`}>
+            <div key={p.n} className="group grid grid-cols-12 items-center gap-6 md:gap-16">
               <Reveal className={`col-span-12 md:col-span-7 ${i % 2 ? "md:order-2" : ""}`}>
                 <div className="px-4 py-6 md:px-8 md:py-10">
                   <Tilt3D max={6}>
