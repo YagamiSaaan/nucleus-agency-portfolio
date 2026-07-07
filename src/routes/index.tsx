@@ -155,26 +155,29 @@ function Hero() {
 
           {/* Center portrait */}
           <div className="reveal-up col-span-12 md:col-span-6" style={{ animationDelay: "0.4s" }}>
-            <div
-              className="relative mx-auto aspect-[4/5] w-full max-w-md overflow-hidden rounded-[24px] chrome-border"
-              style={{ transform: `translate(${x * -10}px, ${y * -10}px)` }}
-            >
-              <img
-                src={heroChrome}
-                alt="Chrome portrait"
-                width={1024}
-                height={1280}
-                className="h-full w-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
-              <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between">
-                <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
-                  MRK · 001<br/>chrome_series
+            <div className="mx-auto w-full max-w-md px-6 py-10 md:px-10 md:py-14">
+              <div
+                className="relative aspect-[4/5] w-full overflow-hidden rounded-[24px] chrome-border"
+                style={{ transform: `translate(${x * -10}px, ${y * -10}px)` }}
+              >
+                <img
+                  src={heroChrome}
+                  alt="Chrome portrait"
+                  width={1024}
+                  height={1280}
+                  className="h-full w-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
+                <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between">
+                  <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
+                    MRK · 001<br/>chrome_series
+                  </div>
+                  <div className="font-display text-xl italic text-chrome">akkira</div>
                 </div>
-                <div className="font-display text-xl italic text-chrome">akkira</div>
               </div>
             </div>
           </div>
+
 
           {/* Right: DESIGNER stacked */}
           <div className="reveal-up col-span-6 pt-4 text-right md:col-span-3" style={{ animationDelay: "0.6s" }}>
@@ -232,14 +235,16 @@ function About() {
         <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">[ 01 · about ]</span>
         <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">who / behind / the chrome</span>
       </div>
-      <div className="grid grid-cols-12 gap-8">
+      <div className="grid grid-cols-12 gap-12 md:gap-20">
         <div className="col-span-12 md:col-span-5">
-          <div className="relative aspect-square overflow-hidden rounded-full chrome-border">
-            <img src={aboutChrome} alt="About portrait" loading="lazy" width={1024} height={1024} className="h-full w-full scale-110 object-cover" />
-            <div className="absolute inset-0 rounded-full" style={{ boxShadow: "inset 0 0 80px rgba(0,0,0,0.6)" }} />
+          <div className="px-6 py-8 md:px-10 md:py-12">
+            <div className="relative aspect-square overflow-hidden rounded-full chrome-border">
+              <img src={aboutChrome} alt="About portrait" loading="lazy" width={1024} height={1024} className="h-full w-full scale-110 object-cover" />
+              <div className="absolute inset-0 rounded-full" style={{ boxShadow: "inset 0 0 80px rgba(0,0,0,0.6)" }} />
+            </div>
           </div>
-          <img src={chromeStar} alt="" aria-hidden className="pointer-events-none absolute -right-6 top-10 h-24 w-24 spin-slow opacity-70" />
         </div>
+
         <div className="col-span-12 md:col-span-7 md:pl-12">
           <h2 className="font-display text-5xl leading-[0.95] tracking-tight text-chrome md:text-7xl">
             I sculpt <span className="italic text-chrome-cyber">immersive</span> digital experiences at the intersection of aesthetics, strategy and modern interaction.
