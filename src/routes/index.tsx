@@ -1,12 +1,18 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
-import heroChrome from "@/assets/hero-chrome.jpg";
+import heroChromeAsset from "@/assets/chrome-skull.jpg.asset.json";
+import aboutChromeAsset from "@/assets/chrome-tiger.jpg.asset.json";
+import contactChromeAsset from "@/assets/chrome-cd.jpg.asset.json";
 import chromeBlob from "@/assets/chrome-blob.jpg";
 import chromeStar from "@/assets/chrome-star.png";
 import project1 from "@/assets/project-1.jpg";
 import project2 from "@/assets/project-2.jpg";
 import project3 from "@/assets/project-3.jpg";
 import project4 from "@/assets/project-4.jpg";
+
+const heroChrome = heroChromeAsset.url;
+const aboutChrome = aboutChromeAsset.url;
+const contactChrome = contactChromeAsset.url;
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -229,7 +235,7 @@ function About() {
       <div className="grid grid-cols-12 gap-8">
         <div className="col-span-12 md:col-span-5">
           <div className="relative aspect-square overflow-hidden rounded-full chrome-border">
-            <img src={heroChrome} alt="About portrait" loading="lazy" width={1024} height={1024} className="h-full w-full scale-110 object-cover" />
+            <img src={aboutChrome} alt="About portrait" loading="lazy" width={1024} height={1024} className="h-full w-full scale-110 object-cover" />
             <div className="absolute inset-0 rounded-full" style={{ boxShadow: "inset 0 0 80px rgba(0,0,0,0.6)" }} />
           </div>
           <img src={chromeStar} alt="" aria-hidden className="pointer-events-none absolute -right-6 top-10 h-24 w-24 spin-slow opacity-70" />
@@ -468,7 +474,7 @@ function Contact() {
 
           <div className="col-span-12 md:col-span-4">
             <div className="relative mx-auto aspect-square w-full max-w-sm overflow-hidden rounded-full chrome-border">
-              <img src={heroChrome} alt="Contact portrait" loading="lazy" width={1024} height={1024} className="h-full w-full object-cover" />
+              <img src={contactChrome} alt="Contact portrait" loading="lazy" width={1024} height={1024} className="h-full w-full object-cover" />
               <div className="absolute inset-0 rounded-full" style={{ boxShadow: "inset 0 0 100px rgba(0,0,0,0.7)" }} />
               <div className="absolute bottom-6 left-1/2 -translate-x-1/2 font-display text-2xl italic text-chrome">akkira</div>
             </div>
