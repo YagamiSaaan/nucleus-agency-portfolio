@@ -663,10 +663,10 @@ function OtherWork() {
 
 
 function Contact() {
-  const links = [
-    { name: "Instagram", handle: "@nucleus.ux", href: "https://instagram.com/nucleus.ux", external: true, icon: "IG" },
-    { name: "WhatsApp", handle: "+1 (415) 000·0000", href: "https://wa.me/14150000000", external: true, icon: "WA" },
-    { name: "Email", handle: "hello@nucleus.io", href: "mailto:hello@nucleus.io", external: false, icon: "@" },
+  const links: { name: string; handle: string; href: string; external: boolean; Icon: ComponentType<{ className?: string; strokeWidth?: number }> }[] = [
+    { name: "Instagram", handle: "@nucleus.ux", href: "https://instagram.com/nucleus.ux", external: true, Icon: Instagram },
+    { name: "WhatsApp", handle: "+1 (415) 000·0000", href: "https://wa.me/14150000000", external: true, Icon: MessageCircle },
+    { name: "Email", handle: "hello@nucleus.io", href: "mailto:hello@nucleus.io", external: false, Icon: Mail },
   ];
   const [discRef, discProgress] = useScrollTransform<HTMLDivElement>();
   const discRot = discProgress * 30;
