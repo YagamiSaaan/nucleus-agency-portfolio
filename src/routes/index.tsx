@@ -539,12 +539,12 @@ function OtherWork() {
   ];
   return (
     <section className="relative border-t border-border">
-      <div className="mx-auto max-w-[1600px] px-6 py-32 md:px-10">
-        <div className="mb-12 flex items-end justify-between">
+      <div className="mx-auto max-w-[1600px] px-5 py-20 sm:px-6 md:px-10 md:py-32">
+        <div className="mb-10 flex flex-wrap items-end justify-between gap-3 md:mb-12">
           <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">[ 05 · other ]</span>
-          <h2 className="font-display text-4xl italic text-chrome md:text-6xl">other works</h2>
+          <h2 className="font-display text-3xl italic text-chrome sm:text-4xl md:text-6xl">other works</h2>
         </div>
-        <div className="grid grid-cols-2 gap-4 md:grid-cols-5">
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
           {items.map((it, idx) => (
             <Reveal key={it.t} delay={idx * 80}>
               <Tilt3D>
