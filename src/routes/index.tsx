@@ -178,7 +178,13 @@ function Nav() {
         </div>
       </div>
       <div
-        className={`mx-6 origin-top overflow-hidden rounded-3xl glass-strong chrome-border transition-all duration-500 md:hidden ${open ? "max-h-[400px] opacity-100" : "max-h-0 opacity-0"}`}
+        className={`mx-6 origin-top overflow-hidden rounded-3xl chrome-border transition-all duration-500 md:hidden ${open ? "max-h-[400px] opacity-100" : "max-h-0 opacity-0"}`}
+        style={{
+          background:
+            "linear-gradient(180deg, #f5f5f5 0%, #d9d9d9 40%, #8a8a8a 70%, #cfcfcf 100%)",
+          boxShadow:
+            "inset 0 1px 0 rgba(255,255,255,0.7), inset 0 -1px 0 rgba(0,0,0,0.35), 0 8px 24px -12px rgba(0,0,0,0.6)",
+        }}
       >
         <nav className="flex flex-col p-6">
           {items.map((item) => (
@@ -186,7 +192,7 @@ function Nav() {
               key={item.id}
               href={`#${item.id}`}
               onClick={() => setOpen(false)}
-              className="border-b border-border/40 py-3 font-display text-2xl text-chrome last:border-b-0"
+              className="border-b border-black/20 py-3 font-display text-2xl text-black last:border-b-0"
             >
               {item.label}
             </a>
@@ -194,7 +200,13 @@ function Nav() {
           <a
             href="#contact"
             onClick={() => setOpen(false)}
-            className="mt-4 rounded-full chrome-border glass px-5 py-3 text-center text-xs uppercase tracking-[0.2em] text-foreground"
+            className="mt-4 rounded-full chrome-border px-5 py-3 text-center text-xs uppercase tracking-[0.2em] text-black"
+            style={{
+              background:
+                "linear-gradient(180deg, #ffffff 0%, #e6e6e6 45%, #b8b8b8 100%)",
+              boxShadow:
+                "inset 0 1px 0 rgba(255,255,255,0.9), inset 0 -1px 0 rgba(0,0,0,0.25)",
+            }}
           >
             Let&apos;s Talk
           </a>
