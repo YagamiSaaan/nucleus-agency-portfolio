@@ -289,16 +289,16 @@ function Hero() {
         style={{ transform: `translate(${x * 40}px, ${y * 20}px) rotate(30deg)` }}
       />
 
-      <div className="relative mx-auto max-w-[1600px] px-6 md:px-10">
+      <div className="relative mx-auto max-w-[1600px] px-5 sm:px-6 md:px-10">
         <div className="relative">
-          <h1 className="font-display text-[24vw] leading-[0.82] tracking-[-0.045em] chrome-shimmer md:text-[16vw]">
+          <h1 className="font-display text-[22vw] leading-[0.85] tracking-[-0.045em] chrome-shimmer md:text-[16vw]">
             <SplitText text="Nucleus" step={70} />
           </h1>
         </div>
 
-        <div className="relative -mt-[6vw] grid grid-cols-12 items-start gap-6 md:gap-8">
-          <Reveal delay={200} className="col-span-6 space-y-2 pt-8 md:col-span-3">
-            <div className="pt-4 font-sans-tight text-3xl font-light leading-[0.95] md:text-4xl">
+        <div className="relative mt-6 grid grid-cols-12 items-start gap-6 md:-mt-[6vw] md:gap-8">
+          <Reveal delay={200} className="order-2 col-span-12 space-y-2 md:order-1 md:col-span-3 md:pt-8">
+            <div className="pt-4 font-sans-tight text-3xl font-light leading-[0.95] sm:text-4xl">
               <div className="text-chrome">Brand</div>
               <div className="text-chrome-cyber">Digital</div>
               <div className="text-chrome">Motion</div>
@@ -308,10 +308,10 @@ function Hero() {
             </p>
           </Reveal>
 
-          <Reveal delay={400} className="col-span-12 md:col-span-6">
+          <Reveal delay={400} className="order-1 col-span-12 md:order-2 md:col-span-6">
             <div
               ref={skullRef}
-              className="relative mx-auto w-full max-w-[980px] md:-my-16 md:w-[125%] md:max-w-none chrome-breathe"
+              className="relative mx-auto w-full max-w-[560px] md:-my-16 md:w-[125%] md:max-w-none chrome-breathe"
               style={{ transform: `translate(${x * -14}px, ${y * -14 + yOffset}px) scale(${scale}) rotate(${rotate}deg)` }}
             >
               <img
@@ -322,31 +322,31 @@ function Hero() {
                 className="h-auto w-full select-none"
                 style={{ filter: "drop-shadow(0 40px 80px rgba(120,160,220,0.25)) drop-shadow(0 0 40px rgba(200,220,255,0.15))" }}
               />
-              <div className="mt-4 flex items-end justify-between px-2 font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
-                <span>MRK · 001 / chrome_series</span>
+              <div className="mt-4 flex items-end justify-between gap-3 px-2 font-mono text-[9px] uppercase tracking-[0.25em] text-muted-foreground sm:text-[10px] sm:tracking-[0.3em]">
+                <span className="truncate">MRK · 001 / chrome_series</span>
                 <span className="font-display text-xl italic normal-case text-chrome">nucleus</span>
               </div>
             </div>
           </Reveal>
 
-          <Reveal delay={600} className="col-span-6 pt-4 text-right md:col-span-3">
-            <div className="font-display text-[14vw] leading-[0.85] tracking-[-0.04em] text-chrome-cyber md:text-[6vw]">
+          <Reveal delay={600} className="order-3 col-span-12 text-right md:col-span-3 md:pt-4">
+            <div className="font-display text-[18vw] leading-[0.85] tracking-[-0.04em] text-chrome-cyber sm:text-[14vw] md:text-[6vw]">
               <SplitText text="Stu" step={80} delay={400} />
               <div><SplitText text="di" step={80} delay={560} /></div>
               <div className="italic"><SplitText text="o" step={80} delay={720} /></div>
             </div>
-            <div className="mt-4 flex justify-end gap-4 text-xs uppercase tracking-[0.3em] text-muted-foreground">
+            <div className="mt-4 flex flex-wrap justify-end gap-3 font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground sm:gap-4 sm:tracking-[0.3em]">
               <span>ig · nucleus</span>
               <span>tg · nucleus</span>
             </div>
           </Reveal>
         </div>
 
-        <div className="mt-24 flex items-center justify-between border-t border-border pt-6">
+        <div className="mt-16 flex flex-wrap items-center justify-between gap-4 border-t border-border pt-6 md:mt-24">
           <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
             [ scroll · v.2026 ]
           </div>
-          <div className="hidden gap-8 font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground md:flex">
+          <div className="hidden gap-8 font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground lg:flex">
             <span>◆ Awwwards Nominee</span>
             <span>◆ Selected Works</span>
             <span>◆ Available Q1</span>
