@@ -436,7 +436,7 @@ function About() {
               loading="lazy"
               width={1600}
               height={1600}
-              className="relative z-10 h-auto w-full select-none md:-ml-16 md:w-[130%] md:max-w-none"
+              className="relative z-10 h-auto w-[calc(100%+1.25rem)] -ml-5 select-none sm:-ml-6 sm:w-[calc(100%+1.5rem)] md:-ml-10 md:w-[calc(130%+2.5rem)] md:max-w-none"
               style={{ filter: "drop-shadow(0 40px 100px rgba(120,160,220,0.25)) drop-shadow(0 0 60px rgba(200,220,255,0.12))" }}
             />
           </div>
