@@ -255,7 +255,7 @@ function Hero() {
   const yOffset = skullProgress * -40;
 
   return (
-    <section id="top" className="relative min-h-screen w-full overflow-hidden pt-28">
+    <section id="top" className="relative min-h-screen w-full overflow-hidden pt-24 md:pt-28">
       <div className="pointer-events-none absolute inset-0 radial-glow" />
       <div className="pointer-events-none absolute left-1/2 top-1/3 h-[70vh] w-[70vh] -translate-x-1/2 rounded-full opacity-40 blur-3xl"
            style={{ background: "radial-gradient(circle, rgba(150,180,255,0.35), transparent 65%)" }} />
