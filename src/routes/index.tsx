@@ -383,7 +383,7 @@ function Hero() {
           </Reveal>
 
           <Reveal delay={600} className="col-span-12 text-left md:col-span-6 md:pt-4 md:text-right">
-            <div className="font-display text-[22vw] leading-[0.85] tracking-[-0.04em] text-chrome-cyber md:text-[9vw]">
+            <div className="font-display text-[19vw] leading-[0.85] tracking-[-0.04em] text-chrome-cyber md:text-[9vw]">
               <SplitText text="Stu" step={80} delay={400} />
               <div><SplitText text="di" step={80} delay={560} /></div>
               <div className="italic"><SplitText text="o" step={80} delay={720} /></div>
