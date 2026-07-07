@@ -115,7 +115,15 @@ function Nav() {
         <a href="#top" className="font-display text-2xl tracking-tight text-chrome shrink-0">
           nucleus<span className="text-accent">◆</span>
         </a>
-        <nav className="relative hidden items-center gap-1 rounded-full glass px-2 py-2 md:flex">
+        <nav
+          className="relative hidden items-center gap-1 rounded-full px-1.5 py-1.5 md:flex chrome-border shine-sweep"
+          style={{
+            background:
+              "linear-gradient(180deg, #f5f5f5 0%, #d9d9d9 40%, #8a8a8a 70%, #cfcfcf 100%)",
+            boxShadow:
+              "inset 0 1px 0 rgba(255,255,255,0.7), inset 0 -1px 0 rgba(0,0,0,0.35), 0 8px 24px -12px rgba(0,0,0,0.6)",
+          }}
+        >
           {items.map((item) => {
             const isActive = active === item.id;
             return (
@@ -123,7 +131,7 @@ function Nav() {
                 key={item.id}
                 href={`#${item.id}`}
                 data-text={item.label}
-                className={`chromatic-hover relative rounded-full px-4 py-1.5 text-xs uppercase tracking-[0.2em] transition-colors ${isActive ? "text-foreground" : "text-muted-foreground hover:text-foreground"}`}
+                className={`relative rounded-full px-4 py-1.5 text-xs uppercase tracking-[0.2em] transition-colors ${isActive ? "text-black" : "text-black/60 hover:text-black"}`}
               >
                 {isActive && (
                   <span
@@ -131,8 +139,9 @@ function Nav() {
                     className="absolute inset-0 rounded-full"
                     style={{
                       background:
-                        "linear-gradient(145deg, rgba(255,255,255,0.10), rgba(255,255,255,0.02))",
-                      boxShadow: "inset 0 1px 0 rgba(255,255,255,0.12)",
+                        "linear-gradient(180deg, #ffffff 0%, #e6e6e6 45%, #b8b8b8 100%)",
+                      boxShadow:
+                        "inset 0 1px 0 rgba(255,255,255,0.9), inset 0 -1px 0 rgba(0,0,0,0.25), 0 2px 6px rgba(0,0,0,0.25)",
                     }}
                   />
                 )}
@@ -145,7 +154,13 @@ function Nav() {
           <Magnetic strength={0.3}>
             <a
               href="#contact"
-              className="group relative hidden overflow-hidden rounded-full chrome-border glass shine-sweep border-trace px-5 py-2.5 text-xs uppercase tracking-[0.2em] text-foreground md:inline-block"
+              className="group relative hidden overflow-hidden rounded-full shine-sweep chrome-border px-5 py-2.5 text-xs uppercase tracking-[0.2em] text-black md:inline-block"
+              style={{
+                background:
+                  "linear-gradient(180deg, #ffffff 0%, #dcdcdc 45%, #8a8a8a 80%, #cfcfcf 100%)",
+                boxShadow:
+                  "inset 0 1px 0 rgba(255,255,255,0.85), inset 0 -1px 0 rgba(0,0,0,0.35), 0 10px 30px -12px rgba(200,220,255,0.45)",
+              }}
             >
               Let&apos;s Talk
             </a>
