@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://snuggle-bright-flow.lovable.app/sitemap.xml
