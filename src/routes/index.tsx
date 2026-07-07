@@ -539,9 +539,9 @@ function Featured() {
         </div>
 
         <Reveal>
-          <Tilt3D max={5}>
+          <Tilt3D max={5} className="md:[transform-style:preserve-3d]">
             <div
-              className="group relative overflow-hidden rounded-3xl chrome-border shine-sweep border-trace p-6 sm:p-8 md:p-12"
+              className="group relative overflow-hidden rounded-3xl chrome-border shine-sweep border-trace p-5 sm:p-8 md:p-12"
               style={{
                 background:
                   "linear-gradient(135deg, #f5f5f5 0%, #cfd6e2 30%, #8a92a8 60%, #cfcfcf 100%)",
@@ -552,9 +552,9 @@ function Featured() {
               <div className="pointer-events-none absolute -right-10 -top-10 h-72 w-72 rounded-full bg-white/40 blur-3xl" />
               <div className="pointer-events-none absolute -bottom-16 -left-16 h-72 w-72 rounded-full bg-black/10 blur-3xl" />
 
-              <div className="relative grid grid-cols-12 items-center gap-8 md:gap-12">
-                <div className="col-span-12 md:col-span-7">
-                  <div className="relative aspect-[4/3] overflow-hidden rounded-2xl sm:aspect-[3/2]"
+              <div className="relative flex flex-col gap-6 md:grid md:grid-cols-12 md:items-center md:gap-12">
+                <div className="w-full md:col-span-7">
+                  <div className="relative w-full aspect-[4/3] overflow-hidden rounded-2xl sm:aspect-[3/2]"
                     style={{
                       boxShadow:
                         "inset 0 0 0 1px rgba(255,255,255,0.6), 0 20px 50px -20px rgba(0,0,0,0.55)",
@@ -572,12 +572,12 @@ function Featured() {
                   </div>
                 </div>
 
-                <div className="col-span-12 md:col-span-5">
+                <div className="w-full min-w-0 md:col-span-5">
                   <div className="flex items-baseline justify-between gap-3">
-                    <span className="font-display text-[5rem] leading-none text-black/40 sm:text-[7rem] md:text-[8rem]">{p.n}</span>
+                    <span className="font-display text-[4rem] leading-none text-black/40 sm:text-[7rem] md:text-[8rem]">{p.n}</span>
                     <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-black/60">{p.year}</span>
                   </div>
-                  <h3 className="mt-4 font-display text-3xl text-black sm:text-4xl md:text-5xl">{p.title}</h3>
+                  <h3 className="mt-4 font-display text-2xl text-black sm:text-4xl md:text-5xl">{p.title}</h3>
                   <p className="mt-2 font-mono text-[11px] uppercase tracking-[0.3em] text-black/70">{p.cat}</p>
                   <div className="mt-6 flex flex-wrap gap-2">
                     {p.tags.map((t) => (
