@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode, type ComponentType } from "react";
+import { Instagram, MessageCircle, Mail } from "lucide-react";
 
 import aboutChrome from "@/assets/chrome-tiger-cutout.png";
 import contactChrome from "@/assets/chrome-cd-cutout.png";
