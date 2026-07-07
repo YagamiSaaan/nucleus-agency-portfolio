@@ -197,6 +197,7 @@ function ChromeButton({
   variant = "primary",
   size = "md",
   className = "",
+  external,
 }: {
   href?: string;
   onClick?: () => void;
@@ -204,6 +205,7 @@ function ChromeButton({
   variant?: "primary" | "ghost";
   size?: "sm" | "md" | "lg";
   className?: string;
+  external?: boolean;
 }) {
   const sizes = {
     sm: "px-4 py-2 text-[10px]",
@@ -219,9 +221,17 @@ function ChromeButton({
   } as const;
   const cls = `${base} ${variants[variant]}`;
   if (href) {
+    const isExternal =
+      external ??
+      (/^https?:\/\//.test(href) || href.startsWith("mailto:") || href.startsWith("tel:"));
     return (
       <Magnetic strength={0.28}>
-        <a href={href} className={cls}>
+        <a
+          href={href}
+          className={cls}
+          target={isExternal && !href.startsWith("mailto:") && !href.startsWith("tel:") ? "_blank" : undefined}
+          rel={isExternal ? "noopener noreferrer" : undefined}
+        >
           <span className="relative">{children}</span>
         </a>
       </Magnetic>
@@ -229,7 +239,7 @@ function ChromeButton({
   }
   return (
     <Magnetic strength={0.28}>
-      <button onClick={onClick} className={cls}>
+      <button type="button" onClick={onClick} className={cls}>
         <span className="relative">{children}</span>
       </button>
     </Magnetic>
