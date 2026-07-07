@@ -287,11 +287,17 @@
   }
   .chrome-breathe { animation: chrome-breathe 8s ease-in-out infinite; }
 
-  /* +10% inset on mobile and tablet — applies to every max-w-[1600px] wrapper */
-  @media (max-width: 1023px) {
+  /* Comfortable inset on mobile and tablet — applies to every max-w-[1600px] wrapper */
+  @media (max-width: 767px) {
     .max-w-\[1600px\] {
-      padding-left: calc(10vw + 1.25rem) !important;
-      padding-right: calc(10vw + 1.25rem) !important;
+      padding-left: 6vw !important;
+      padding-right: 6vw !important;
+    }
+  }
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .max-w-\[1600px\] {
+      padding-left: 8vw !important;
+      padding-right: 8vw !important;
     }
   }
 

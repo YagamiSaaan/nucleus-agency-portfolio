@@ -110,7 +110,7 @@ function Nav() {
   return (
     <header className="fixed left-0 right-0 top-0 z-50">
       <div
-        className={`mx-auto flex max-w-[1600px] items-center justify-between px-6 md:px-10 transition-all duration-500 ${scrolled ? "py-3" : "py-5"}`}
+        className={`mx-auto flex max-w-[1600px] items-center justify-between px-4 sm:px-6 md:px-10 transition-all duration-500 ${scrolled ? "py-3" : "py-5"}`}
       >
         <a href="#top" className="font-display text-2xl tracking-tight text-chrome shrink-0">
           nucleus<span className="text-accent">◆</span>
@@ -365,7 +365,7 @@ function Hero() {
 
       <div className="relative mx-auto max-w-[1600px] px-5 sm:px-6 md:px-10">
         <div className="relative">
-          <h1 className="font-display text-[22vw] leading-[0.85] tracking-[-0.045em] chrome-shimmer md:text-[16vw]">
+          <h1 className="font-display text-[19vw] leading-[0.85] tracking-[-0.045em] chrome-shimmer md:text-[16vw]">
             <SplitText text="Nucleus" step={70} />
           </h1>
         </div>
@@ -383,7 +383,7 @@ function Hero() {
           </Reveal>
 
           <Reveal delay={600} className="col-span-12 text-left md:col-span-6 md:pt-4 md:text-right">
-            <div className="font-display text-[22vw] leading-[0.85] tracking-[-0.04em] text-chrome-cyber md:text-[9vw]">
+            <div className="font-display text-[19vw] leading-[0.85] tracking-[-0.04em] text-chrome-cyber md:text-[9vw]">
               <SplitText text="Stu" step={80} delay={400} />
               <div><SplitText text="di" step={80} delay={560} /></div>
               <div className="italic"><SplitText text="o" step={80} delay={720} /></div>
@@ -413,20 +413,6 @@ function Hero() {
   );
 }
 
-function Marquee() {
-  const items = ["Immersive", "◆", "Editorial", "◆", "Chrome", "◆", "Cyber Luxury", "◆", "Motion", "◆", "Interfaces", "◆", "Brutalism", "◆"];
-  return (
-    <section aria-hidden className="relative border-y border-border py-6">
-      <div className="marquee whitespace-nowrap">
-        {[...items, ...items, ...items, ...items].map((t, i) => (
-          <span key={i} className="mx-8 font-display text-4xl italic text-chrome md:text-6xl">
-            {t}
-          </span>
-        ))}
-      </div>
-    </section>
-  );
-}
 
 function About() {
   const specialties = ["UI Design", "UX Design", "Web Design", "Branding", "Product Design", "Creative Direction"];
@@ -677,11 +663,9 @@ function OtherWork() {
 
 function Contact() {
   const links = [
-    { name: "Instagram", handle: "@nucleus.ux", href: "https://instagram.com/nucleus.ux", external: true },
-    { name: "Behance", handle: "/nucleus", href: "https://behance.net/nucleus", external: true },
-    { name: "Dribbble", handle: "/nucleus", href: "https://dribbble.com/nucleus", external: true },
-    { name: "LinkedIn", handle: "/in/nucleus", href: "https://linkedin.com/in/nucleus", external: true },
-    { name: "Email", handle: "hello@nucleus.io", href: "mailto:hello@nucleus.io", external: false },
+    { name: "Instagram", handle: "@nucleus.ux", href: "https://instagram.com/nucleus.ux", external: true, icon: "IG" },
+    { name: "WhatsApp", handle: "+1 (415) 000·0000", href: "https://wa.me/14150000000", external: true, icon: "WA" },
+    { name: "Email", handle: "hello@nucleus.io", href: "mailto:hello@nucleus.io", external: false, icon: "@" },
   ];
   const [discRef, discProgress] = useScrollTransform<HTMLDivElement>();
   const discRot = discProgress * 30;
@@ -699,7 +683,7 @@ function Contact() {
 
         <div className="grid grid-cols-12 gap-8">
           <div className="col-span-12 md:col-span-8">
-            <h2 className="font-display text-[14vw] leading-[0.9] tracking-[-0.04em] chrome-shimmer sm:text-[12vw] md:text-[10vw]">
+            <h2 className="font-display text-[11vw] leading-[0.9] tracking-[-0.04em] chrome-shimmer sm:text-[12vw] md:text-[10vw]">
               <SplitText text="Let’s " step={50} />
               <span className="italic text-chrome-cyber"><SplitText text="create" step={50} delay={250} /></span><br/>
               <SplitText text="something" step={50} delay={500} /><br/>
@@ -742,27 +726,48 @@ function Contact() {
           </div>
         </div>
 
-        <div className="mt-20 grid grid-cols-2 gap-3 sm:grid-cols-3 md:mt-24 lg:grid-cols-5">
+        <div className="mt-16 flex flex-col gap-3 md:mt-24 md:gap-4">
           {links.map((l, i) => (
             <Reveal key={l.name} delay={i * 80}>
-              <Magnetic strength={0.25}>
-                <a
-                  href={l.href}
-                  target={l.external ? "_blank" : undefined}
-                  rel={l.external ? "noopener noreferrer" : undefined}
-                  className="group relative block overflow-hidden rounded-2xl glass chrome-border shine-sweep border-trace p-5 transition-transform hover:-translate-y-1"
-                >
-                  <div className="flex items-center justify-between">
-                    <span className="text-chrome text-2xl">◆</span>
-                    <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground opacity-0 transition-opacity group-hover:opacity-100">→</span>
+              <a
+                href={l.href}
+                target={l.external ? "_blank" : undefined}
+                rel={l.external ? "noopener noreferrer" : undefined}
+                className="group relative flex items-center justify-between gap-4 overflow-hidden rounded-full chrome-border shine-sweep border-trace px-5 py-4 transition-transform hover:-translate-y-0.5 sm:px-7 sm:py-5"
+                style={{
+                  background:
+                    "linear-gradient(180deg, #f5f5f5 0%, #d9d9d9 40%, #8a8a8a 75%, #cfcfcf 100%)",
+                  boxShadow:
+                    "inset 0 1px 0 rgba(255,255,255,0.8), inset 0 -1px 0 rgba(0,0,0,0.35), 0 10px 30px -12px rgba(200,220,255,0.35)",
+                }}
+              >
+                <div className="flex min-w-0 items-center gap-4">
+                  <span
+                    className="grid h-10 w-10 shrink-0 place-items-center rounded-full font-mono text-[10px] uppercase tracking-widest text-black/80 sm:h-11 sm:w-11"
+                    style={{
+                      background:
+                        "linear-gradient(180deg, #ffffff 0%, #e6e6e6 55%, #b8b8b8 100%)",
+                      boxShadow:
+                        "inset 0 1px 0 rgba(255,255,255,0.9), inset 0 -1px 0 rgba(0,0,0,0.3)",
+                    }}
+                  >
+                    {l.icon}
+                  </span>
+                  <div className="min-w-0">
+                    <div className="font-display text-xl text-black sm:text-2xl">{l.name}</div>
+                    <div className="truncate font-mono text-[10px] uppercase tracking-[0.25em] text-black/60 sm:text-[11px]">
+                      {l.handle}
+                    </div>
                   </div>
-                  <div className="mt-8 font-display text-2xl text-chrome">{l.name}</div>
-                  <div className="mt-1 font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">{l.handle}</div>
-                </a>
-              </Magnetic>
+                </div>
+                <span className="shrink-0 font-mono text-lg text-black transition-transform duration-500 group-hover:translate-x-1 sm:text-xl">
+                  →
+                </span>
+              </a>
             </Reveal>
           ))}
         </div>
+
 
         <footer className="relative mt-24 overflow-hidden rounded-3xl border border-border/60 bg-gradient-to-br from-background via-background to-muted/20 p-6 sm:p-8 md:mt-32 md:p-12">
           <div className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-gradient-to-br from-foreground/10 via-foreground/5 to-transparent blur-3xl chrome-breathe" />
@@ -872,8 +877,6 @@ function Index() {
       <main>
         <Hero />
         <MeltDivider />
-        <Marquee />
-        <MeltDivider flip />
         <About />
         <Process />
         <Featured />
