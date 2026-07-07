@@ -472,8 +472,8 @@ function Process() {
 }
 
 const featured = [
-  { n: "01", title: "Rebranding · Cinema", cat: "Web · Motion", year: "2025", img: project2, tags: ["Editorial", "Streaming", "Dark UI"] },
-  { n: "02", title: "The Last Rooms", cat: "Product · UX", year: "2025", img: project1, tags: ["Dashboard", "Data", "System"] },
+  { n: "01", title: "Rebranding · Cinema", cat: "Web · Motion", year: "2025", img: project2, tags: ["Editorial", "Streaming", "Dark UI"], caseUrl: "mailto:hello@nucleus.io?subject=Case%20study%20—%20Rebranding%20Cinema", liveUrl: "https://mubi.com" },
+  { n: "02", title: "The Last Rooms", cat: "Product · UX", year: "2025", img: project1, tags: ["Dashboard", "Data", "System"], caseUrl: "mailto:hello@nucleus.io?subject=Case%20study%20—%20The%20Last%20Rooms", liveUrl: "https://linear.app" },
 ];
 
 function Featured() {
