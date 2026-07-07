@@ -77,17 +77,35 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=5" },
-      { title: "Nucleus — We craft in silence." },
-      { name: "description", content: "Nucleus is a two‑person studio building high‑end websites and motion ads. Quiet process, chrome finish, work that speaks louder than we do." },
       { name: "author", content: "Nucleus" },
-      { property: "og:title", content: "Nucleus — We craft in silence." },
-      { property: "og:description", content: "A two‑person studio building high‑end websites and motion ads. Quiet process, chrome finish." },
+      { property: "og:site_name", content: "Nucleus" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Nucleus — We craft in silence." },
-      { name: "twitter:description", content: "A two‑person studio building high‑end websites and motion ads. Quiet process, chrome finish." },
-      { property: "og:image", content: "https://snuggle-bright-flow.lovable.app/__l5e/assets-v1/543eff37-76c7-48cf-a21a-2cb7412c3ae4/nucleus-og.jpg" },
-      { name: "twitter:image", content: "https://snuggle-bright-flow.lovable.app/__l5e/assets-v1/543eff37-76c7-48cf-a21a-2cb7412c3ae4/nucleus-og.jpg" },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          name: "Nucleus",
+          url: "https://snuggle-bright-flow.lovable.app",
+          logo: "https://snuggle-bright-flow.lovable.app/__l5e/assets-v1/543eff37-76c7-48cf-a21a-2cb7412c3ae4/nucleus-og.jpg",
+          foundingDate: "2026",
+          description:
+            "A two-person studio building high-end websites and motion ads.",
+          email: "nucleus.devsupport@gmail.com",
+          sameAs: ["https://instagram.com/nucleus.xyz"],
+          contactPoint: [
+            {
+              "@type": "ContactPoint",
+              contactType: "customer support",
+              email: "nucleus.devsupport@gmail.com",
+              telephone: "+91-95673-32494",
+            },
+          ],
+        }),
+      },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
