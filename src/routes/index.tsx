@@ -495,7 +495,7 @@ function Featured() {
           {featured.map((p, i) => (
             <div key={p.n} className="group grid grid-cols-12 items-center gap-6 md:gap-16">
               <Reveal className={`col-span-12 md:col-span-7 ${i % 2 ? "md:order-2" : ""}`}>
-                <div className="px-4 py-6 md:px-8 md:py-10">
+                <div className="px-0 py-4 md:px-8 md:py-10">
                   <Tilt3D max={6}>
                     <div className="relative overflow-hidden rounded-2xl chrome-border">
                       <img src={p.img} alt={p.title} loading="lazy" width={1200} height={800} className="h-full w-full object-cover transition-transform duration-1000 group-hover:scale-105" />
@@ -505,11 +505,11 @@ function Featured() {
                 </div>
               </Reveal>
               <Reveal delay={150} className={`col-span-12 md:col-span-5 md:px-6 ${i % 2 ? "md:order-1" : ""}`}>
-                <div className="flex items-baseline justify-between">
-                  <span className="font-display text-[8rem] leading-none text-chrome/40">{p.n}</span>
+                <div className="flex items-baseline justify-between gap-3">
+                  <span className="font-display text-[5rem] leading-none text-chrome/40 sm:text-[7rem] md:text-[8rem]">{p.n}</span>
                   <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">{p.year}</span>
                 </div>
-                <h3 className="mt-4 font-display text-4xl text-chrome md:text-5xl">{p.title}</h3>
+                <h3 className="mt-4 font-display text-3xl text-chrome sm:text-4xl md:text-5xl">{p.title}</h3>
                 <p className="mt-2 font-mono text-[11px] uppercase tracking-[0.3em] text-accent">{p.cat}</p>
                 <div className="mt-6 flex flex-wrap gap-2">
                   {p.tags.map((t) => (
