@@ -413,20 +413,6 @@ function Hero() {
   );
 }
 
-function Marquee() {
-  const items = ["Immersive", "◆", "Editorial", "◆", "Chrome", "◆", "Cyber Luxury", "◆", "Motion", "◆", "Interfaces", "◆", "Brutalism", "◆"];
-  return (
-    <section aria-hidden className="relative border-y border-border py-6">
-      <div className="marquee whitespace-nowrap">
-        {[...items, ...items, ...items, ...items].map((t, i) => (
-          <span key={i} className="mx-8 font-display text-4xl italic text-chrome md:text-6xl">
-            {t}
-          </span>
-        ))}
-      </div>
-    </section>
-  );
-}
 
 function About() {
   const specialties = ["UI Design", "UX Design", "Web Design", "Branding", "Product Design", "Creative Direction"];
