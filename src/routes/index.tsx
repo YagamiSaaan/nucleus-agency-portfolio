@@ -64,7 +64,7 @@ function Nav() {
   return (
     <header className="fixed left-0 right-0 top-0 z-50">
       <div className="mx-auto flex max-w-[1600px] items-center justify-between px-6 py-5 md:px-10">
-        <a href="#top" className="font-display text-2xl tracking-tight text-chrome">akkira<span className="text-accent">◆</span></a>
+        <a href="#top" className="font-display text-2xl tracking-tight text-chrome">nucleus<span className="text-accent">◆</span></a>
         <nav className="hidden items-center gap-1 rounded-full glass px-2 py-2 md:flex">
           {["Work", "About", "Process", "Contact"].map((item) => (
             <a
@@ -165,7 +165,7 @@ function Hero() {
               />
               <div className="mt-4 flex items-end justify-between px-2 font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
                 <span>MRK · 001 / chrome_series</span>
-                <span className="font-display text-xl italic normal-case text-chrome">akkira</span>
+                <span className="font-display text-xl italic normal-case text-chrome">nucleus</span>
               </div>
             </div>
           </div>
@@ -180,8 +180,8 @@ function Hero() {
               <div className="italic">gner</div>
             </div>
             <div className="mt-4 flex justify-end gap-4 text-xs uppercase tracking-[0.3em] text-muted-foreground">
-              <span>ig · akkira</span>
-              <span>tg · akkira</span>
+              <span>ig · nucleus</span>
+              <span>tg · nucleus</span>
             </div>
           </div>
         </div>
@@ -440,11 +440,11 @@ function OtherWork() {
 
 function Contact() {
   const links = [
-    { name: "Instagram", handle: "@akkira.ux", href: "#" },
-    { name: "Behance", handle: "/akkira", href: "#" },
-    { name: "Dribbble", handle: "/akkira", href: "#" },
-    { name: "LinkedIn", handle: "/in/akkira", href: "#" },
-    { name: "Email", handle: "hello@akkira.io", href: "mailto:hello@akkira.io" },
+    { name: "Instagram", handle: "@nucleus.ux", href: "#" },
+    { name: "Behance", handle: "/nucleus", href: "#" },
+    { name: "Dribbble", handle: "/nucleus", href: "#" },
+    { name: "LinkedIn", handle: "/in/nucleus", href: "#" },
+    { name: "Email", handle: "hello@nucleus.io", href: "mailto:hello@nucleus.io" },
   ];
   return (
     <section id="contact" className="relative overflow-hidden border-t border-border">
@@ -468,7 +468,7 @@ function Contact() {
               Whether it&apos;s an original interface, a rebrand, or a wild experimental idea — I&apos;m open for select collaborations. Reach out and let&apos;s shape it together.
             </p>
             <a
-              href="mailto:hello@akkira.io"
+              href="mailto:hello@nucleus.io"
               className="mt-10 inline-flex items-center gap-4 rounded-full chrome-border glass-strong shine-sweep px-8 py-4 text-sm uppercase tracking-[0.2em] text-foreground"
             >
               Start a project
@@ -512,11 +512,11 @@ function Contact() {
         </div>
 
         <footer className="mt-24 flex flex-col items-start justify-between gap-4 border-t border-border pt-8 font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground md:flex-row md:items-center">
-          <div>© 2026 · akkira · chrome series</div>
+          <div>© 2026 · nucleus · chrome series</div>
           <div className="flex gap-6">
             <span>site v.2.4</span>
             <span>◆ made with liquid metal</span>
-            <span>tg · @akkira</span>
+            <span>tg · @nucleus</span>
           </div>
         </footer>
       </div>
