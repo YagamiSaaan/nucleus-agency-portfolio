@@ -577,6 +577,129 @@ function Contact() {
   );
 }
 
+function ChromeChain() {
+  const trackRef = useRef<HTMLDivElement>(null);
+  const linksRef = useRef<HTMLDivElement>(null);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+    let raf = 0;
+    const update = () => {
+      const y = window.scrollY;
+      const max = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+      const progress = y / max;
+      if (linksRef.current) {
+        // vertical feed (loop within one link height = 56px)
+        const feed = (y * 0.6) % 56;
+        linksRef.current.style.transform = `translateY(${-feed}px)`;
+      }
+      if (trackRef.current) {
+        const links = trackRef.current.querySelectorAll<HTMLElement>("[data-link]");
+        links.forEach((el, i) => {
+          const twist = Math.sin(progress * Math.PI * 4 + i * 0.35 + y * 0.004) * 55;
+          el.style.transform = `rotateY(${twist}deg)`;
+        });
+      }
+      raf = 0;
+    };
+    const onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (raf) cancelAnimationFrame(raf);
+    };
+  }, []);
+
+  if (!mounted) return null;
+
+  // enough links to cover any viewport with overflow for feed loop
+  const linkCount = 60;
+
+  return (
+    <div
+      aria-hidden
+      className="pointer-events-none fixed right-3 top-0 z-40 hidden h-screen w-10 md:flex md:items-start md:justify-center"
+      style={{ perspective: "600px" }}
+    >
+      {/* soft chrome glow behind chain */}
+      <div className="absolute inset-y-0 right-1/2 w-[2px] translate-x-1/2 bg-gradient-to-b from-transparent via-foreground/10 to-transparent" />
+      <div
+        ref={trackRef}
+        className="relative h-full w-full overflow-hidden"
+        style={{ maskImage: "linear-gradient(to bottom, transparent 0, black 8%, black 92%, transparent 100%)", WebkitMaskImage: "linear-gradient(to bottom, transparent 0, black 8%, black 92%, transparent 100%)" }}
+      >
+        <div ref={linksRef} className="absolute left-1/2 top-0 -translate-x-1/2 will-change-transform">
+          {Array.from({ length: linkCount }).map((_, i) => (
+            <div
+              key={i}
+              data-link
+              className="flex h-[56px] w-10 items-center justify-center will-change-transform"
+              style={{ transformStyle: "preserve-3d" }}
+            >
+              <ChainLink flip={i % 2 === 1} />
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ChainLink({ flip }: { flip?: boolean }) {
+  return (
+    <svg
+      viewBox="0 0 40 64"
+      width="34"
+      height="54"
+      style={{ transform: flip ? "rotate(90deg)" : "none", display: "block" }}
+    >
+      <defs>
+        <linearGradient id="chrm" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stopColor="#f4f4f4" />
+          <stop offset="20%" stopColor="#8a8a8a" />
+          <stop offset="45%" stopColor="#e8e8e8" />
+          <stop offset="60%" stopColor="#2a2a2a" />
+          <stop offset="80%" stopColor="#c8c8c8" />
+          <stop offset="100%" stopColor="#5a5a5a" />
+        </linearGradient>
+        <linearGradient id="chrmHL" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#ffffff" stopOpacity="0.9" />
+          <stop offset="50%" stopColor="#ffffff" stopOpacity="0" />
+          <stop offset="100%" stopColor="#ffffff" stopOpacity="0.5" />
+        </linearGradient>
+      </defs>
+      {/* outer link */}
+      <rect
+        x="6"
+        y="4"
+        width="28"
+        height="56"
+        rx="14"
+        ry="20"
+        fill="none"
+        stroke="url(#chrm)"
+        strokeWidth="6"
+      />
+      {/* inner highlight */}
+      <rect
+        x="6"
+        y="4"
+        width="28"
+        height="56"
+        rx="14"
+        ry="20"
+        fill="none"
+        stroke="url(#chrmHL)"
+        strokeWidth="1.2"
+      />
+    </svg>
+  );
+}
+
 function Index() {
   return (
     <div className="relative min-h-screen bg-background text-foreground noise">
@@ -584,7 +707,9 @@ function Index() {
       <ScrollProgress />
       <CursorSpotlight />
       <ChromeCursor />
+      <ChromeChain />
       <Nav />
+
       <main>
         <Hero />
         <MeltDivider />
