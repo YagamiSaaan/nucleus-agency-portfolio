@@ -155,26 +155,29 @@ function Hero() {
 
           {/* Center portrait */}
           <div className="reveal-up col-span-12 md:col-span-6" style={{ animationDelay: "0.4s" }}>
-            <div
-              className="relative mx-auto aspect-[4/5] w-full max-w-md overflow-hidden rounded-[24px] chrome-border"
-              style={{ transform: `translate(${x * -10}px, ${y * -10}px)` }}
-            >
-              <img
-                src={heroChrome}
-                alt="Chrome portrait"
-                width={1024}
-                height={1280}
-                className="h-full w-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
-              <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between">
-                <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
-                  MRK · 001<br/>chrome_series
+            <div className="mx-auto w-full max-w-md px-6 py-10 md:px-10 md:py-14">
+              <div
+                className="relative aspect-[4/5] w-full overflow-hidden rounded-[24px] chrome-border"
+                style={{ transform: `translate(${x * -10}px, ${y * -10}px)` }}
+              >
+                <img
+                  src={heroChrome}
+                  alt="Chrome portrait"
+                  width={1024}
+                  height={1280}
+                  className="h-full w-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
+                <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between">
+                  <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
+                    MRK · 001<br/>chrome_series
+                  </div>
+                  <div className="font-display text-xl italic text-chrome">akkira</div>
                 </div>
-                <div className="font-display text-xl italic text-chrome">akkira</div>
               </div>
             </div>
           </div>
+
 
           {/* Right: DESIGNER stacked */}
           <div className="reveal-up col-span-6 pt-4 text-right md:col-span-3" style={{ animationDelay: "0.6s" }}>
@@ -232,14 +235,16 @@ function About() {
         <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">[ 01 · about ]</span>
         <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">who / behind / the chrome</span>
       </div>
-      <div className="grid grid-cols-12 gap-8">
+      <div className="grid grid-cols-12 gap-12 md:gap-20">
         <div className="col-span-12 md:col-span-5">
-          <div className="relative aspect-square overflow-hidden rounded-full chrome-border">
-            <img src={aboutChrome} alt="About portrait" loading="lazy" width={1024} height={1024} className="h-full w-full scale-110 object-cover" />
-            <div className="absolute inset-0 rounded-full" style={{ boxShadow: "inset 0 0 80px rgba(0,0,0,0.6)" }} />
+          <div className="px-6 py-8 md:px-10 md:py-12">
+            <div className="relative aspect-square overflow-hidden rounded-full chrome-border">
+              <img src={aboutChrome} alt="About portrait" loading="lazy" width={1024} height={1024} className="h-full w-full scale-110 object-cover" />
+              <div className="absolute inset-0 rounded-full" style={{ boxShadow: "inset 0 0 80px rgba(0,0,0,0.6)" }} />
+            </div>
           </div>
-          <img src={chromeStar} alt="" aria-hidden className="pointer-events-none absolute -right-6 top-10 h-24 w-24 spin-slow opacity-70" />
         </div>
+
         <div className="col-span-12 md:col-span-7 md:pl-12">
           <h2 className="font-display text-5xl leading-[0.95] tracking-tight text-chrome md:text-7xl">
             I sculpt <span className="italic text-chrome-cyber">immersive</span> digital experiences at the intersection of aesthetics, strategy and modern interaction.
@@ -315,16 +320,18 @@ function Featured() {
             <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">[ 03 · featured ]</span>
             <h2 className="mt-3 font-display text-5xl text-chrome md:text-7xl">Selected <span className="italic text-chrome-cyber">Works</span></h2>
           </div>
-          <a href="#grid" className="hidden font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground hover:text-foreground md:block">view archive →</a>
+          <span className="hidden font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground md:block">two selected pieces</span>
         </div>
 
-        <div className="space-y-8">
+        <div className="space-y-24 md:space-y-32">
           {featured.map((p, i) => (
-            <div key={p.n} className={`group grid grid-cols-12 items-center gap-6 rounded-3xl glass chrome-border p-6 transition-all duration-500 hover:bg-white/[0.03] ${i % 2 ? "md:flex-row-reverse" : ""}`}>
+            <div key={p.n} className={`group grid grid-cols-12 items-center gap-8 md:gap-16 ${i % 2 ? "md:flex-row-reverse" : ""}`}>
               <div className={`col-span-12 md:col-span-7 ${i % 2 ? "md:order-2" : ""}`}>
-                <div className="relative overflow-hidden rounded-2xl">
-                  <img src={p.img} alt={p.title} loading="lazy" width={1200} height={800} className="h-full w-full object-cover transition-transform duration-1000 group-hover:scale-105" />
-                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent" />
+                <div className="px-4 py-6 md:px-8 md:py-10">
+                  <div className="relative overflow-hidden rounded-2xl chrome-border">
+                    <img src={p.img} alt={p.title} loading="lazy" width={1200} height={800} className="h-full w-full object-cover transition-transform duration-1000 group-hover:scale-105" />
+                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent" />
+                  </div>
                 </div>
               </div>
               <div className={`col-span-12 md:col-span-5 md:px-6 ${i % 2 ? "md:order-1" : ""}`}>
@@ -416,9 +423,6 @@ function OtherWork() {
         <div className="grid grid-cols-2 gap-4 md:grid-cols-5">
           {items.map((it) => (
             <div key={it.t} className="group relative aspect-square overflow-hidden rounded-2xl glass chrome-border shine-sweep p-6 transition-transform hover:-translate-y-1">
-              <div className="absolute inset-0 opacity-30 transition-opacity group-hover:opacity-60">
-                <img src={chromeBlob} alt="" aria-hidden className="h-full w-full object-cover mix-blend-screen" loading="lazy" />
-              </div>
               <div className="relative flex h-full flex-col justify-between">
                 <div className="text-chrome text-4xl">{it.i}</div>
                 <div>
@@ -429,6 +433,7 @@ function OtherWork() {
             </div>
           ))}
         </div>
+
       </div>
     </section>
   );
@@ -473,12 +478,15 @@ function Contact() {
           </div>
 
           <div className="col-span-12 md:col-span-4">
-            <div className="relative mx-auto aspect-square w-full max-w-sm overflow-hidden rounded-full chrome-border">
-              <img src={contactChrome} alt="Contact portrait" loading="lazy" width={1024} height={1024} className="h-full w-full object-cover" />
-              <div className="absolute inset-0 rounded-full" style={{ boxShadow: "inset 0 0 100px rgba(0,0,0,0.7)" }} />
-              <div className="absolute bottom-6 left-1/2 -translate-x-1/2 font-display text-2xl italic text-chrome">akkira</div>
+            <div className="mx-auto w-full max-w-sm px-6 py-10 md:px-8 md:py-12">
+              <div className="relative aspect-square w-full overflow-hidden rounded-full chrome-border">
+                <img src={contactChrome} alt="Contact portrait" loading="lazy" width={1024} height={1024} className="h-full w-full object-cover" />
+                <div className="absolute inset-0 rounded-full" style={{ boxShadow: "inset 0 0 100px rgba(0,0,0,0.7)" }} />
+                <div className="absolute bottom-6 left-1/2 -translate-x-1/2 font-display text-2xl italic text-chrome">akkira</div>
+              </div>
             </div>
           </div>
+
         </div>
 
         {/* Contact cards */}
@@ -523,7 +531,7 @@ function Index() {
         <About />
         <Process />
         <Featured />
-        <Grid />
+        
         <OtherWork />
         <Contact />
       </main>
