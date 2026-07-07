@@ -1,3 +1,17 @@
+/**
+ * @file src/routes/works.tsx
+ *
+ * "Archive" route — `/works`. A single grid of ten selected web
+ * pieces from the Nucleus studio, with a chrome-fluid hero.
+ *
+ * Content is fully static: the `works` array below drives the grid
+ * and the `covers` array cycles through the four project images.
+ * When you add or reorder cards, edit those two arrays.
+ *
+ * `Route.head()` sets page-specific SEO (title, description,
+ * canonical, og:url, og:image) plus a CollectionPage + BreadcrumbList
+ * JSON-LD pair. Sitewide defaults come from `__root.tsx`.
+ */
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Reveal, Tilt3D, SplitText, ScrollProgress, CursorSpotlight } from "@/lib/motion";
 import project1 from "@/assets/project-1.jpg";
@@ -68,6 +82,13 @@ const works = [
   { n: "10", t: "Obsidian Agency", cat: "Agency Site", year: "2023", tags: ["Marketing", "Case"] },
 ];
 
+/**
+ * Animated silver-fluid backdrop used behind the archive hero.
+ *
+ * Same visual language as the home page's `SilverFluid`, with its own
+ * keyframe names (`wfluid-*`) so their animation lifecycles are
+ * independent from the home version.
+ */
 function SilverFluid() {
   return (
     <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
