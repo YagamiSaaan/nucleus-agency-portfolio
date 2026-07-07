@@ -197,6 +197,7 @@ function ChromeButton({
   variant = "primary",
   size = "md",
   className = "",
+  external,
 }: {
   href?: string;
   onClick?: () => void;
@@ -204,6 +205,7 @@ function ChromeButton({
   variant?: "primary" | "ghost";
   size?: "sm" | "md" | "lg";
   className?: string;
+  external?: boolean;
 }) {
   const sizes = {
     sm: "px-4 py-2 text-[10px]",
@@ -219,9 +221,17 @@ function ChromeButton({
   } as const;
   const cls = `${base} ${variants[variant]}`;
   if (href) {
+    const isExternal =
+      external ??
+      (/^https?:\/\//.test(href) || href.startsWith("mailto:") || href.startsWith("tel:"));
     return (
       <Magnetic strength={0.28}>
-        <a href={href} className={cls}>
+        <a
+          href={href}
+          className={cls}
+          target={isExternal && !href.startsWith("mailto:") && !href.startsWith("tel:") ? "_blank" : undefined}
+          rel={isExternal ? "noopener noreferrer" : undefined}
+        >
           <span className="relative">{children}</span>
         </a>
       </Magnetic>
@@ -229,7 +239,7 @@ function ChromeButton({
   }
   return (
     <Magnetic strength={0.28}>
-      <button onClick={onClick} className={cls}>
+      <button type="button" onClick={onClick} className={cls}>
         <span className="relative">{children}</span>
       </button>
     </Magnetic>
@@ -462,8 +472,8 @@ function Process() {
 }
 
 const featured = [
-  { n: "01", title: "Rebranding · Cinema", cat: "Web · Motion", year: "2025", img: project2, tags: ["Editorial", "Streaming", "Dark UI"] },
-  { n: "02", title: "The Last Rooms", cat: "Product · UX", year: "2025", img: project1, tags: ["Dashboard", "Data", "System"] },
+  { n: "01", title: "Rebranding · Cinema", cat: "Web · Motion", year: "2025", img: project2, tags: ["Editorial", "Streaming", "Dark UI"], caseUrl: "mailto:hello@nucleus.io?subject=Case%20study%20—%20Rebranding%20Cinema", liveUrl: "https://mubi.com" },
+  { n: "02", title: "The Last Rooms", cat: "Product · UX", year: "2025", img: project1, tags: ["Dashboard", "Data", "System"], caseUrl: "mailto:hello@nucleus.io?subject=Case%20study%20—%20The%20Last%20Rooms", liveUrl: "https://linear.app" },
 ];
 
 function Featured() {
@@ -507,8 +517,8 @@ function Featured() {
                   ))}
                 </div>
                 <div className="mt-8 flex flex-wrap gap-3">
-                  <ChromeButton href="#work" variant="primary">View Case</ChromeButton>
-                  <ChromeButton href="#work" variant="ghost">Live ↗</ChromeButton>
+                  <ChromeButton href={p.caseUrl} variant="primary">View Case</ChromeButton>
+                  <ChromeButton href={p.liveUrl} variant="ghost">Live ↗</ChromeButton>
                 </div>
               </Reveal>
             </div>
@@ -558,11 +568,11 @@ function OtherWork() {
 
 function Contact() {
   const links = [
-    { name: "Instagram", handle: "@nucleus.ux", href: "#" },
-    { name: "Behance", handle: "/nucleus", href: "#" },
-    { name: "Dribbble", handle: "/nucleus", href: "#" },
-    { name: "LinkedIn", handle: "/in/nucleus", href: "#" },
-    { name: "Email", handle: "hello@nucleus.io", href: "mailto:hello@nucleus.io" },
+    { name: "Instagram", handle: "@nucleus.ux", href: "https://instagram.com/nucleus.ux", external: true },
+    { name: "Behance", handle: "/nucleus", href: "https://behance.net/nucleus", external: true },
+    { name: "Dribbble", handle: "/nucleus", href: "https://dribbble.com/nucleus", external: true },
+    { name: "LinkedIn", handle: "/in/nucleus", href: "https://linkedin.com/in/nucleus", external: true },
+    { name: "Email", handle: "hello@nucleus.io", href: "mailto:hello@nucleus.io", external: false },
   ];
   const [discRef, discProgress] = useScrollTransform<HTMLDivElement>();
   const discRot = discProgress * 30;
@@ -629,6 +639,8 @@ function Contact() {
               <Magnetic strength={0.25}>
                 <a
                   href={l.href}
+                  target={l.external ? "_blank" : undefined}
+                  rel={l.external ? "noopener noreferrer" : undefined}
                   className="group relative block overflow-hidden rounded-2xl glass chrome-border shine-sweep border-trace p-5 transition-transform hover:-translate-y-1"
                 >
                   <div className="flex items-center justify-between">
@@ -662,10 +674,42 @@ function Contact() {
 
           <div className="relative mt-12 grid grid-cols-2 gap-8 md:grid-cols-4">
             {[
-              { label: "navigate", items: ["index", "work", "process", "contact"] },
-              { label: "channels", items: ["telegram", "instagram", "read.cv", "are.na"] },
-              { label: "signals", items: ["studio log", "field notes", "press kit", "colophon"] },
-              { label: "contact", items: ["hello@nucleus.st", "+1 (415) 000·0000", "san francisco", "by appointment"] },
+              {
+                label: "navigate",
+                items: [
+                  { t: "index", href: "#top" },
+                  { t: "work", href: "#work" },
+                  { t: "process", href: "#process" },
+                  { t: "contact", href: "#contact" },
+                ],
+              },
+              {
+                label: "channels",
+                items: [
+                  { t: "telegram", href: "https://t.me/nucleus", external: true },
+                  { t: "instagram", href: "https://instagram.com/nucleus.ux", external: true },
+                  { t: "read.cv", href: "https://read.cv/nucleus", external: true },
+                  { t: "are.na", href: "https://are.na/nucleus", external: true },
+                ],
+              },
+              {
+                label: "signals",
+                items: [
+                  { t: "studio log", href: "mailto:hello@nucleus.io?subject=Studio%20log" },
+                  { t: "field notes", href: "mailto:hello@nucleus.io?subject=Field%20notes" },
+                  { t: "press kit", href: "mailto:press@nucleus.io" },
+                  { t: "colophon", href: "#about" },
+                ],
+              },
+              {
+                label: "contact",
+                items: [
+                  { t: "hello@nucleus.io", href: "mailto:hello@nucleus.io" },
+                  { t: "+1 (415) 000·0000", href: "tel:+14150000000" },
+                  { t: "san francisco", href: "https://maps.google.com/?q=San+Francisco", external: true },
+                  { t: "by appointment", href: "mailto:hello@nucleus.io?subject=Appointment" },
+                ],
+              },
             ].map((col, i) => (
               <Reveal key={col.label} delay={i * 80}>
                 <div className="flex flex-col gap-3">
@@ -674,12 +718,14 @@ function Contact() {
                   </div>
                   <ul className="flex flex-col gap-2">
                     {col.items.map((item) => (
-                      <li key={item}>
+                      <li key={item.t}>
                         <a
-                          href="#"
+                          href={item.href}
+                          target={"external" in item && item.external ? "_blank" : undefined}
+                          rel={"external" in item && item.external ? "noopener noreferrer" : undefined}
                           className="chromatic-hover font-mono text-xs uppercase tracking-[0.2em] text-foreground/80 transition-colors hover:text-foreground"
                         >
-                          {item}
+                          {item.t}
                         </a>
                       </li>
                     ))}
