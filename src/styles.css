@@ -287,6 +287,9 @@
   }
   .chrome-breathe { animation: chrome-breathe 8s ease-in-out infinite; }
 
+  /* Prevent stray horizontal scroll on mobile from decorative overflow */
+  html, body { overflow-x: clip; }
+
   /* Comfortable inset on mobile and tablet — applies to every max-w-[1600px] wrapper */
   @media (max-width: 767px) {
     .max-w-\[1600px\] {

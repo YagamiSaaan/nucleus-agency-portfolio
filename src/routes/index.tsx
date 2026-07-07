@@ -421,21 +421,21 @@ function About() {
   const tigerY = (tigerProgress - 0.5) * -60;
   const tigerRot = (tigerProgress - 0.5) * 8;
   return (
-    <section id="about" className="relative mx-auto max-w-[1600px] px-5 py-20 sm:px-6 md:px-10 md:py-32">
+    <section id="about" className="relative mx-auto max-w-[1600px] overflow-x-clip px-5 py-20 sm:px-6 md:px-10 md:py-32">
       <div className="mb-10 flex flex-wrap items-end justify-between gap-3 md:mb-16">
         <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">[ 01 · about ]</span>
         <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">who / behind / the chrome</span>
       </div>
       <div className="grid grid-cols-12 gap-10 md:gap-20">
         <Reveal className="col-span-12 md:col-span-5">
-          <div ref={tigerRef} className="relative" style={{ transform: `translateY(${tigerY}px) rotate(${tigerRot}deg)` }}>
+          <div ref={tigerRef} className="relative mx-auto w-full max-w-md md:max-w-none" style={{ transform: `translateY(${tigerY}px) rotate(${tigerRot}deg)` }}>
             <img
               src={aboutChrome}
               alt="Chrome tiger"
               loading="lazy"
               width={1600}
               height={1600}
-              className="relative z-10 h-auto w-[calc(100%+1.25rem)] -ml-5 select-none sm:-ml-6 sm:w-[calc(100%+1.5rem)] md:-ml-10 md:w-[calc(130%+2.5rem)] md:max-w-none"
+              className="relative z-10 h-auto w-full select-none md:-ml-10 md:w-[calc(130%+2.5rem)] md:max-w-none"
               style={{ filter: "drop-shadow(0 40px 100px rgba(120,160,220,0.25)) drop-shadow(0 0 60px rgba(200,220,255,0.12))" }}
             />
           </div>
