@@ -442,15 +442,15 @@ function Process() {
   ];
   return (
     <section id="process" className="relative border-t border-border">
-      <div className="mx-auto max-w-[1600px] px-6 py-32 md:px-10">
+      <div className="mx-auto max-w-[1600px] px-5 py-20 sm:px-6 md:px-10 md:py-32">
         {/* Sticky pinned heading */}
-        <div className="mb-16 md:sticky md:top-24 md:z-10 md:mb-8 md:bg-background/60 md:backdrop-blur-xl">
-          <div className="flex items-end justify-between py-4">
+        <div className="mb-10 md:sticky md:top-24 md:z-10 md:mb-8 md:bg-background/60 md:backdrop-blur-xl">
+          <div className="flex flex-wrap items-end justify-between gap-3 py-4">
             <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">[ 02 · process ]</span>
-            <h2 className="font-display text-4xl italic text-chrome md:text-6xl">stages of the craft</h2>
+            <h2 className="font-display text-3xl italic text-chrome sm:text-4xl md:text-6xl">stages of the craft</h2>
           </div>
         </div>
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-4">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {steps.map((s, i) => (
             <Reveal key={s.n} delay={i * 100}>
               <Tilt3D>
