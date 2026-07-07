@@ -518,7 +518,6 @@ const featured = {
   year: "2025",
   img: project2,
   tags: ["Editorial", "Streaming", "Dark UI"],
-  caseUrl: "mailto:hello@nucleus.io?subject=Case%20study%20—%20Rebranding%20Cinema",
   liveUrl: "https://mubi.com",
 };
 
