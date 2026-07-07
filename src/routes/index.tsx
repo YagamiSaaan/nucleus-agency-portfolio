@@ -752,7 +752,7 @@ function Contact() {
                         "inset 0 1px 0 rgba(255,255,255,0.9), inset 0 -1px 0 rgba(0,0,0,0.3)",
                     }}
                   >
-                    {l.icon}
+                    <l.Icon className="h-5 w-5 text-black/80" strokeWidth={1.75} />
                   </span>
                   <div className="min-w-0">
                     <div className="font-display text-xl text-black sm:text-2xl">{l.name}</div>
