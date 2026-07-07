@@ -284,39 +284,193 @@ export function ScrollProgress() {
 /* Page loader — chrome intro                         */
 /* -------------------------------------------------- */
 export function PageLoader() {
+  const [progress, setProgress] = useState(0);
   const [done, setDone] = useState(false);
   useEffect(() => {
-    const t = setTimeout(() => setDone(true), 1500);
-    return () => clearTimeout(t);
+    const start = performance.now();
+    const duration = 2200;
+    let raf = 0;
+    const tick = (now: number) => {
+      const t = Math.min(1, (now - start) / duration);
+      // eased progress
+      const eased = 1 - Math.pow(1 - t, 3);
+      setProgress(eased);
+      if (t < 1) raf = requestAnimationFrame(tick);
+      else setTimeout(() => setDone(true), 300);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
   }, []);
+
+  const pct = Math.round(progress * 100);
+
   return (
     <div
       aria-hidden
-      className="pointer-events-none fixed inset-0 z-[200] flex items-center justify-center bg-background"
+      className="pointer-events-none fixed inset-0 z-[200] overflow-hidden"
       style={{
-        transition: "opacity .7s ease, transform 1s cubic-bezier(.22,1,.36,1), clip-path 1s cubic-bezier(.7,0,.3,1)",
+        transition: "opacity .6s ease, clip-path 1.2s cubic-bezier(.76,0,.24,1)",
         clipPath: done ? "inset(0 0 100% 0)" : "inset(0 0 0 0)",
         opacity: done ? 0 : 1,
       }}
     >
-      <div className="flex flex-col items-center gap-6">
-        <div className="font-display text-6xl text-chrome md:text-8xl">
-          <SplitText text="nucleus" step={80} />
+      {/* Base black */}
+      <div className="absolute inset-0 bg-background" />
+
+      {/* Silver fluid layers */}
+      <div
+        className="absolute -left-[15%] top-[10%] h-[80vh] w-[80vh] rounded-full mix-blend-screen blur-3xl"
+        style={{
+          background:
+            "radial-gradient(circle at 40% 40%, #ffffff 0%, #cfd6e2 30%, #7a8296 60%, transparent 75%)",
+          animation: "loader-fluid-a 3s ease-in-out infinite",
+        }}
+      />
+      <div
+        className="absolute right-[-10%] top-[35%] h-[85vh] w-[85vh] rounded-full mix-blend-screen blur-3xl"
+        style={{
+          background:
+            "radial-gradient(circle at 60% 50%, #f3f5f8 0%, #b6bccb 40%, #6f7689 70%, transparent 80%)",
+          animation: "loader-fluid-b 3.4s ease-in-out infinite",
+        }}
+      />
+      <div
+        className="absolute left-[25%] bottom-[-15%] h-[70vh] w-[70vh] rounded-full mix-blend-screen blur-3xl opacity-80"
+        style={{
+          background:
+            "radial-gradient(circle at 50% 50%, #e8ecf3 0%, #98a2b8 45%, transparent 75%)",
+          animation: "loader-fluid-c 3.8s ease-in-out infinite",
+        }}
+      />
+      {/* Chromatic sheen */}
+      <div
+        className="absolute inset-0 opacity-40 mix-blend-overlay"
+        style={{
+          background:
+            "conic-gradient(from 210deg at 50% 50%, rgba(255,255,255,0), rgba(200,220,255,0.5), rgba(180,160,220,0.35), rgba(255,255,255,0), rgba(200,220,255,0.5), rgba(255,255,255,0))",
+          animation: "loader-spin 6s linear infinite",
+          filter: "blur(40px)",
+        }}
+      />
+      {/* Vignette */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.75) 100%)",
+        }}
+      />
+      {/* Grain */}
+      <div
+        className="absolute inset-0 opacity-[0.08] mix-blend-overlay"
+        style={{
+          backgroundImage:
+            "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>\")",
+        }}
+      />
+
+      {/* Center content */}
+      <div className="relative z-10 flex h-full w-full flex-col items-center justify-center px-6">
+        {/* Ticker line */}
+        <div className="absolute left-6 top-6 flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.35em] text-white/60 sm:left-10 sm:top-10">
+          <span className="inline-block h-2 w-2 animate-pulse rounded-full bg-white/80" />
+          <span>nucleus · chrome · mmxxvi</span>
         </div>
-        <div className="h-[1px] w-40 overflow-hidden bg-white/10">
+        <div className="absolute right-6 top-6 font-mono text-[10px] uppercase tracking-[0.35em] text-white/60 sm:right-10 sm:top-10">
+          initializing · sequence
+        </div>
+
+        {/* Wordmark with reveal mask */}
+        <div className="relative">
           <div
-            className="h-full"
+            className="font-display text-[22vw] leading-[0.85] tracking-[-0.045em] md:text-[16vw]"
             style={{
-              width: "40%",
-              background: "linear-gradient(90deg, transparent, #fff, transparent)",
-              animation: "loader-sweep 1.2s ease-in-out infinite",
+              background:
+                "linear-gradient(90deg, #7a7a7a 0%, #ffffff 25%, #cfd8e8 45%, #ffffff 55%, #7a7a7a 100%)",
+              backgroundSize: "200% 100%",
+              WebkitBackgroundClip: "text",
+              backgroundClip: "text",
+              color: "transparent",
+              WebkitTextFillColor: "transparent",
+              animation: "loader-shimmer 2.4s linear infinite",
+              clipPath: `inset(0 ${100 - pct}% 0 0)`,
+              transition: "clip-path 120ms linear",
             }}
-          />
+          >
+            nucleus
+          </div>
+          {/* Ghost outline underneath */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0 font-display text-[22vw] leading-[0.85] tracking-[-0.045em] md:text-[16vw]"
+            style={{
+              color: "transparent",
+              WebkitTextStroke: "1px rgba(255,255,255,0.10)",
+            }}
+          >
+            nucleus
+          </div>
         </div>
-        <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
-          initializing chrome
+
+        {/* Progress row */}
+        <div className="mt-10 flex w-full max-w-md items-center gap-4 px-2">
+          <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/60 tabular-nums">
+            {String(pct).padStart(3, "0")}
+          </span>
+          <div className="relative h-[2px] flex-1 overflow-hidden rounded-full bg-white/10">
+            <div
+              className="absolute inset-y-0 left-0"
+              style={{
+                width: `${pct}%`,
+                background:
+                  "linear-gradient(90deg, #7a7a7a, #ffffff, #cfd8e8, #ffffff)",
+                boxShadow: "0 0 16px rgba(200,220,255,0.7)",
+                transition: "width 120ms linear",
+              }}
+            />
+            <div
+              className="absolute inset-y-0"
+              style={{
+                left: `${pct}%`,
+                width: "40px",
+                transform: "translateX(-100%)",
+                background:
+                  "linear-gradient(90deg, transparent, rgba(255,255,255,0.9), transparent)",
+                filter: "blur(2px)",
+              }}
+            />
+          </div>
+          <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/60">
+            /100
+          </span>
+        </div>
+
+        <div className="mt-6 font-mono text-[10px] uppercase tracking-[0.4em] text-white/50">
+          {pct < 30 ? "loading assets" : pct < 65 ? "casting chrome" : pct < 95 ? "polishing surface" : "ready"}
         </div>
       </div>
+
+      <style>{`
+        @keyframes loader-shimmer {
+          0% { background-position: -200% 0; }
+          100% { background-position: 200% 0; }
+        }
+        @keyframes loader-fluid-a {
+          0%, 100% { transform: translate(0,0) scale(1); }
+          50% { transform: translate(10vw, 6vh) scale(1.15); }
+        }
+        @keyframes loader-fluid-b {
+          0%, 100% { transform: translate(0,0) scale(1); }
+          50% { transform: translate(-12vw, -4vh) scale(1.1); }
+        }
+        @keyframes loader-fluid-c {
+          0%, 100% { transform: translate(0,0) scale(1); }
+          50% { transform: translate(-6vw, -10vh) scale(1.2); }
+        }
+        @keyframes loader-spin {
+          to { transform: rotate(360deg); }
+        }
+      `}</style>
     </div>
   );
 }
