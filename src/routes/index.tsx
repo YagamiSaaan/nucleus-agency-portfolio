@@ -794,28 +794,27 @@ function Contact() {
               {
                 label: "channels",
                 items: [
-                  { t: "telegram", href: "https://t.me/nucleus", external: true },
-                  { t: "instagram", href: "https://instagram.com/nucleus.ux", external: true },
-                  { t: "read.cv", href: "https://read.cv/nucleus", external: true },
-                  { t: "are.na", href: "https://are.na/nucleus", external: true },
+                  { t: "instagram", href: "https://instagram.com/nucleus.xyz", external: true },
+                  { t: "whatsapp", href: "https://wa.me/919567332494", external: true },
+                  { t: "email", href: "mailto:nucleus.devsupport@gmail.com" },
                 ],
               },
               {
                 label: "signals",
                 items: [
-                  { t: "studio log", href: "mailto:hello@nucleus.io?subject=Studio%20log" },
-                  { t: "field notes", href: "mailto:hello@nucleus.io?subject=Field%20notes" },
-                  { t: "press kit", href: "mailto:press@nucleus.io" },
+                  { t: "studio log", href: "mailto:nucleus.devsupport@gmail.com?subject=Studio%20log" },
+                  { t: "field notes", href: "mailto:nucleus.devsupport@gmail.com?subject=Field%20notes" },
+                  { t: "press kit", href: "mailto:nucleus.devsupport@gmail.com?subject=Press%20kit" },
                   { t: "colophon", href: "#about" },
                 ],
               },
               {
                 label: "contact",
                 items: [
-                  { t: "hello@nucleus.io", href: "mailto:hello@nucleus.io" },
-                  { t: "+1 (415) 000·0000", href: "tel:+14150000000" },
-                  { t: "san francisco", href: "https://maps.google.com/?q=San+Francisco", external: true },
-                  { t: "by appointment", href: "mailto:hello@nucleus.io?subject=Appointment" },
+                  { t: "nucleus.devsupport@gmail.com", href: "mailto:nucleus.devsupport@gmail.com" },
+                  { t: "+91 95673 32494", href: "https://wa.me/919567332494", external: true },
+                  { t: "@nucleus.xyz", href: "https://instagram.com/nucleus.xyz", external: true },
+                  { t: "by appointment", href: "mailto:nucleus.devsupport@gmail.com?subject=Appointment" },
                 ],
               },
             ].map((col, i) => (
