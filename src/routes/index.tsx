@@ -479,11 +479,11 @@ const featured = [
 function Featured() {
   return (
     <section id="work" className="relative border-t border-border">
-      <div className="mx-auto max-w-[1600px] px-6 py-32 md:px-10">
-        <div className="mb-16 flex items-end justify-between">
+      <div className="mx-auto max-w-[1600px] px-5 py-20 sm:px-6 md:px-10 md:py-32">
+        <div className="mb-10 flex flex-wrap items-end justify-between gap-4 md:mb-16">
           <div>
             <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">[ 03 · featured ]</span>
-            <h2 className="mt-3 font-display text-5xl text-chrome md:text-7xl">
+            <h2 className="mt-3 font-display text-4xl text-chrome sm:text-5xl md:text-7xl">
               <SplitText text="Selected " step={50} />
               <span className="italic text-chrome-cyber"><SplitText text="Works" step={50} delay={250} /></span>
             </h2>
