@@ -1,3 +1,21 @@
+/**
+ * @file src/routes/__root.tsx
+ *
+ * The root route of the app. Every other route renders inside this
+ * shell, so anything defined here — head tags, providers, error
+ * boundaries — applies site-wide.
+ *
+ * ## Responsibilities
+ * - Ship the base HTML document (`<html>`/`<head>`/`<body>`).
+ * - Load global CSS and the Google Fonts stylesheet.
+ * - Emit sitewide `<meta>` and Organization JSON-LD.
+ * - Provide the TanStack Query client to the tree.
+ * - Own the app-level 404 and error boundaries.
+ *
+ * Route-specific metadata (title, description, canonical, og:image,
+ * per-page JSON-LD) lives on each leaf route's `head()` — see
+ * `src/routes/index.tsx` and `src/routes/works.tsx`.
+ */
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
   Outlet,
@@ -12,6 +30,13 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 
+/**
+ * Fallback rendered when the router matches no route (a 404).
+ *
+ * Registered via `notFoundComponent` on the root route so that any
+ * unmatched URL — including deep, nested paths — lands here rather
+ * than throwing.
+ */
 function NotFoundComponent() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
@@ -34,6 +59,19 @@ function NotFoundComponent() {
   );
 }
 
+/**
+ * React error boundary for the whole app.
+ *
+ * When any component throws during render or a loader errors, this
+ * component is mounted in place of the crashed subtree. It:
+ * 1. Logs the raw `Error` (preserving `.stack`) so it reaches Server Logs.
+ * 2. Forwards the error to the Lovable runtime for platform-level tracking.
+ * 3. Offers "Try again" (which invalidates the router cache and resets
+ *    the boundary so the loader re-runs) and "Go home" (a hard nav).
+ *
+ * `reset()` alone would clear the boundary state but not re-run the
+ * loader — we call `router.invalidate()` first to force fresh data.
+ */
 function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   console.error(error);
   const router = useRouter();
@@ -53,6 +91,9 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
         <div className="mt-6 flex flex-wrap justify-center gap-2">
           <button
             onClick={() => {
+              // Invalidate first so the loader re-runs on retry — a bare
+              // `reset()` would just remount the crashed component with
+              // its stale (broken) data.
               router.invalidate();
               reset();
             }}
@@ -72,18 +113,35 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   );
 }
 
+/**
+ * Root route definition.
+ *
+ * `createRootRouteWithContext<{ queryClient: QueryClient }>()` declares
+ * the shape of the context threaded through every child loader; the
+ * actual value is supplied by `getRouter()` in `src/router.tsx`.
+ *
+ * ## head()
+ * Only sitewide defaults live here — per-page `title`, `description`,
+ * `canonical`, `og:image`, and page-specific JSON-LD belong on each
+ * leaf route. Placing them here would override the child values.
+ */
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => ({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=5" },
       { name: "author", content: "Nucleus" },
+      // og:site_name applies to every share preview.
       { property: "og:site_name", content: "Nucleus" },
+      // Default og:type; leaf routes may override (e.g. "article").
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     scripts: [
       {
+        // Organization JSON-LD — sitewide entity schema for search
+        // engines and social crawlers. Update when contact details
+        // or social profiles change.
         type: "application/ld+json",
         children: JSON.stringify({
           "@context": "https://schema.org",
@@ -108,10 +166,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
     ],
     links: [
+      // Global stylesheet (Tailwind base + custom animations).
       { rel: "stylesheet", href: appCss },
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      // Preconnect to the Google Fonts domains so the actual font
+      // request can start as soon as the stylesheet resolves.
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+      // Font weights are trimmed to only the ones actually used in the
+      // app — see the perf pass in the change history for details.
       { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400&display=swap" },
     ],
   }),
@@ -121,6 +184,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   errorComponent: ErrorComponent,
 });
 
+/**
+ * Bare HTML shell rendered around the app on both server and client.
+ *
+ * `suppressHydrationWarning` on the three top-level elements silences
+ * the noisy React dev warning caused by Lovable's editor injecting
+ * `data-tsd-source` attributes and by browser extensions (Bitdefender,
+ * password managers) mutating `<body>` before hydration. These are
+ * dev-only markers with no runtime effect.
+ */
 function RootShell({ children }: { children: ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
@@ -135,6 +207,15 @@ function RootShell({ children }: { children: ReactNode }) {
   );
 }
 
+/**
+ * Root React tree. Wraps everything in the `QueryClientProvider` so
+ * `useSuspenseQuery` / `useQuery` in any child route can share the
+ * per-request `QueryClient` created by `getRouter()`.
+ *
+ * `<Outlet />` is mandatory — it's the mount point for whatever child
+ * route matched. Removing it renders a blank page even though the URL
+ * still resolves.
+ */
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
 
