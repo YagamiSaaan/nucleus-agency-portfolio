@@ -149,30 +149,27 @@ function Hero() {
             </p>
           </div>
 
-          {/* Center portrait */}
+          {/* Center chrome subject — no card, bleeds into section */}
           <div className="reveal-up col-span-12 md:col-span-6" style={{ animationDelay: "0.4s" }}>
-            <div className="mx-auto w-full max-w-md px-6 py-10 md:px-10 md:py-14">
-              <div
-                className="relative aspect-[4/5] w-full overflow-hidden rounded-[24px] chrome-border"
-                style={{ transform: `translate(${x * -10}px, ${y * -10}px)` }}
-              >
-                <img
-                  src={heroChrome}
-                  alt="Chrome portrait"
-                  width={1024}
-                  height={1280}
-                  className="h-full w-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
-                <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between">
-                  <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
-                    MRK · 001<br/>chrome_series
-                  </div>
-                  <div className="font-display text-xl italic text-chrome">akkira</div>
-                </div>
+            <div
+              className="relative mx-auto w-full max-w-[720px]"
+              style={{ transform: `translate(${x * -14}px, ${y * -14}px)` }}
+            >
+              <img
+                src={heroChrome}
+                alt="Chrome skull"
+                width={1600}
+                height={1600}
+                className="h-auto w-full select-none"
+                style={{ filter: "drop-shadow(0 40px 80px rgba(120,160,220,0.25)) drop-shadow(0 0 40px rgba(200,220,255,0.15))" }}
+              />
+              <div className="mt-4 flex items-end justify-between px-2 font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
+                <span>MRK · 001 / chrome_series</span>
+                <span className="font-display text-xl italic normal-case text-chrome">akkira</span>
               </div>
             </div>
           </div>
+
 
 
           {/* Right: DESIGNER stacked */}
