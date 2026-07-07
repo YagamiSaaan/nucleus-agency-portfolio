@@ -538,8 +538,8 @@ function Featured() {
               <Reveal className={`col-span-12 md:col-span-7 ${i % 2 ? "md:order-2" : ""}`}>
                 <div className="px-0 py-4 md:px-8 md:py-10">
                   <Tilt3D max={6}>
-                    <div className="relative overflow-hidden rounded-2xl chrome-border">
-                      <img src={p.img} alt={p.title} loading="lazy" width={1200} height={800} className="h-full w-full object-cover transition-transform duration-1000 group-hover:scale-105" />
+                    <div className="relative aspect-[4/3] overflow-hidden rounded-2xl chrome-border sm:aspect-[3/2]">
+                      <img src={p.img} alt={p.title} loading="lazy" width={1200} height={800} className="absolute inset-0 h-full w-full object-cover transition-transform duration-1000 group-hover:scale-105" />
                       <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent" />
                     </div>
                   </Tilt3D>
