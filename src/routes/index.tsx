@@ -553,7 +553,7 @@ function About() {
               width={1600}
               height={1600}
               className="relative z-10 h-auto w-full select-none md:-ml-10 md:w-[calc(130%+2.5rem)] md:max-w-none"
-              style={{ filter: "drop-shadow(0 40px 100px rgba(120,160,220,0.25)) drop-shadow(0 0 60px rgba(200,220,255,0.12))" }}
+              style={{ translateX(-40px), filter: "drop-shadow(0 40px 100px rgba(120,160,220,0.25)) drop-shadow(0 0 60px rgba(200,220,255,0.12))" }}
             />
           </div>
         </Reveal>
@@ -582,7 +582,6 @@ function About() {
           <div className="mt-10 flex flex-wrap gap-8 border-t border-border pt-6 font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
             <div><div className="text-2xl font-light text-foreground">02</div>person team</div>
             <div><div className="text-2xl font-light text-foreground">2026</div>founded</div>
-            <div><div className="text-2xl font-light text-foreground">◆</div>web · motion</div>
           </div>
         </div>
       </div>
@@ -920,7 +919,7 @@ function Contact() {
               </h2>
               <div className="mt-2 flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.4em] text-muted-foreground">
                 <span className="h-px flex-1 bg-gradient-to-r from-border to-transparent" />
-                <span>chrome · series · mmxxvi</span>
+                <span>portfolio · high quality</span>
                 <span className="h-px flex-1 bg-gradient-to-l from-border to-transparent" />
               </div>
             </div>
@@ -991,12 +990,7 @@ function Contact() {
           <div className="relative mt-16 flex flex-col items-start justify-between gap-4 border-t border-border/60 pt-6 font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground md:flex-row md:items-center">
             <div className="flex items-center gap-3">
               <span className="inline-block h-2 w-2 animate-pulse rounded-full bg-foreground/70" />
-              <span>available · q3 mmxxvi</span>
-            </div>
-            <div className="flex flex-wrap gap-x-6 gap-y-2">
-              <span>© mmxxvi · nucleus</span>
-              <span>site v.2.4</span>
-              <span>◆ forged in liquid metal</span>
+              <span>available</span>
             </div>
           </div>
         </footer>
