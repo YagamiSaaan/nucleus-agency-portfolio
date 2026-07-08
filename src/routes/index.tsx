@@ -34,7 +34,6 @@ import project1 from "@/assets/project-1.jpg";
 import project2 from "@/assets/project-2.jpg";
 import project3 from "@/assets/project-3.jpg";
 import project4 from "@/assets/project-4.jpg";
-import liquidChrome from "@/assets/liquid-chrome.mp4";
 import {
   Reveal,
   SplitText,
@@ -391,21 +390,22 @@ function ChromeButton({
  * `aria-hidden` and `pointer-events-none` so it never affects layout
  * or accessibility.
  */
+import liquidChrome from "@assets/liquid-chrome.gif";
+
 function SilverFluid() {
   return (
     <div className="absolute inset-0 -z-10 overflow-hidden">
-      <video
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="auto"
-        className="absolute inset-0 w-full h-full object-cover"
+      <img
         src={liquidChrome}
+        alt=""
+        className="absolute inset-0 w-full h-full object-cover select-none pointer-events-none"
+        draggable={false}
       />
 
+      {/* Dark overlay */}
       <div className="absolute inset-0 bg-black/30" />
 
+      {/* Vignette */}
       <div
         className="absolute inset-0"
         style={{
@@ -416,6 +416,8 @@ function SilverFluid() {
     </div>
   );
 }
+
+export default SilverFluid;
 /**
  * Above-the-fold hero section.
  *
