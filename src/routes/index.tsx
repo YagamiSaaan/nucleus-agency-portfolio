@@ -499,7 +499,7 @@ function Hero() {
 
         <div className="relative mt-6 grid grid-cols-12 items-start gap-6 md:gap-10">
           <Reveal delay={200} className="col-span-12 space-y-2 md:col-span-6 md:pt-8">
-            <div className="pt-4 font-sans-tight text-3xl font-light leading-[0.95] sm:text-4xl md:text-5xl [text-shadow:2px_2px_8px_rgba(0,0,0,0.6)]">
+            <div className="pt-4 font-sans-tight text-3xl font-light leading-[0.95] sm:text-4xl md:text-5xl [text-shadow:2px_2px_8px_rgba(0,0,0,1)]">
               <div className="text-chrome">Websites</div>
               <div className="text-chrome-cyber">&amp;</div>
               <div className="text-chrome">Motion Ads</div>
