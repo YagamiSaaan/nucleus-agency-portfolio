@@ -558,21 +558,21 @@ function About() {
           </div>
         </Reveal>
 
-        <div className="col-span-12 min-w-0 w-full overflow-hidden md:col-span-7 md:pl-12">
+        <div className="col-span-12 md:col-span-7 md:pl-12">
           <Reveal>
-            <h2 className="font-display text-4xl leading-[0.98] tracking-tight text-chrome break-words hyphens-auto max-w-full sm:text-5xl md:text-7xl">
+            <h2 className="font-display text-4xl leading-[0.98] tracking-tight break-words max-w-full text-chrome sm:text-5xl md:text-7xl">
               We are <span className="italic text-chrome-cyber">Nucleus</span> — a two‑person studio building high‑end websites and motion ads with a quiet, obsessive craft.
             </h2>
           </Reveal>
           <Reveal delay={150}>
-            <p className="mt-8 w-full max-w-xl break-words text-base leading-relaxed text-muted-foreground">
+            <p className="mt-8 max-w-xl w-full break-words text-base leading-relaxed text-muted-foreground">
               Founded in 2026, we take on a small number of projects each season. No noise, no bloat — just polished sites and motion pieces that feel like objects cast in chrome.
             </p>
           </Reveal>
           <div className="mt-10 grid grid-cols-1 gap-3 sm:grid-cols-2">
             {specialties.map((s, i) => (
               <Reveal key={s} delay={i * 60}>
-                <div className="glass chrome-border min-w-0 shine-sweep border-trace rounded-2xl px-5 py-4 transition-transform duration-500 hover:-translate-y-0.5 ">
+                <div className="glass chrome-border shine-sweep border-trace rounded-2xl px-5 py-4 transition-transform duration-500 hover:-translate-y-0.5">
                   <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">◆</span>
                   <div className="mt-1 font-sans-tight text-sm text-foreground">{s}</div>
                 </div>
@@ -588,6 +588,7 @@ function About() {
     </section>
   );
 }
+
 
 /**
  * "Process" section — numbered 4-step reveal of how the studio works.
