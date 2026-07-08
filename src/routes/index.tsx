@@ -393,47 +393,26 @@ function ChromeButton({
 function SilverFluid() {
   return (
     <div className="absolute inset-0 -z-10 overflow-hidden">
-  <video
-    autoPlay
-    muted
-    loop
-    playsInline
-    preload="auto"
-    className="absolute inset-0 h-full w-full object-cover"
-  >
-    <source src="/assets/liquid-chrome.mp4" type="video/mp4" />
-  </video>
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="auto"
+        className="absolute inset-0 h-full w-full object-cover"
+      >
+        <source src="/videos/liquid-chrome.mp4" type="video/mp4" />
+      </video>
 
-  {/* Optional dark overlay for readability */}
-  <div className="absolute inset-0 bg-black/30" />
+      <div className="absolute inset-0 bg-black/30" />
 
-  {/* Optional subtle vignette */}
-  <div
-    className="absolute inset-0"
-    style={{
-      background:
-        "radial-gradient(circle at center, transparent 35%, rgba(0,0,0,.45) 100%)",
-    }}
-  />
-</div>
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(circle at center, transparent 35%, rgba(0,0,0,.45) 100%)",
+        }}
       />
-      <style>{`
-        @keyframes fluid-a {
-          0%, 100% { transform: translate(0,0) scale(1); }
-          50% { transform: translate(12vw, 8vh) scale(1.15); }
-        }
-        @keyframes fluid-b {
-          0%, 100% { transform: translate(0,0) scale(1); }
-          50% { transform: translate(-14vw, -6vh) scale(1.1); }
-        }
-        @keyframes fluid-c {
-          0%, 100% { transform: translate(0,0) scale(1); }
-          50% { transform: translate(-8vw, -12vh) scale(1.2); }
-        }
-        @keyframes fluid-spin {
-          to { transform: rotate(360deg); }
-        }
-      `}</style>
     </div>
   );
 }
