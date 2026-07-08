@@ -28,7 +28,6 @@ import {
 import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
-import { reportLovableError } from "../lib/lovable-error-reporting";
 
 /**
  * Fallback rendered when the router matches no route (a 404).
