@@ -393,24 +393,11 @@ function ChromeButton({
  */
 function SilverFluid() {
   return (
-    <div className="absolute inset-0 -z-10 overflow-hidden">
-      <img
-        src={liquidChrome}
-        alt=""
-        className="absolute inset-0 w-full h-full object-cover pointer-events-none select-none"
-        draggable={false}
-      />
-
-      <div className="absolute inset-0 bg-black/30" />
-
-      <div
-        className="absolute inset-0"
-        style={{
-          background:
-            "radial-gradient(circle at center, transparent 35%, rgba(0,0,0,.45) 100%)",
-        }}
-      />
-    </div>
+    <img
+      src={liquidChrome}
+      alt=""
+      className="fixed inset-0 z-[9999] w-screen h-screen object-cover"
+    />
   );
 }
 /**
