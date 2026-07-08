@@ -393,13 +393,24 @@ function ChromeButton({
  */
 function SilverFluid() {
   return (
-    <img
-      src={liquidChrome}
-      alt=""
-      className="fixed inset-0 z-[9999] w-screen h-screen object-cover"
-    />
+    <div
+      aria-hidden="true"
+      className="absolute inset-0 -z-10 overflow-hidden pointer-events-none"
+    >
+      <img
+        src={liquidChrome}
+        alt=""
+        draggable={false}
+        className="absolute inset-0 w-full h-full object-cover select-none"
+      />
+
+      {/* Dark overlay */}
+      <div className="absolute inset-0 bg-black/30" />
+      </div>
   );
 }
+
+export default SilverFluid;
 /**
  * Above-the-fold hero section.
  *
@@ -411,8 +422,9 @@ function Hero() {
   const { x, y } = useMouseParallax();
 
   return (
-    <section id="top" className="relative min-h-screen w-full overflow-hidden pt-24 md:pt-28">
+    <section className="relative min-h-screen overflow-hidden bg-black">
       <SilverFluid />
+    <div className="relative z-10">
       <div className="pointer-events-none absolute inset-0 radial-glow" />
 
       <img
@@ -463,6 +475,7 @@ function Hero() {
           </div>
         </div>
       </div>
+    </div>
     </section>
   );
 }
