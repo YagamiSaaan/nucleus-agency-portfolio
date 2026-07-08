@@ -509,12 +509,7 @@ function Hero() {
             </p>
           </Reveal>
 
-          <Reveal delay={600} className="col-span-12 text-left md:col-span-6 md:pt-4 md:text-right">
-            <div className="mt-4 flex flex-wrap gap-3 font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground sm:gap-4 sm:tracking-[0.3em] md:justify-end [text-shadow:2px_2px_8px_rgba(0,0,0,0.6)]">
-              <span>ig · nucleus.xyz</span>
-              <span>est · 2026</span>
-            </div>
-          </Reveal>
+          
         </div>
 
         <div className="mt-16 flex flex-wrap items-center justify-between gap-4 border-t border-border pt-6 md:mt-24 [text-shadow:2px_2px_8px_rgba(0,0,0,0.6)]">

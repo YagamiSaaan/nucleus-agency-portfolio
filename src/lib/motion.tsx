@@ -447,14 +447,6 @@ export function PageLoader() {
 
       {/* Center content */}
       <div className="relative z-10 flex h-full w-full flex-col items-center justify-center px-6">
-        {/* Ticker line */}
-        <div className="absolute left-6 top-6 flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.35em] text-white/60 sm:left-10 sm:top-10">
-          <span className="inline-block h-2 w-2 animate-pulse rounded-full bg-white/80" />
-          <span>nucleus · chrome · mmxxvi</span>
-        </div>
-        <div className="absolute right-6 top-6 font-mono text-[10px] uppercase tracking-[0.35em] text-white/60 sm:right-10 sm:top-10">
-          initializing · sequence
-        </div>
 
         {/* Wordmark with reveal mask */}
         <div className="relative">
