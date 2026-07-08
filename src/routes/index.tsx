@@ -553,7 +553,7 @@ function About() {
               width={1600}
               height={1600}
               className="relative z-10 h-auto w-full select-none md:-ml-10 md:w-[calc(130%+2.5rem)] md:max-w-none"
-              style={{ translateX(-40px), filter: "drop-shadow(0 40px 100px rgba(120,160,220,0.25)) drop-shadow(0 0 60px rgba(200,220,255,0.12))" }}
+              style={{ transform: "translateX(-40px)", filter: "drop-shadow(0 40px 100px rgba(120,160,220,0.25)) drop-shadow(0 0 60px rgba(200,220,255,0.12))" }}
             />
           </div>
         </Reveal>
