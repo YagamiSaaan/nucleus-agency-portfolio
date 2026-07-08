@@ -34,7 +34,6 @@ import project1 from "@/assets/project-1.jpg";
 import project2 from "@/assets/project-2.jpg";
 import project3 from "@/assets/project-3.jpg";
 import project4 from "@/assets/project-4.jpg";
-import liquidChrome from "@/assets/liquid-chrome.gif";
 import {
   Reveal,
   SplitText,
@@ -393,22 +392,71 @@ function ChromeButton({
  */
 function SilverFluid() {
   return (
-    <div
-      aria-hidden="true"
-      className="absolute inset-0 -z-10 overflow-hidden pointer-events-none"
-    >
-      <img
-        src={liquidChrome}
-        alt=""
-        draggable={false}
-        className="absolute inset-0 w-full h-full object-cover select-none"
+    <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
+      {/* Base metallic wash */}
+      <div
+        className="absolute inset-0 opacity-70"
+        style={{
+          background:
+            "radial-gradient(ellipse at 20% 30%, rgba(210,220,235,0.35), transparent 55%), radial-gradient(ellipse at 80% 60%, rgba(180,200,230,0.30), transparent 55%), radial-gradient(ellipse at 50% 90%, rgba(150,170,200,0.25), transparent 60%)",
+        }}
       />
-
-      {/* Dark overlay */}
-      <div className="absolute inset-0 bg-black/30" />
-      </div>
+      {/* Flowing silver blobs */}
+      <div
+        className="absolute -left-[20%] top-[10%] h-[70vh] w-[70vh] rounded-full mix-blend-screen blur-3xl"
+        style={{
+          background:
+            "radial-gradient(circle at 40% 40%, #f3f5f8 0%, #cfd6e2 30%, #8a92a8 60%, transparent 75%)",
+          animation: "fluid-a 18s ease-in-out infinite",
+        }}
+      />
+      <div
+        className="absolute right-[-15%] top-[35%] h-[80vh] w-[80vh] rounded-full mix-blend-screen blur-3xl opacity-90"
+        style={{
+          background:
+            "radial-gradient(circle at 60% 50%, #ffffff 0%, #d9dee7 25%, #98a2b8 55%, transparent 75%)",
+          animation: "fluid-b 22s ease-in-out infinite",
+        }}
+      />
+      <div
+        className="absolute left-[30%] bottom-[-10%] h-[65vh] w-[65vh] rounded-full mix-blend-screen blur-3xl opacity-80"
+        style={{
+          background:
+            "radial-gradient(circle at 50% 50%, #e8ecf3 0%, #b6bccb 40%, #6f7689 70%, transparent 80%)",
+          animation: "fluid-c 26s ease-in-out infinite",
+        }}
+      />
+      {/* Chromatic shimmer sheen */}
+      <div
+        className="absolute inset-0 opacity-30 mix-blend-overlay"
+        style={{
+          background:
+            "conic-gradient(from 210deg at 50% 50%, rgba(255,255,255,0.0), rgba(200,220,255,0.35), rgba(180,160,220,0.25), rgba(255,255,255,0.0), rgba(200,220,255,0.35), rgba(255,255,255,0.0))",
+          animation: "fluid-spin 40s linear infinite",
+          filter: "blur(40px)",
+        }}
+      />
+      <style>{`
+        @keyframes fluid-a {
+          0%, 100% { transform: translate(0,0) scale(1); }
+          50% { transform: translate(12vw, 8vh) scale(1.15); }
+        }
+        @keyframes fluid-b {
+          0%, 100% { transform: translate(0,0) scale(1); }
+          50% { transform: translate(-14vw, -6vh) scale(1.1); }
+        }
+        @keyframes fluid-c {
+          0%, 100% { transform: translate(0,0) scale(1); }
+          50% { transform: translate(-8vw, -12vh) scale(1.2); }
+        }
+        @keyframes fluid-spin {
+          to { transform: rotate(360deg); }
+        }
+      `}</style>
+    </div>
   );
 }
+
 
 export default SilverFluid;
 /**
